@@ -1,0 +1,64 @@
+<!--
+  Generated template for the MemberServicedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Members Serviced</ion-title>
+    </ion-navbar>
+
+      
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+    <ion-grid class="period" >
+        <ion-row>  
+            
+            <ion-col col-8>
+              <p>Total members serviced for the period</p>
+              <p>{{datePeriod}}</p>
+          </ion-col>
+          <ion-col col-4>
+             <!--<button (click)="showFilterPopup()">Change</button>-->
+             <button (click)="showFilterPopup()">Change</button>
+          </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+   
+        <ion-grid class="date-box-deta" *ngIf="!isReportEmpty">
+     
+        <ion-row class="heding-row">
+          <ion-col col-4  > <h3>Date</h3></ion-col>
+          <ion-col col-4  > <h3>Member</h3></ion-col>
+          <ion-col col-4  > <h3>Services</h3></ion-col>
+        </ion-row>
+     
+  
+      
+     
+        <ion-row class="deta-row"  *ngFor="let item of memberServicedReports">
+          <ion-col col-4 ><p>{{item.date}}</p></ion-col>
+          <ion-col col-4 ><p>{{item.membername}}</p></ion-col>
+          <ion-col col-4 ><p>{{item.servicename}}</p></ion-col>
+        </ion-row>
+      </ion-grid>
+      
+   
+      <ion-grid *ngIf="isReportEmpty">
+          <ion-row  >
+              No reports found
+             </ion-row >
+          </ion-grid>
+</ion-content>

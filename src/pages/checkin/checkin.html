@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Check In</ion-title>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content>
+  <!-- <ion-grid>
+      <ion-row>
+          <ion-col col-12>
+              <div class="container">
+                  <ul>
+                      <li>
+                        <input type="radio" id="t-option" name="selector">
+                        <label for="t-option">By SMS</label>
+                        <div class="check"></div>
+                      </li>
+                </ul>
+              </div>
+          </ion-col>
+
+          <ion-col col-12 class="sms-code-box">
+              <p>Enter SMS code</p>
+              <input type="text" placeholder="0">
+              <input type="text" placeholder="0">
+              <input type="text" placeholder="0">
+              <input type="text" placeholder="0">
+              <button>DONE</button>
+              <p>Send SMS to customer registered number</p>
+              <button>Click here</button>
+          </ion-col>
+
+
+      </ion-row>
+  </ion-grid> -->
+  <ion-grid   >
+      <ion-row > 
+          <ion-col col-12>
+              <div   class="container">
+                  <ul>
+                      <li >
+                        <input   type="radio" id="s-option" name="selector">
+                        <label  (click)="checkIn(appointment)"  for="s-option">Scan by QR code</label>
+                        <div class="check"></div>
+                      </li>
+                </ul>
+              </div>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

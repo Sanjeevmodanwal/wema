@@ -1,0 +1,39 @@
+<ion-header >
+    <ion-navbar class="dawn-bar">
+      <!-- <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button> -->
+    </ion-navbar> 
+    <ion-grid class="search-box two">
+        <ion-row>
+            <ion-col col-12>
+                  <h3 (click)="AnyTime()" >Any time</h3>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+  </ion-header>
+
+
+<ion-content>
+
+  <ion-grid class="search-box-dawn">
+      <ion-row>
+          <ion-col col-12>
+              <ion-item   >
+                  <ion-input [(ngModel)]="FormatedDate " placeholder="Select Date " (click)="ShowDate()"> </ion-input>
+                </ion-item>
+              <ion-item (click)="ShowTime()">
+                <ion-input  [(ngModel)]="FormatedTime"  placeholder="Select Time"></ion-input>
+              </ion-item>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  <ion-grid class="button-box">
+      <ion-row>
+          <button (click)="dismiss()"> Apply</button>
+      </ion-row>
+  </ion-grid>
+
+
+</ion-content>

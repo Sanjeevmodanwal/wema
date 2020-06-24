@@ -1,0 +1,38 @@
+page-emergency-alarm {
+    ion-col.col {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
+    .toolbar-background {
+        border-color: #ffffff;
+        background: #ffffff;
+    }
+    .scroll-content {
+        background: #eeeeee;
+    }
+   
+    ion-col.col h4{
+        font-size: 20px;
+        font-weight: bold;
+        color: #585858;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-col.col img{
+       width: 180px;
+       height: auto;
+    }
+    .alarm{
+        background: #13a89e;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        font-family: 'Muli', sans-serif;
+        text-align: center;
+        padding: 10px 20px;
+        margin: 20px 0px;
+        text-transform: uppercase;
+    }
+}

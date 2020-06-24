@@ -1,0 +1,38 @@
+page-provider-checkin-success {
+    .scroll-content{
+        background: #eeeeee;
+    }
+    ion-col.col {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
+    ion-col.col img{
+       width: 150px;
+    }
+    ion-col.col h5{
+        font-size: 18px;
+        color: #17a9a0;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-col.col p{
+        font-size: 14px;
+        color: #585858;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-col.col button{
+        font-size: 16px;
+        color: #ffffff;
+        font-weight: 600;
+        font-family: 'Muli', sans-serif;
+        background: #17a9a0;
+        text-transform: uppercase;
+        border: none;
+        padding: 10px 24px;
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,156 @@
+<ion-header >
+    <ion-navbar class="dawn-bar">
+      <ion-buttons end>
+          <button *ngIf="appState.CartCount>0" clear style="color:black;background: transparent">{{appState.CartTimer}}
+</button>
+            <ion-icon  *ngIf="appState.CartCount>0" ios="ios-cart" md="md-cart"></ion-icon>
+        <button *ngIf="appState.CartCount>0" clear style="color:black;background: transparent" (click)="viewCart()">
+       ({{appState.CartCount}})
+        </button>
+      </ion-buttons>
+      <ion-title>Book Appointment1</ion-title>
+      <span><b> {{ApponitmentInfo.firstname}}  {{ApponitmentInfo.lastname}}</b> (Duration 1 session {{(compnayInfo.inhome_session)!=null?compnayInfo.inhome_session:ApponitmentInfo.inhome_session}} mins)</span>
+    </ion-navbar> 
+</ion-header>  
+<ion-content>
+    <ion-grid style="padding: 7px 0px 0px;">
+          <ion-row>
+              <ion-col style="padding:0px 0px;">                 
+                  <button (click)="toggleAccordion1()"  class="card-header-two" >
+                      Select Date  <ion-icon  style="float: right;" *ngIf="Date!=null" name="md-create"></ion-icon>
+                      <p *ngIf="Date!=null" class="TIMEstyle" > {{Date | date:'EEE,d  MMM, y' }}</p> 
+                  </button> 
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid style="padding: 7px 0px 0px;">
+            <ion-row>
+                <ion-col style="padding:0px;">
+                    <ion-card style="padding:0px;">
+                        <ion-card-header (click)="toggleAccordion2()" class="card-header-two">
+                            Select Time  <ion-icon *ngIf="Time1==undefined" name="ios-arrow-down" style="float: right;"> </ion-icon>  
+                            <ion-icon  style="float: right;" *ngIf="Time1!=undefined" name="md-create"></ion-icon>
+                        </ion-card-header>
+                        <button   [ngClass]="(clinic_name !='')? 'time-clinic' : 'time'"   *ngIf="Time1!=undefined"  >{{Time1.time}}</button>
+                        <ion-card-content #cc>
+                              <ion-row > 
+                                      <ion-col col-12 >
+                                          <ion-select     (ionChange)="getclinicSlot(clinic_name)"   interface="popover" [(ngModel)]="clinic_name" class="selector" pid="category">
+                                            <ion-option   *ngFor="let vCategory of data1[0]"   [value]="vCategory.id" class="option" text-wrap>
+                                              {{vCategory.name}}
+                                            </ion-option>
+                                          </ion-select >
+                                      </ion-col>
+                                    </ion-row>
+                             <ion-row>
+                                <ion-col col-12 class="select-time-box">
+                                    <p class="orange"><ion-icon name="square"></ion-icon> In Clinic</p>
+                                    <p  class="green"><ion-icon name="square"></ion-icon> In Home</p>
+                                    <p >
+                                        <ion-list>
+                                    <ion-item>
+                                          <ion-label >All</ion-label>
+                                          <ion-checkbox  class="smallcheckbox" checked={{isChecked}}   (ionChange)="myFunction($event)" [(ngModel)]="friends"></ion-checkbox>
+                                        </ion-item>
+                                      </ion-list>
+                                  </p>
+                                 </ion-col>
+                             </ion-row>
+                             <ion-row>
+                                <ion-col col-12 >
+                                    <h5 *ngIf="currentIndex==undefined || currentIndex==0" class="end-of-date">{{firstDay  | date:'EEE, d  MMM, y'}}</h5>
+                                    <h5 *ngIf="currentIndex==1" class="end-of-date">{{secondDay  | date:'EEE, d  MMM, y'}}</h5>
+                                    <h5 *ngIf="currentIndex==2" class="end-of-date">{{thirdDay  | date:'EEE, d  MMM, y'}}</h5>
+                                    <h5 *ngIf="currentIndex==3" class="end-of-date">{{fourthDay  | date:'EEE, d  MMM, y'}}</h5>
+                                    <h5 *ngIf="currentIndex==4" class="end-of-date">{{fifthDay  | date:'EEE, d  MMM, y'}}</h5>
+                                    <h5 *ngIf="currentIndex==5" class="end-of-date">{{sixthDay  | date:'EEE, d  MMM, y'}}</h5>
+                                    <h5 *ngIf="currentIndex==6 || currentIndex==7" class="end-of-date">{{seventhDay  | date:'EEE, d  MMM, y'}}</h5>
+                                </ion-col>
+                             </ion-row>
+                                <ion-row [ngClass]="(clinic_name !='')? 'time-of-button-clinic' : 'time-of-button'">
+                                    <ion-col col-12>
+                                        <ion-slides (ionSlideDidChange)="slideChanged()" >
+                                            <ion-slide>
+                                                <button *ngFor="let item of slotTimes1; let i = index; "   (click)="clicked($event,i,item)" >{{item.time}}</button>
+                                                <p *ngIf="slotTimes1=='' || slotTimes1 == undefined"> No Availability slots for the requested time. Please select 'All Time' to see all available slots.</p> 
+                                            </ion-slide>
+                                            <ion-slide>
+                                                <button    *ngFor="let item of slotTimes2; let i = index; "   (click)="clicked($event,i,item)" >{{item.time}}</button>
+                                                <p *ngIf="slotTimes2=='' || slotTimes2 == undefined"> No Availability slots for the requested time. Please select 'All Time' to see all available slots.</p> 
+                                            </ion-slide>
+                                            <ion-slide>
+                                                <button    *ngFor="let item of slotTimes3; let i = index; "   (click)="clicked($event,i,item)" >{{item.time}}</button>
+                                                <p *ngIf="slotTimes3=='' || slotTimes3 == undefined"> No Availability slots for the requested time. Please select 'All Time' to see all available slots.</p> 
+                                            </ion-slide>
+                                            <ion-slide>
+                                                <button    *ngFor="let item of slotTimes4; let i = index; "   (click)="clicked($event,i,item)" >{{item.time}}</button>
+                                                <p *ngIf="slotTimes4=='' || slotTimes4 == undefined"> No Availability slots for the requested time. Please select 'All Time' to see all available slots.</p> 
+                                            </ion-slide>
+                                            <ion-slide>
+                                                <button    *ngFor="let item of slotTimes5; let i = index; "   (click)="clicked($event,i,item)" >{{item.time}}</button>
+                                                <p *ngIf="slotTimes5=='' || slotTimes5 == undefined"> No Availability slots for the requested time. Please select 'All Time' to see all available slots.</p> 
+                                            </ion-slide>
+                                            <ion-slide>
+                                                <button *ngFor="let item of slotTimes6; let i = index; "   (click)="clicked($event,i,item)" >{{item.time}}</button>
+                                                <p *ngIf="slotTimes6=='' || slotTimes6 == undefined"> No Availability slots for the requested time. Please select 'All Time' to see all available slots.</p> 
+                                            </ion-slide>
+                                            <ion-slide>
+                                                <button *ngFor="let item of slotTimes7; let i = index; "   (click)="clicked($event,i,item)" >{{item.time}}</button>
+                                                <p *ngIf="slotTimes7=='' || slotTimes7 == undefined"> No Availability slots for the requested time. Please select 'All Time' to see all available slots.</p> 
+                                            </ion-slide>
+                                        </ion-slides>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col col-12>
+                                        <p (click)="toggleAccordion2()"  class="Done-all-button"><a>DONE</a></p>
+                                    </ion-col>
+                                </ion-row>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid style="padding: 7px 0px 0px;">
+              <ion-row>
+                  <ion-col style="padding:0px;">
+                      <ion-card style="padding:0px;">
+                          <ion-card-header (click)="toggleAccordion3()" class="card-header-two">
+                              Enter Postcode <ion-icon name="ios-arrow-down" style="float: right;"></ion-icon> 
+                          </ion-card-header>
+                          <ion-card-content #ccc>
+                                <ion-row class="input-bottom">
+                                    <ion-col col-12>
+                                          <ion-item>
+                                             <!-- <ion-input type="text" placeholder="Eg:E1 FG8" class="input-box"></ion-input>
+                                             -->
+                                             <ion-searchbar  [(ngModel)]="Postcode"  #searchbar   (ionChange)="checkCode()" placeholder="Eg:E1 FG8" ></ion-searchbar>
+                                            <!-- <div class="custom-label" *ngIf="!gotoNextPageStatus" style="color:#f53d3d;font-size: 12px">Sorry No Provider Available On Given Location</div>-->
+                                             <div id="map" #map></div>  
+                                          </ion-item>
+                                    </ion-col>
+                                    <ion-col col-12>
+                                        <p class="or-text">Or</p>
+                                    </ion-col>
+                                  </ion-row>
+                                    <ion-row class="send-locesan-box">
+                                        <ion-col>
+                                            <p class="send-locesan" (click)='choosePosition()'><ion-icon name="ios-send"></ion-icon> Use my current location</p>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row class="button-next">
+                                        <button (click)="nextButton()">NEXT</button>
+                                    </ion-row>
+                          </ion-card-content>
+                      </ion-card>
+                  </ion-col>
+              </ion-row>
+            </ion-grid>
+            <!-- <p>slotTimes1 {{slotTimes1 | json}}</p>
+            <p>slotTimes2 {{slotTimes2 | json}}</p>
+            <p>slotTimes3 {{slotTimes3 | json}}</p>
+            <p>slotTimes4 {{slotTimes4 | json}}</p>
+            <p>slotTimes5 {{slotTimes5 | json}}</p>
+            <p>slotTimes6 {{slotTimes6 | json}}</p>
+            <p>slotTimes7 {{slotTimes7 | json}}</p> -->
+  </ion-content>

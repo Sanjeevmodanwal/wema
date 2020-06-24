@@ -1,0 +1,254 @@
+page-one {
+        ion-grid.background-green.grid {
+            background: #12a89d;
+            margin-top: 7px;
+            padding: 15px 0px;
+        }
+        ion-grid.background-green.grid h4 {
+            color: #fff;
+            font-family: 'Muli', sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 0px;
+            padding: 3px 0px 0;
+        }
+        ion-grid.background-green.grid p {
+            color: #fff;
+            font-family: 'Muli', sans-serif;
+           font-size: 13px;
+           font-weight: 400;
+           margin: 0px;
+           margin-top: 5px;
+        }
+    
+        ion-grid.background-orange.grid {
+            background: #fbb812;
+            margin-top: 7px;
+            padding: 15px 0px;
+        }
+        ion-grid.background-orange.grid h4{
+            color: #fff;
+            font-family: 'Muli', sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 0px;
+            padding: 3px  0 0;
+        }
+        ion-grid.background-orange.grid p{
+           color: #fff;
+           font-family: 'Muli', sans-serif;
+           font-size: 13px;
+           font-weight: 400;
+           margin: 0px;
+           margin-top: 5px;
+        }
+        ion-grid.background-orange.grid p.background-lite {
+            background: #fcc642;
+            font-size: 25px;
+            padding: 15px;
+        }
+        p.background-lite {
+            background-color: #42bab1;
+            width: 61px;
+            height: 61px;
+            margin: 0px;
+            border-radius: 100%;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 25px !important;
+            padding: 16px !important;
+        }
+        ion-grid .col{
+            margin: 0px;
+            padding: 0px 8px;
+        }
+        .slider-one ion-slide .slide-zoom div{
+            width: 23% !important;
+            display: inline-block;
+            text-align: center;
+            vertical-align: top;
+        }
+        .slider-one ion-slide .slide-zoom div p{
+            font-size: 13px;
+            color: #595959;
+            font-weight: 700;
+            font-family: 'Muli', sans-serif;
+            
+        }
+        .slider-one ion-slide .slide-zoom div span {
+            width: 50px;
+            height: 50px;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #12a89d;
+            border-radius: 100%;
+            position: relative;
+        }
+        .slider-one ion-slide .slide-zoom div span img{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            width: 40px;
+        }
+        ion-grid.popular-services.grid h4 {
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 30px 0px 30px;
+            margin: 0px;
+            color: #000000;
+            font-family: 'Muli', sans-serif;
+        }
+         p.background-lite {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        ion-grid.care{
+            background-image: url('../assets/imgs/care-image.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: left center;
+            margin-bottom: 7px;
+        }
+        ion-grid.care.grid p {
+            padding: 50px 30px 44px;
+            text-align: right;
+            width: 100%;
+            color: #fff;
+            font-size: 15px;
+            margin: 0px;
+            font-family: 'Muli', sans-serif;
+            font-weight: 600;
+        }
+        ion-grid.health{
+            background-image: url('../assets/imgs/health-images.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: left center;
+            margin-bottom: 7px;
+        }
+        ion-grid.health p {
+            padding: 50px 30px 44px;
+            text-align: right;
+            width: 100%;
+            color: #fff;
+            font-size: 15px;
+            margin: 0px;
+            font-family: 'Muli', sans-serif;
+            font-weight: 600;
+        }
+        ion-grid.Providers.grid{
+            background: #f7f8f9;
+            margin-bottom: 7px;
+            padding: 10px 5px 27px;
+        }
+        .slider-one.two .slide-zoom div  {
+            width: 100% !important;
+            display: inline-block;
+            text-align: center;
+        }   
+        .slider-one.two ion-slide .slide-zoom div span {
+            width: auto;
+            height: 100%;
+            display: inherit;
+            margin: 0 auto;
+            border: none;
+            border-radius: 100%;
+            position: relative;
+        } 
+        .slider-one.two ion-slide .slide-zoom div span img{
+            position: relative;
+            left: 0%;
+            top: 0%;
+            -webkit-transform: translate(-0%, -0%);
+            transform: translate(-0%, -0%);
+            width: 100px;
+        }
+        .slider-one.two .slide-zoom > div {
+            width: 100% !important;
+            display: inline-block;
+            text-align: center;
+            background: #fff;
+            padding: 15px;
+            border: 1px solid #ededed;
+            border-radius: 5px;
+        } 
+        .slider-one.two ion-slide .slide-zoom div p {
+            font-size: 18px;
+            color: #3d3d3d;
+            font-weight: bold;
+            font-family: 'Muli', sans-serif;
+            margin: 10px 0px;
+        }
+        .ster {
+            margin-bottom: 10px;
+        }
+        .pin span{
+            font-size: 16px;
+            font-weight: 400;
+            color: #878787;
+            font-family: 'Muli', sans-serif;
+            vertical-align: top;
+        }
+        ion-grid.Providers h4{
+            font-weight: bold;
+            color: #000000;
+            font-family: 'Muli', sans-serif;
+            text-transform: uppercase;
+            font-size: 16px;
+            float: left;
+            width: 77%;
+        }
+        ion-row.recently-viewed.row {
+            background: #fff;
+            padding: 15px;
+            border: 1px solid #ededed;
+            border-radius: 5px;
+            text-align: left;
+        }
+        ion-row.recently-viewed.row p{
+           margin: 0px 0px 10px;
+        }
+        ion-row.recently-viewed.row img{
+            position: absolute;
+            width: 70px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 100%;
+            height: 70px;
+         }
+         .physiotherapist {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 400;
+            font-family: 'Muli', sans-serif;
+            color: #3d3d3d;
+        }
+        .ster ion-icon {
+            color: #c4c4c4;
+        }
+        ion-slides.slider-one.two ion-slide {
+            width: 250px !important;
+            margin-right: 15px;
+        }
+        ion-slides.slider-three ion-slide {
+            width: 250px !important;
+            margin-right: 15px;
+        }
+        ion-slides.slider-one ion-slide {
+            width: 100% !important;
+            margin-right: 0px;
+            vertical-align: top;
+        }
+        ion-grid.Providers.two.grid {
+            margin-bottom: 0px;
+        }
+    
+    
+}

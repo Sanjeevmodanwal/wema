@@ -1,0 +1,56 @@
+<!--
+  Generated template for the BreakdownVisitReportPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+ 
+
+  <ion-navbar class="dawn-bar">
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Services Summary Report</ion-title>
+      </ion-navbar>
+</ion-header>
+<ion-content>
+   
+    <ion-grid class="period" >
+      
+            <ion-row> 
+                <ion-col col-8>
+                    <p>Total services summary report for the period</p>
+                    <h6> {{datePeriod}} </h6>
+                </ion-col>
+                <ion-col col-4>
+                   <button (click)="showFilterPopup()">Change</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    <ion-grid class="date-box-deta" *ngIf="!isReportEmpty">
+        <ion-row class="overflow1" >
+          <ion-row class="heding-row">
+              <ion-col col-6>
+                  <h3>Service</h3>
+              </ion-col>
+              <ion-col col-6>
+                  <h3>Total</h3>
+              </ion-col>
+          </ion-row>
+          <ion-row class="deta-row"  *ngFor="let item of breakdownReports">
+              <ion-col col-6>
+                <p>{{item.servicename}}</p>
+              </ion-col>
+              <ion-col col-6>
+                <p>{{item.total}}</p>
+              </ion-col>
+          </ion-row>
+       </ion-row>
+      </ion-grid>
+     
+      <ion-grid *ngIf="isReportEmpty">
+            <ion-row  >
+                No reports found
+               </ion-row >
+            </ion-grid>
+</ion-content>

@@ -1,0 +1,59 @@
+page-anytime {
+    ion-grid.search-box.grid h3{
+        color: #000;
+        padding: 10px 0px;
+        font-family: 'Muli', sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0px;
+        opacity: 0.2;
+    }
+    ion-grid.list-search.grid{
+        background: #fff;
+    }
+    .toolbar-background{
+        border-color: #ffffff;
+        background: #ffffff;
+    }
+    .item {
+        padding: 0px 10px !important;
+        margin-bottom: 7px;
+        background: #ffffff !important;
+        border: 1px solid #e2e2e2;
+    }
+    .item.item-block .item-inner {
+        padding-right: 0px;
+        border-bottom: none;
+        margin-bottom: 0px;
+    }
+    .search-box-dawn.grid{
+        padding-top: 20px;
+    }
+    input.text-input::placeholder{
+        color: #000000;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+    }
+    .item.item-block .item-inner {
+        padding-right: 0px;
+        border-bottom: none !important;
+        box-shadow: none !important;
+    }
+    ion-grid.button-box.grid {
+        padding: 0px;
+        background: #fff;
+        position: fixed;
+       bottom: 0px;
+    }
+    ion-grid.button-box.grid button{
+        padding: 14px;
+        width: 100%;
+        background: #faa615;
+        font-family: 'Muli', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        text-transform: uppercase;
+    }
+}

@@ -1,0 +1,48 @@
+
+<ion-header>
+        <ion-navbar class="dawn-bar">
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+              </button>
+          <ion-title>Report Details</ion-title>
+        </ion-navbar>
+      </ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row class="heading-text">
+            <ion-col col-12>
+                <h2 *ngIf="membername">{{membername}} <span *ngIf="servicename">for</span> {{servicename}}</h2>
+               <!-- <h6><ion-icon name="ios-pin"></ion-icon> Kidderminster</h6>-->
+                <p *ngIf="dateTime">{{dateTime}}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="border-bottom">
+            <ion-col col-12>
+                <h3>Comments about services</h3>
+                <p>{{Comments_about_services}}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="border-bottom">
+            <ion-col col-12>
+                <h3>Activity Notes</h3>
+                <p>{{Activity_Notes}}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="border-bottom">
+            <ion-col col-12>
+                <h3>Rating for member</h3> 
+                <p>
+                        <rating style="padding-left:0px; color:#ffb622;" [(ngModel)]="rating" readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>
+                </p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="border-bottom">
+            <ion-col col-12>
+                <h3>Comment about member</h3>
+                <p>{{Comment_about_member}}</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>

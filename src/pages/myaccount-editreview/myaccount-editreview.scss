@@ -1,0 +1,117 @@
+page-myaccount-editreview {
+    ion-grid.all-tex-box.grid {
+        padding: 30px 0px 10px;
+        background: #eeeeee;
+        margin: 0px 0px;
+    }
+    ion-grid.all-tex-box.grid .row {
+        padding: 10px;
+        background: #ffffff;
+        margin: 0px 0px;
+    }
+    .text-box h4{
+        margin: 0px;
+        font-size: 16px;
+        color: #3d3d3d;
+        font-family: 'Muli', sans-serif;
+        font-weight: bold;  
+    }
+    .text-box p{
+        margin: 0px;
+        font-size: 14px;
+        color: #3d3d3d;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;  
+        opacity: 0.8;
+        margin: 5px 0px;
+    }
+
+    ul {
+        padding: 0px;
+      
+        &.rating li {
+          padding: 5px 10px !important;
+          background: none;
+          color: #ffb400;
+      
+          ion-icon {
+            font-size: 30px;
+          }
+        }
+      }
+    .arrow {
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translate(-0%,-50%);
+        color: #6e6e6e;
+        font-size: 18px;
+    }
+    .inner-images-box img {
+        width: 80px;
+        max-width: 80px;
+    }
+    ion-textarea.input {
+        height: 100px;
+        background: #f7f7f7;
+        padding: 1px;
+        border-radius: 1px;
+    }
+    textarea.text-input::placeholder {
+        font-size: 14px;
+        color: #3d3d3d;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;  
+        opacity: 0.5;
+    }
+    ion-grid.textarea-text-box.grid h5{
+        font-size: 16px;
+        color: #3d3d3d;
+        font-family: 'Muli', sans-serif;
+        font-weight: bold;  
+    }
+    ion-grid.textarea-text-box.grid p ion-icon{
+        color: #fdb915;
+    }
+    ion-grid.textarea-text-box.grid p span{
+        color: #13a89e;
+        font-size: 14px;
+        font-family: 'Muli', sans-serif;
+        font-weight: bold;  
+        display: inline-block;
+        margin-left: 10px;
+    }
+    ion-grid.textarea-text-box.grid button.submit{
+        color: #fff;
+        font-size: 16px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 600;  
+        background: #fdb915;
+        padding: 10px 15px;
+    }
+    ion-grid.textarea-text-box.grid button.cancel{
+        color: #939393;
+        font-size: 16px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 600;  
+        background: transparent;
+        opacity: 0.8;
+        padding: 10px 15px;
+        margin-left: 10px;
+    }
+    .images-box {
+        text-align: center;
+    }
+    @media screen and (max-width: 100000px) and (min-width: 480px){
+        ion-col.images-box-top.col {
+            flex: 0 0 33.33333%;
+            width: 33.33333%;
+            max-width: 100px;
+        }
+        ion-col.text-box-top.col {
+            flex: 0 0 77%;
+            width: 77%;
+            max-width: 77%;
+        }
+    }
+}

@@ -1,0 +1,86 @@
+<!--
+  Generated template for the ProviderSignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Register as Service Provider</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="myForm" (ngSubmit)="submit()" class="signupform">
+       
+        <ion-grid>
+            <ion-row>
+               
+                <ion-item>
+                    <ion-label>Title<span>*</span></ion-label>
+                      <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="data.Title" >
+                        <ion-option  *ngFor="let item of Title " [value]="item"  >{{item}} </ion-option>
+                      </ion-select>
+                  </ion-item>
+                  <div *ngIf="data.Title==null && isSubmitted" style="color: red"> Title is required!</div>
+
+              <ion-item>
+                  <ion-label>First Name<span>*</span></ion-label>
+                  <ion-input required  formControlName='firstname' ></ion-input>
+                </ion-item>
+                <div *ngIf="firstname.invalid && isSubmitted" style="color: red; "> First Name is required!</div>
+
+                <ion-item>
+                    <ion-label>Last Name<span>*</span></ion-label>
+                    <ion-input required  formControlName='lastname' ></ion-input>
+                  </ion-item>
+                  <div *ngIf="lastname.invalid && isSubmitted" style="color: red; "> Last Name is required!</div>
+               
+               
+                <ion-item>
+                  <ion-label>Email<span>*</span></ion-label>
+                  <ion-input required formControlName='emailid' type="email" ></ion-input>
+                </ion-item>
+                <div *ngIf="emailid.invalid && isSubmitted" style="color: red ; "> Email is required!</div>
+                <div *ngIf="emailid.dirty && emailid.invalid" style="color: red; "> Invalid email!</div>
+               
+                
+               
+                <ion-item class="width">
+                  <ion-label>Mobile number<span>*</span></ion-label>
+                  <ion-input   required  type="number"   formControlName='contact'></ion-input>
+                </ion-item>
+                <div *ngIf="contact.invalid && isSubmitted" style="color: red; ">Contact is required!</div>
+                <div *ngIf="contact.dirty && contact.invalid" style="color: red; ">Invalid contact number!</div>
+
+                <ion-item>
+                    <ion-label>Tell us your company name<span>*</span></ion-label>
+                    <ion-input required  formControlName='company_name'  ></ion-input>
+                  </ion-item>
+                  <div *ngIf="company_name.invalid && isSubmitted" style="color: red; ">Comapny Name is required!</div>
+  
+                  <ion-item>
+                      <ion-label>What type of service you offer?</ion-label>
+                      <ion-input  [ngModelOptions]="{standalone: true}"  [(ngModel)]="service"  ></ion-input>
+                    </ion-item>
+                    
+    
+               </ion-row>
+        </ion-grid>
+    
+    
+        <ion-grid class="button-col-box">
+            <ion-row>
+               
+                <ion-col col-12>
+                    <button class="done" >SUBMIT</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    
+      </form>
+    
+</ion-content>

@@ -1,0 +1,158 @@
+<!--
+  Generated template for the AddFriendsFamilyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Friends Family</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content>
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+    <ion-grid>
+        <ion-row>
+            <div class="images-box">
+                <div class="inner-images-box">
+                    <img src="assets/imgs/wemalife-slider-img.png">
+                </div>
+                <!--<ion-icon name="md-add"></ion-icon>-->
+            </div>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-item>
+                <ion-label>Title<span>*</span></ion-label>
+                  <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="data.Title"  >
+                    <ion-option  *ngFor="let item of Title " [value]="item"  >{{item}} </ion-option>
+                  </ion-select>
+              </ion-item>
+              <div *ngIf="data.Title==null && isSubmitted" style="color: red; padding-left: 16px;"> Title is required!</div>
+          <!--  <ion-item> 
+              <ion-label>Name<span>*</span></ion-label>
+              <ion-input required  formControlName='name' ></ion-input>
+            </ion-item>
+            <div *ngIf="name.invalid && isSubmitted" style="color: red; padding-left: 16px;"> Name is required!</div>-->
+
+            <ion-item>
+                <ion-label>First Name*</ion-label>
+                <ion-input required  formControlName='firstname' ></ion-input>
+              </ion-item>
+              <div *ngIf="firstname.invalid && isSubmitted" style="color: red; padding-left: 16px;"> First Name is required!</div>
+
+              <ion-item>
+                  <ion-label>Last Name*</ion-label>
+                  <ion-input required  formControlName='lastname'  ></ion-input>
+                </ion-item>
+                <div *ngIf="lastname.invalid && isSubmitted" style="color: red; padding-left: 16px;"> Last Name is required!</div>
+
+
+            <ion-item>
+                <ion-label>Relationship<span>*</span></ion-label>
+                <ion-input required  formControlName='relationship' ></ion-input>
+              </ion-item>
+              <div *ngIf="relationship.invalid && isSubmitted" style="color: red; padding-left: 16px;"> Relationship is required!</div>
+
+            <ion-item>
+              <ion-label>Gender<span>*</span></ion-label>
+                <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="data.Gender" >
+                  <ion-option  *ngFor="let item of Gender " [value]="item"  >{{item}} </ion-option>
+                </ion-select>
+            </ion-item>
+            <div *ngIf="data.Gender==null && isSubmitted" style="color: red; padding-left: 16px;"> Gender is required!</div>
+
+           <!-- <ion-item>
+              <ion-label (click)="toggleAccordion1()"  >Date of Birth<span>*</span>  {{Date | date:'EEE,d  MMM, y' }} </ion-label>
+               <ion-select placeholder="11-07-1991">
+                <ion-option>11-07-1991</ion-option>
+                <ion-option>11-07-1991</ion-option>
+              </ion-select> 
+            </ion-item>-->
+            <ion-item>
+              <ion-label>Email<span>*</span></ion-label>
+              <ion-input required formControlName='email' type="email" ></ion-input>
+            </ion-item>
+            <div *ngIf="email.invalid && isSubmitted" style="color: red ; padding-left: 16px;"> Email is required!</div>
+            <div *ngIf="email.dirty && email.invalid" style="color: red; padding-left: 16px;"> Invalid email!</div>
+
+            <ion-item class="width">
+              <ion-label>Password<span>*</span></ion-label>
+              <ion-input    type="password"   [ngModelOptions]="{standalone: true}" [(ngModel)]="password"   type="password" ></ion-input>
+            </ion-item>
+            <ion-item class="width">
+              <ion-label>Confirm Password<span>*</span></ion-label>
+              <ion-input   type="password"  [ngModelOptions]="{standalone: true}"  [(ngModel)]="confirmPassword" (ionChange)="passwordChange()"  ></ion-input>
+            </ion-item>
+            <div class="custom-label" *ngIf="password!='' && confirmPassword!='' && !isMatched" style="color:#f53d3d;font-size: 12px">Password mismatch!</div><br/>
+            <ion-item class="width">
+              <ion-label>Mobile Number<span>*</span></ion-label>
+              <ion-input   required  type="number"   formControlName='contact'></ion-input>
+            </ion-item>
+            <div *ngIf="contact.invalid && isSubmitted" style="color: red; padding-left: 16px;"> Contact is required!</div>
+            <div *ngIf="contact.dirty && contact.invalid" style="color: red; padding-left: 16px;"> Invalid contact number!</div>
+
+            <ion-item class="width">
+              <ion-label>Home Number</ion-label>
+              <ion-input   [ngModelOptions]="{standalone: true}" [(ngModel)]="contact1"></ion-input>
+            </ion-item>
+            <!-- <div *ngIf="contact1.invalid && isSubmitted" style="color: red; padding-left: 16px;"> Contact is required!</div>
+            <div *ngIf="contact1.dirty && contact1.invalid" style="color: red; padding-left: 16px;"> Invalid contact number!</div> -->
+            <ion-item>
+              <ion-label>Address-1<span>*</span></ion-label>
+              <ion-input required  formControlName='Address' ></ion-input>
+            </ion-item>
+            <div *ngIf="Address.invalid && isSubmitted" style="color: red; padding-left: 16px;"> Address-1 is required!</div>
+            <ion-item>
+              <ion-label>Address-2</ion-label>
+              <ion-input    [ngModelOptions]="{standalone: true}" [(ngModel)]="Address1"></ion-input>
+            </ion-item>
+            <!-- <ion-item>
+              <ion-label>Address-1<span>*</span></ion-label>
+              <ion-input placeholder="Josh.gates@example.co.uk"></ion-input>
+            </ion-item> -->
+            <ion-item class="width">
+              <ion-label>City<span>*</span></ion-label>
+              <ion-input required formControlName='City' ></ion-input>
+            </ion-item>
+            <div *ngIf="City.invalid && isSubmitted" style="color: red; padding-left: 16px;">City is required!</div>
+            <ion-item class="width">
+              <ion-label>Postal Code<span>*</span></ion-label>
+              <ion-input   required type="number" formControlName='postcode'  ></ion-input>
+            </ion-item>
+            <div *ngIf="postcode.invalid && isSubmitted" style="color: red; padding-left: 16px;"> Postcode is required!</div>
+            <div *ngIf="postcode.dirty && postcode.invalid" style="color: red; padding-left: 16px;"> Invalid postcode!</div>
+            <ion-item>
+              <ion-label>Country</ion-label>
+              <ion-select   [ngModelOptions]="{standalone: true}" [(ngModel)]="data.Country"  >
+                  <ion-option   *ngFor="let item of Country " [value]="item"  >{{item}}</ion-option>
+                
+              </ion-select>
+            </ion-item>
+            <div *ngIf="data.Country==null && isSubmitted" style="color: red; padding-left: 16px;"> Country is required!</div>
+            <!-- <div *ngIf="Country.invalid && isSubmitted" style="color: red"> Country is required!</div> -->
+        </ion-row>
+    </ion-grid>
+
+
+    <ion-grid class="button-col-box">
+        <ion-row>
+            <ion-col col-12>
+                <p><ion-checkbox checked="true" disabled="true"></ion-checkbox> This user has given me permission to add as a friend.</p>
+            </ion-col>
+            <ion-col col-12>
+                <button class="done" >DONE</button>
+                <a class="cancel" (click)="cancel()">CANCEL</a>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+ 
+  </form>
+
+</ion-content>

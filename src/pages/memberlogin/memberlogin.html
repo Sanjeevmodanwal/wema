@@ -1,0 +1,95 @@
+<!--
+  Generated template for the MemberloginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content class="tutorial-page">
+    
+  <ion-slides (ionSlideDidChange)="slideChanged()"  pager  [ngClass]="{'after-login' : showdotsforlogin==false }">
+
+      <ion-slide   [hidden]="!showSlider"  >
+          <ion-toolbar>
+            <ion-buttons end>
+              <button ion-button color="primary"  *ngIf="providerlogin!=false" (click)="ionslide1()" >Skip</button>
+            </ion-buttons>
+          </ion-toolbar>
+          <img src="assets/imgs/wemalife-slider-img.png"   class="slide-image"/>
+          <h2 class="slide-title"> We have got you in</h2>
+       <h2 > {{Country}}</h2>
+          <p> If you want to change your location, click the tab below.</p>
+          <button  (click)="changeCountry()" > Change country?</button>
+    <ion-select  [ngClass]="{'active' : changeCountry1==true }"  class="changeCountry-box"  *ngIf="changeCountry1==true "   (ionChange)="changeCountry()" [(ngModel)]="Country"  >
+      <ion-option    *ngFor="let item of country " [value]="item"  >{{item}}</ion-option>
+    </ion-select>
+        </ion-slide>
+    <ion-slide  [hidden]="!showSlider" >
+      <ion-toolbar>
+        <ion-buttons end>
+          <button ion-button color="primary"  *ngIf="providerlogin!=false" (click)="ionslide2()" >Skip</button>
+        </ion-buttons>
+      </ion-toolbar>
+      <img src="assets/imgs/wemalife-slider-img2.png"   class="slide-image"/>
+      <h2 class="slide-title"> Never Miss Anything</h2>
+      <p > Turn on your push notification and we’ll let you know when you have an appointment coming up</p>
+
+      <button   (click)="notification()" > Allow push notifications</button>
+<!-- <ion-select  [ngClass]="{'active' : changeCountry1==true }"  class="changeCountry-box"   (ionChange)="changeCountry()" [(ngModel)]="Country"  >
+  <ion-option    *ngFor="let item of country " [value]="item"  >{{item}}</ion-option>
+</ion-select> -->
+    </ion-slide>
+    <ion-slide>
+      <ion-toolbar class="list-child-text">
+        <ion-buttons end>
+          <button ion-button color="primary"  *ngIf="providerlogin!=false"  (click)="ionslide()" >Skip</button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <!-- <br>Amount : 
+      <a href="sumupmerchant://pay/1.0?affiliate-key=1fa2587e-16c5-43a1-90aa-a275d4e7a3c8&app-id=com.lavanya.wemai&amount=1.23&currency=EUR&title=BookAppointment&receipt-mobilephone=+447572099663&receipt-email=narendrasngh995@gmail.com&callback=https://www.wemalife.com/data/api/sumup">SumUp Payment</a>
+      <br><br>Total : 
+      <a href="sumupmerchant://pay/1.0?affiliate-key=1fa2587e-16c5-43a1-90aa-a275d4e7a3c8&app-id=com.lavanya.wemai&total=1.23&currency=EUR&title=BookAppointment&receipt-mobilephone=+447572099663&receipt-email=narendrasngh995@gmail.com&callback=https://www.wemalife.com/data/api/sumup">SumUp Payment</a> -->
+
+
+      <h2 class="slide-title text">Sign In</h2>
+      <p class="sign-text-up">Sign In to Continue</p>
+      <ion-item class="border-none">
+        <ion-label>User Name</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label><ion-icon name="md-person"></ion-icon></ion-label>
+        <ion-input  [(ngModel)]="UserName"  placeholder="User Name"  (keyup.enter)="closeKeyboard()"  type="email" ></ion-input>
+      </ion-item>
+
+      <ion-item class="border-none">
+        <ion-label>Password</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label><ion-icon name="lock"></ion-icon></ion-label>
+        <ion-input   [(ngModel)]="Password"  placeholder="Password" (keyup.enter)="closeKeyboard()" type="{{type}}"></ion-input>
+        <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()">
+          <ion-icon name="ios-eye-off-outline"></ion-icon>
+        </button>
+        <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()">
+          <ion-icon name="ios-eye-outline"></ion-icon>
+        </button>
+        
+      </ion-item>
+      <ion-item class="border-none two">
+        <ion-label><a (click)="Forgotpass()" >Forgot Password?</a></ion-label>
+      </ion-item>
+      <ion-item class="border-none two">
+        <ion-label>Remember my Id for the next time</ion-label>
+        <ion-checkbox (click)="fn1575961111()" checked="saveUserId"></ion-checkbox>
+      </ion-item>
+
+      <button  (click)="login()" class="sign-button">
+        Sign in
+      </button>
+      <p *ngIf="providerlogin!=false" class="signup-text">Don’t have an account? <a (click)="memberSignup()">Sign Up</a></p>
+      <p *ngIf="providerlogin==false" class="signup-text">Don’t have an account? <a (click)="providerSignup()">Sign Up</a></p>
+      <!-- <p class="signup-text">Don’t have an account? <a (click)="testSumUp()">Test SumUp</a></p> -->
+      <!-- <p (click)="testReviewFunctioality()">test review functionality</p> -->
+    </ion-slide> 
+  </ion-slides>
+</ion-content>

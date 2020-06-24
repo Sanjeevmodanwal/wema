@@ -1,0 +1,144 @@
+page-subscriptionplan {
+    .label {
+        font-size: 16px;
+        color: #282828 !important;
+        font-family: 'Muli', sans-serif;
+        font-weight: bold;
+    }
+    ion-grid.grid {
+        padding: 0px 0px;
+    }
+    .scroll-content{
+        background: #eeeeee;
+    }
+    .input-wrapper {
+        display: block !important;
+    }
+    .select {
+        padding: 2px 8px 13px 0px;
+        max-width: 100%;
+    }
+    .select-placeholder {
+        color: #bcbcbc;
+        font-size: 14px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+    }
+    ion-grid.background-color-box.grid {
+        background: #eeeeee;
+    }
+    ion-grid.background-color-box.grid .row{
+        background: #fff;
+        margin: 10px;
+        border: 1px solid #d2d2d2;
+    }
+    ion-col.heding-text.col h3{
+        font-size: 16px;
+        color: #282828;
+        font-family: 'Muli', sans-serif;
+        font-weight: bold;
+        margin: 0px;
+        width: 40%;
+        display: inline-block;
+    }
+    ion-col.heding-text.col p{
+        font-size: 12px;
+        color: #282828;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+        opacity: 0.8;
+        margin: 0px;
+        display: inline-block;
+       float: right;
+    }
+    ion-col.heding-text.col {
+        padding: 10px;
+        border-bottom: 1px solid #ededed;
+    }
+    ion-col.sub-text.col p{
+        font-size: 14px;
+        color: #959595;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+        margin: 0px;
+    }
+    ion-col.sub-text.col p a{
+        font-size: 14px;
+        color: #000000;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+        margin: 0px;
+        text-decoration: none;
+    }
+    ion-col.sub-text.col {
+        padding: 10px;
+    }
+    ion-col.bottom-text.col{
+
+    }
+    ion-col.bottom-text.col p{
+        font-size: 14px;
+        color: #848484;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+        margin: 0px;
+        text-decoration: none;
+    }
+    ion-col.bottom-text.col h3{
+        font-size: 14px;
+        color: #454545;
+        font-family: 'Muli', sans-serif;
+        font-weight: bold;
+        margin: 0px;
+        text-decoration: none;
+        margin-bottom: 15px;
+        margin-top: 2px;
+    }
+    ion-grid.background-color.grid .row {
+         padding: 10px 10px 20px;
+    }
+    ion-grid.background-color.grid {
+        background: #fff;
+        margin-bottom: 10px;
+   }
+
+   ion-col.button-box.col button{
+       background: transparent;
+       font-size: 16px;
+       font-family: 'Muli', sans-serif;
+       font-weight: 600;
+   }
+   ion-col.button-box.col button{
+    background: transparent;
+    font-size: 16px;
+    font-family: 'Muli', sans-serif;
+    font-weight: 600;
+    padding: 10px 20px;
+    margin: 10px 0px 20px;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.5);
+}
+ion-col.button-box.col .book-now-button{
+    background: #13a89e !important;
+    color: #fff;
+}
+ion-col.button-box.col .add-credits-button{
+    color: #13a89e !important;
+    border: 1px solid  #13a89e !important;
+    margin-left: 10px;
+}
+.item {
+    padding-left: 0px !important;
+    padding-right: 0;
+}
+
+.toolbar-background {
+    border-color: #ffffff;
+    background: #ffffff;
+}
+    @media screen and (max-width: 100000px) and (min-width: 480px){
+        .men > div {
+            display: inline-block;
+            width: 32%;
+        }
+    }
+}

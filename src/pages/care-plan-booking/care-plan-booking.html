@@ -1,0 +1,84 @@
+<!--
+  Generated template for the CarePlanBookingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <ion-buttons end>
+          <button *ngIf="appState.CartCount>0" clear style="color:black;background: transparent">
+            {{appState.CartTimer}}
+          </button>
+          <button *ngIf="appState.CartCount>0" (click)="viewCart()" clear style="color:black;background: transparent">
+            Cart({{appState.CartCount}})
+          </button>
+        </ion-buttons>
+    <ion-title>carePlanBooking</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding="false">
+
+  <div *ngIf="!isEmpty">
+    <ion-card>
+      <ion-item no-lines style="background-color:#e5e5e5">
+        <ion-row>
+          <ion-col col-2 class="flex-col">
+            <div class="profile-photo" style="width: 50px;height: 50px;" text-center>
+              <img [src]="providerAvailability?.complogo" style="margin:auto;top:0;bottom:0;left:0;right:0;height: 50px;width: 50px;" />
+            </div>
+          </ion-col>
+          <ion-col col-6 class="flex-col">
+            <label>{{providerAvailability?.companyname}}</label>
+          </ion-col>
+          <!-- <ion-col col-4 class="flex-col" align="right">
+            <label *ngIf="item.rating==1" style="color:green;float: right;">
+              <ion-icon name="star"></ion-icon>
+            </label>
+            <label *ngIf="item.rating==2" style="color:green;float: right;">
+              <ion-icon *ngFor="let i of [1,2]" name="star"></ion-icon>
+            </label>
+            <label *ngIf="item.rating==3" style="color:green;float: right;">
+              <ion-icon *ngFor="let i of [1,2,3]" name="star"></ion-icon>
+            </label>
+            <label *ngIf="item.rating==4" style="color:green;float: right;">
+              <ion-icon *ngFor="let i of [1,2,3,4]" name="star"></ion-icon>
+            </label>
+            <label *ngIf="item.rating==5" style="color:green;float: right;">
+              <ion-icon *ngFor="let i of [1,2,3,4,5]" name="star"></ion-icon>
+            </label>
+          </ion-col> -->
+        </ion-row>
+      </ion-item>
+    </ion-card>
+    <ion-item>
+      <ion-row>
+        <ion-col col-6 class="flex-col" style="float: left;">
+          {{data.service.servicename}}
+        </ion-col>
+        <ion-col col-8 class="flex-col" style="float: right;">
+          <label>
+            <b>{{data.duration}}</b>
+          </label>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-grid>
+      <ion-list>
+        <ion-row wrap>
+          <ion-col col-4 width-33 *ngFor="let item of slotTimes">
+            <ion-card style="text-align: center; padding: 10px; background: #08a79d;color:white;" (click)="book(item)">
+              {{item.time}}
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-grid>
+    <button ion-button full class="custom-button" (click)="confirmBooking()">Confirm Booking</button>
+  </div> 
+</ion-content>

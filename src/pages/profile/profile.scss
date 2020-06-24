@@ -1,0 +1,121 @@
+page-profile {
+    .scroll-content {
+        background: #eeeeee;
+    }
+    .toolbar-background {
+        border-color: #ffffff;
+        background: #ffffff;
+    }
+    ion-grid.grid {
+        padding: 0px;
+    }
+    .images-box {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 20px 0px;
+        text-align: center;
+        background: #fff;
+        padding-bottom: 50px;
+    }
+    .inner-images-box {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        overflow: hidden;
+        text-align: center;
+        margin: 0 auto;
+        border-radius: 100%;
+    }
+    .inner-images-box img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 100%;
+    }
+    .images-box ion-icon {
+        position: absolute;
+        background: #20ada3;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        font-size: 20px;
+        padding: 10px;
+        color: #fff;
+        margin-top: -24px;
+        left: 50%;
+        transform: translate(-50%,-0%);
+    }
+    ion-grid.background-c.grid{
+        background: #eeeeee;
+        padding: 20px 0px 10px;
+        border-bottom: 1px solid #ededed;
+    }
+    ion-grid.background-c.grid h2{
+        font-family: 'Muli', sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        color: #282828;
+        margin: 0px;
+    }
+    ion-grid.background-c.grid p{
+        font-family: 'Muli', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #20ada3;
+        margin: 0px;
+    }
+    ion-grid.background-f.grid {
+        background: #fff;
+        padding: 30px 0px 10px;
+    }
+    ion-grid.background-f.grid h2{
+        font-family: 'Muli', sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        color: #3d3d3d;
+        margin: 0px;
+        margin-bottom: 20px;
+        margin-top: 2px;
+    }
+    ion-grid.background-f.grid p{
+        font-family: 'Muli', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #3d3d3d;
+        margin: 0px;
+        opacity: 0.8;
+    }
+    ion-grid.background-f.two.grid {
+        padding: 30px 20px;
+    }
+    ion-grid.background-f.grid ul{
+        margin: 0px;
+        padding: 0px;
+    }
+    ion-grid.background-f.grid ul li{
+        font-family: 'Muli', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #3d3d3d;
+        margin: 0px;
+        opacity: 0.8;
+        list-style: circle;
+        margin-bottom: 5px;
+    }
+    button.edit-profile {
+        margin: 20px 0px;
+        padding: 10px 20px;
+        color: #fff;
+        font-family: 'Muli', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        background: #0f9c92;
+    }
+
+     /* 14/02/2019 */
+     .dawn-bar .toolbar-title span {
+        padding: 0px 0px;
+    }
+}

@@ -1,0 +1,186 @@
+<!--
+  Generated template for the ReviewPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title>Review</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <button class="custom-button" ion-button block (click)="proceedToPay('paynow')" style="text-transform:none;">Pay Now</button>
+  <button class="custom-button" ion-button block (click)="proceedToPay('paylater')" [disabled]="!enablePayLater" style="margin-top:10px;text-transform:none;">Pay Later</button>
+</ion-content> -->
+<ion-header>
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Review</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-row class="Rowdesign">
+    <ion-col col-12>
+      <ion-icon name="ios-pin" class="icon-create" float-left></ion-icon>
+      <span class="add-address">
+        Deliver to
+        <span class="name"
+          >{{DelivaryAdd.name}},{{DelivaryAdd.county}} {{DelivaryAdd.city}}
+        </span>
+      </span>
+    </ion-col>
+  </ion-row>
+  <ion-grid *ngFor="let item of cartItems">
+    <ion-row *ngIf="!isEmpty">
+      <ion-col col-3>
+        <img src="{{item.complogo}}" />
+      </ion-col>
+      <ion-col col-6>
+        <div class="top-text">
+          <h6>{{item.companyname}}</h6>
+          <p>{{item.servicename}} ({{item.providername}})</p>
+        </div>
+        <div class="date-and-time">
+          <div class="date-time">
+            <p>Date & Time</p>
+            <h6>
+              {{item.date | date:'d MMM, y' }} |
+              {{startTime | date:'HH:mm'}}-{{endTime | date:'HH:mm'}}
+            </h6>
+          </div>
+          <div class="duration">
+            <p>Duration</p>
+            <h6>{{item.duration}} minutes</h6>
+          </div>
+        </div>
+        <div class="date-and-time two" *ngIf="viewType">
+          <div>
+            <p>Booking for</p>
+            <h6>Self</h6>
+          </div>
+          <div>
+            <p>Availability</p>
+            <h6>{{(item.home_clinic == 0 )?'In Home':'In Clinic'}}</h6>
+          </div>
+        </div>
+        <div
+          class="date-and-time three class1 class2"
+          (click)="clicked($event)"
+          (click)="viewType = !viewType"
+        >
+          <h6 class="more-button">
+            <span>More</span> <ion-icon name="ios-arrow-down"></ion-icon>
+          </h6>
+          <h6 class="more-button two">
+            <span>Less</span> <ion-icon name="ios-arrow-up"></ion-icon>
+          </h6>
+        </div>
+      </ion-col>
+      <ion-col col-3>
+        <h5 class="money">{{item.currency}}{{item.itemprice}}</h5>
+        <ion-icon
+          name="md-trash"
+          class="bottom-icon"
+          (click)="delete(item)"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--
+      <ion-row>
+          <ion-col col-3>
+              <img src="assets/imgs/epoch_logo.png" >
+          </ion-col>
+          <ion-col col-6>
+            <div class="top-text">
+              <h6>Severn Angels Healthcare Ltd</h6>
+              <p>Care at home (David Rosss)</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-time">
+                <p>Date & Time</p>
+                <h6>03 Nov, 2018 | 16:30-17:30</h6>
+              </div>
+                <div class="duration">
+                  <p>Duration</p>
+                  <h6>1 Hour</h6>
+                </div>
+            </div>
+            <div class="date-and-time two" *ngIf="viewType"> 
+              <div>
+                  <p>Booking for</p>
+                  <h6>self</h6>
+              </div>
+              <div>
+                  <p>Availability</p>
+                  <h6>In Clinic (Fortis Hospital Sector - 53, Near Paras Downtime, Gurugram, Haryana</h6>
+              </div>
+            </div>
+            <div class="date-and-time three class1 class2" (click)="clicked($event)" (click)="viewType = !viewType">
+                <h6 class="more-button"><span>More</span> <ion-icon name="ios-arrow-down"></ion-icon></h6>
+                <h6 class="more-button two"> <span>Less</span> <ion-icon name="ios-arrow-up"></ion-icon>
+                </h6>
+              </div>
+          </ion-col>
+          <ion-col col-3>
+              <h5 class="money">£12.00</h5>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col col-3>
+              <img src="assets/imgs/epoch_logo.png" >
+          </ion-col>
+          <ion-col col-6>
+            <div class="top-text">
+              <h6>Severn Angels Healthcare Ltd</h6>
+              <p>Care at home (David Rosss)</p>
+            </div>
+            <div class="date-and-time">
+              <div class="date-time">
+                <p>Date & Time</p>
+                <h6>03 Nov, 2018 | 16:30-17:30</h6>
+              </div>
+                <div class="duration">
+                  <p>Duration</p>
+                  <h6>1 Hour</h6>
+                </div>
+            </div>
+            <div class="date-and-time two" *ngIf="viewType"> 
+              <div>
+                  <p>Booking for</p>
+                  <h6>self</h6>
+              </div>
+              <div>
+                  <p>Availability</p>
+                  <h6>In Clinic (Fortis Hospital Sector - 53, Near Paras Downtime, Gurugram, Haryana</h6>
+              </div>
+            </div>
+            <div class="date-and-time three class1 class2" (click)="clicked($event)" (click)="viewType = !viewType">
+                <h6 class="more-button"><span>More</span> <ion-icon name="ios-arrow-down"></ion-icon></h6>
+                <h6 class="more-button two"> <span>Less</span> <ion-icon name="ios-arrow-up"></ion-icon>
+                </h6>
+              </div>
+          </ion-col>
+          <ion-col col-3>
+              <h5 class="money">£12.00</h5>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+  -->
+  <ion-grid class="checkout">
+    <ion-row>
+      <ion-col col-6>
+        <h3>Total</h3>
+        <h1>{{Currency}}{{Total}}</h1>
+      </ion-col>
+      <ion-col col-6>
+        <button (click)="proceedToPay('paylater')">Pay later</button>
+        <button class="pay-now" (click)="proceedToPay('paynow')">
+          pay Now
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

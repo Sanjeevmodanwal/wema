@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "586464708786",
+    "firebase_url": "https://wemai-1c32d.firebaseio.com",
+    "project_id": "wemai-1c32d",
+    "storage_bucket": "wemai-1c32d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586464708786:android:01a78394401444c1",
+        "android_client_info": {
+          "package_name": "com.lavanya.wemai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586464708786-ksvmarfm706jkfo8ouflsgjkm3k3gmf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnqvNFlpQrqskNcytaHxpI0QBQtrRk2VI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

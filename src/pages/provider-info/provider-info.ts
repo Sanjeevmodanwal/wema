@@ -1,0 +1,918 @@
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  Renderer
+} from "@angular/core";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ModalController,
+  AlertController,
+  LoadingController,
+  ToastController
+} from "ionic-angular";
+import { App } from "ionic-angular";
+import { AppConst } from "../../AppConst";
+import { ApiProvider } from "../../providers/api/api";
+import { MapPage } from "../map/map";
+import { GetDirectionPage } from "../get-direction/get-direction";
+import { ServicesListPage } from "../services-list/services-list";
+//import { ProviderProfilePage } from '../provider-profile/provider-profile';
+import { ProvidersServicesPage } from "../providers-services/providers-services";
+import { ViewContactPopupPage } from "../view-contact-popup/view-contact-popup";
+import { SevenPage } from "../seven/seven";
+import { CompanyProviderProfilePage } from "../company-provider-profile/company-provider-profile";
+import { ProvidersLocationListPage } from "../providers-location-list/providers-location-list";
+import { AppState } from "../../AppStates";
+//import { CallNumber } from '@ionic-native/call-number';
+import { SendEnquiryPopupPage } from "../send-enquiry-popup/send-enquiry-popup";
+import { SubmitaqueryPage } from "../submitaquery/submitaquery";
+import "rxjs/add/operator/filter";
+import { Camera, CameraOptions } from "@ionic-native/camera";
+//import { AppState } from '../../AppStates';
+import { Base64Binary } from "js-base64";
+import { Base64 } from "@ionic-native/base64";
+import { InAppBrowser } from "../../../node_modules/@ionic-native/in-app-browser";
+import { SocialSharing } from "@ionic-native/social-sharing";
+import { Helper } from "../../helpers/helper";
+declare var google;
+/**
+ * Generated class for the ProviderInfoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+@IonicPage({
+  name: "ProviderInfoPage"
+})
+@Component({
+  selector: "page-provider-info",
+  templateUrl: "provider-info.html"
+})
+export class ProviderInfoPage implements OnInit {
+  @ViewChild("map") mapElement: ElementRef;
+  map: any;
+  Company: any;
+  providers1: any;
+  providersName: any;
+  companyid: any;
+  providerid: any;
+  servicesid: any;
+  Providerinfo: Object;
+  ProviderData: any;
+  CarePlan: Object;
+  Sum: any;
+  calulatedSum = [];
+  Review: any;
+  latitude: any;
+  longitude: any;
+  servicesList: any;
+  OfferdServices: any;
+  ProviderprofileData = [];
+  mapAddress: any;
+  firstname: any;
+  lastname: any;
+  city: any;
+  addressline: any;
+  addressline1: any;
+  emailid: any;
+  phonenumber: any;
+  Reviews: any;
+  OfferdServices1: any;
+  Currency: any;
+  BookAppintment: any;
+  servicesname: any;
+  Ammount: any;
+  navigationdata: Object;
+  public appState = AppState;
+  visible: boolean;
+  favdata: any;
+  favid: any;
+  status: any;
+  base64Image: string = "assets/imgs/camera.png";
+  billName: any = "Upload attachment ";
+  providerpicture: string;
+  compnayInfo = [];
+  providerdefaultServiceid: any = "";
+  isDescriptionEmpty: boolean = true;
+  SocialSharingLogo: any = null;
+  SocialSharingMessage: any = "";
+  SocialSharingwebsite: any = "";
+  constructor(
+    public navCtrl: NavController,
+    private inAppBrowser: InAppBrowser,
+    private alertCtrl: AlertController,
+    private camera: Camera,
+    private alertController: AlertController,
+    private loadingController: LoadingController,
+    private modalCtrl: ModalController,
+    public navParams: NavParams,
+    public renderer: Renderer,
+    private apiProvider: ApiProvider,
+    //private callNumber :CallNumber ,
+    private sharingVar: SocialSharing,
+    private toastCtrl: ToastController
+  ) {
+    console.log('ProviderInfoPage constructor');
+    console.log(navParams.data);
+
+    this.Ammount = navParams.data.amount;
+    this.BookAppintment = navParams.data;
+    if (navParams.data.providerid == null) {
+      // console.log('in providers page- ifffffff')
+      this.providerid = navParams.data.userid;
+      this.companyid = navParams.data.companyid;
+      this.servicesid = navParams.data.servicesid;
+      this.Reviews = navParams.data.reviews;
+      this.Currency = navParams.data.currency;
+    } else {
+      // console.log('in providers page-eellsssss')
+      this.Currency = navParams.data.currency;
+      this.providerid = navParams.data.providerid;
+      this.companyid = navParams.data.companyid;
+      this.servicesid = navParams.data.servicesid;
+      // console.log(this.servicesid, this.providerid,this.companyid)
+      this.OfferdServices = navParams.data.servicesoffered;
+      // console.log(this.OfferdServices)
+    }
+    //this.getProfile()
+    if (this.Currency == undefined || this.Currency == "") {
+      if (navParams.data.hasOwnProperty("providerdetails")) {
+        var Innerproviderdetails = navParams.data.providerdetails;
+        if (Innerproviderdetails.hasOwnProperty("country")) {
+          if (Innerproviderdetails.country != "") {
+            this.Currency = Helper.getCountryCurrencySymbol(
+              Innerproviderdetails.country
+            );
+          }
+        }
+      } else {
+        if (navParams.data.hasOwnProperty("country")) {
+          if (navParams.data.country != "") {
+            // console.log('nav data');
+            // console.log(navParams.data);
+            this.Currency = Helper.getCountryCurrencySymbol(
+              navParams.data.country
+            );
+            //  console.log('inside constructor setting currency');
+            //  console.log('currency: '+this.Currency);
+          }
+        } else {
+          // console.log('unable to find ownPorperty of country');
+        }
+      }
+    }
+    if (this.servicesid == undefined && navParams.data.serviceid != "") {
+      this.servicesid = navParams.data.serviceid;
+      // console.log('in providers page- outer = '+this.servicesid)
+    }
+  }
+  ionViewDidLoad() {
+    console.log('inside ionViewDidLoad');
+    this.providerpicture = AppConst.WEMA_DEV_ROOT + "images/person.jpg";
+    var loader = this.loadingController.create({
+      content: "Please wait.."
+    });
+    loader.present();
+    // console.log('ionViewDidLoad ThreePage');
+    this.getProfile();
+    setTimeout(() => {
+      loader.dismiss();
+    }, 2000);
+    this.getFavroutiesstatus();
+    //  this.getCompnayInfo();
+  }
+  async getCompnayInfo() {
+    if (this.companyid != "") {
+      var request = {
+        filterproperty: {
+          offset: 0,
+          recordlimit: 500,
+          orderby: "servicename",
+          dir: "DESC"
+        },
+        companyid: this.companyid
+      };
+      var response = await this.apiProvider
+        .Post(AppConst.GET_COMPANYPROFILE, request)
+        .toPromise();
+      if (response != null && response != "") {
+        for (let key in response) {
+          this.compnayInfo = response[key]["compinfo"];
+        }
+      }
+    }
+  }
+  loadMap() {
+    let latLng = new google.maps.LatLng(this.latitude, this.longitude);
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  }
+  addMarker() {
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: new google.maps.LatLng(this.latitude, this.longitude)
+    });
+    let content = "<h4>" + this.mapAddress + "</h4>";
+    this.addInfoWindow(marker, content);
+  }
+  addInfoWindow(marker, content) {
+    let infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
+    google.maps.event.addListener(marker, "click", () => {
+      infoWindow.open(this.map, marker);
+    });
+  }
+  accordionExapanded = false;
+  @ViewChild("cc") cc: any;
+  @ViewChild("ccc") ccc: any;
+  @ViewChild("cccc") cccc: any;
+  @ViewChild("ccd") ccd: any;
+  ngOnInit() {
+    // console.log(this.cc.nativeElement);
+    this.renderer.setElementStyle(
+      this.cc.nativeElement,
+      "webkitTranstiion",
+      "max-height 500ms, padding 500ms"
+    );
+  }
+  toggleAccordion() {
+    if (this.accordionExapanded) {
+      this.renderer.setElementStyle(this.cc.nativeElement, "max-height", "0px");
+      this.renderer.setElementStyle(
+        this.cc.nativeElement,
+        "padding",
+        "0px 0px"
+      );
+    } else {
+      this.renderer.setElementStyle(
+        this.cc.nativeElement,
+        "max-height",
+        "500px"
+      );
+      this.renderer.setElementStyle(
+        this.cc.nativeElement,
+        "padding",
+        "0px 0px 0px"
+      );
+    }
+    this.accordionExapanded = !this.accordionExapanded;
+  }
+  toggleAccordiond() {
+    if (this.accordionExapanded) {
+      this.renderer.setElementStyle(
+        this.ccd.nativeElement,
+        "max-height",
+        "0px"
+      );
+      this.renderer.setElementStyle(
+        this.ccd.nativeElement,
+        "padding",
+        "0px 0px"
+      );
+    } else {
+      this.renderer.setElementStyle(
+        this.ccd.nativeElement,
+        "max-height",
+        "3500px"
+      );
+      this.renderer.setElementStyle(
+        this.ccd.nativeElement,
+        "padding",
+        "0px 0px 0px"
+      );
+    }
+    this.accordionExapanded = !this.accordionExapanded;
+  }
+  toggleAccordion1() {
+    if (this.accordionExapanded) {
+      this.renderer.setElementStyle(
+        this.ccc.nativeElement,
+        "max-height",
+        "0px"
+      );
+      this.renderer.setElementStyle(
+        this.ccc.nativeElement,
+        "padding",
+        "0px 0px"
+      );
+    } else {
+      this.renderer.setElementStyle(
+        this.ccc.nativeElement,
+        "max-height",
+        "800px"
+      );
+      this.renderer.setElementStyle(
+        this.ccc.nativeElement,
+        "padding",
+        "0px 0px 0px"
+      );
+    }
+    this.accordionExapanded = !this.accordionExapanded;
+  }
+  toggleAccordion2() {
+    if (this.accordionExapanded) {
+      this.renderer.setElementStyle(
+        this.cccc.nativeElement,
+        "max-height",
+        "0px"
+      );
+      this.renderer.setElementStyle(
+        this.cccc.nativeElement,
+        "padding",
+        "0px 0px"
+      );
+    } else {
+      this.renderer.setElementStyle(
+        this.cccc.nativeElement,
+        "max-height",
+        "800px"
+      );
+      this.renderer.setElementStyle(
+        this.cccc.nativeElement,
+        "padding",
+        "0px 0px 0px"
+      );
+    }
+    this.accordionExapanded = !this.accordionExapanded;
+  }
+  /**
+   * Get image from gallery
+   */
+  getImageFromGallery() {
+    let cameraOptions = {
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      //destinationType:this.camera.DestinationType.DATA_URL,
+      quality: 100,
+      targetWidth: 1000,
+      targetHeight: 1000,
+      encodingType: this.camera.EncodingType.JPEG,
+      correctOrientation: true
+    };
+    this.camera.getPicture(cameraOptions).then(
+      file_uri => {
+        this.billName = file_uri.substr(file_uri.lastIndexOf("/") + 1);
+        this.base64Image = file_uri;
+      },
+      err => {
+        // console.log(err);
+      }
+    );
+  }
+  /**
+   * Get picture from camera
+   */
+  getImageFromCamera() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+    this.camera.getPicture(options).then(
+      imageData => {
+        this.base64Image = "data:image/jpeg;base64," + imageData;
+        //this.base64.encodeFile('').then((data)=>{this.base64Image=data;});
+        //this.imageDatas =Base64Binary.decodeArrayBuffer(this.base64Image);
+      },
+      err => {
+        // console.log(err);
+      }
+    );
+  }
+  /**
+   * Image choose popup
+   */
+  choosePopup() {
+    var choosePopup = this.alertController.create({
+      title: "Take a picture from",
+      buttons: [
+        {
+          text: "Gallery",
+          cssClass: "orange-button",
+          handler: data => {
+            this.getImageFromGallery();
+          }
+        },
+        {
+          text: "Camera",
+          cssClass: "green-button",
+          handler: data => {
+            this.getImageFromCamera();
+          }
+        }
+      ]
+    });
+    choosePopup.present();
+  }
+  async getProviders() {
+    var request = {
+      companyid: this.companyid,
+      providerids: this.providerid,
+      serviceid: this.servicesid
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.GET_PROVIDER_DATA, request)
+      .toPromise();
+    // console.log((response))
+    this.Providerinfo = response;
+    // console.log(this.Providerinfo['compinfo'])
+    this.OfferdServices = this.Providerinfo["compinfo"];
+    // console.log(this.Providerinfo['providers'])
+    this.ProviderData = this.Providerinfo["providers"];
+    // console.log(this.ProviderData)
+  }
+  async getCarePlan() {
+    let filters = [];
+    filters.push({
+      fieldname: "companyid",
+      fieldvalue: this.companyid,
+      operators: "Equal"
+    });
+    filters.push({
+      fieldname: "planstatus",
+      fieldvalue: "1",
+      operators: "Equal"
+    });
+    var request = {
+      filter: filters,
+      filterproperty: {
+        offset: 0,
+        orderby: "planname",
+        recordlimit: 0
+      }
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.GET_CAREPLANS, request)
+      .toPromise();
+    // console.log(response)
+    this.CarePlan = response["records"];
+  }
+  async getReview() {
+    var request = {
+      companyid: this.companyid
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.GET_COMPANY_REVIEWS, request)
+      .toPromise();
+    // console.log(response)
+    this.Review = response["customreviews"];
+    // console.log(this.Review);
+  }
+  page_info(item, i) {
+    // console.log(i)
+    // console.log(item)
+    item["companyid"] = this.companyid;
+    item["servicesid"] = this.servicesid;
+  }
+  Continue() {
+    if (AppState.Location == undefined) {
+      this.navCtrl.push("EnableLocationPage");
+    } else {
+      // console.log('servicesname: '+this.servicesname);
+      if (this.companyid != undefined) {
+        this.BookAppintment["companyid"] = this.companyid;
+      }
+      if (this.providerid != undefined) {
+        this.BookAppintment["providerid"] = this.providerid;
+      }
+      if (this.servicesname != undefined) {
+        this.BookAppintment["servicename"] = this.servicesname;
+      }
+      if (this.Currency != undefined || this.Currency != "" || this.Currency != null){
+        this.BookAppintment["Currency"] = this.Currency;
+      }
+      if (this.servicesid != undefined){
+        this.BookAppintment["servicesid"] = this.servicesid;
+        this.BookAppintment["serviceid"] = this.servicesid;
+      }
+      this.BookAppintment["amount"] = (this.ProviderprofileData[0].amount*this.ProviderprofileData[0].inhome_session)/60;
+      this.BookAppintment["inhome_session"] = this.ProviderprofileData[0].inhome_session;
+      // console.log(JSON.stringify(this.BookAppintment));
+      this.navCtrl.push("SevenPage", this.BookAppintment);
+      // this.navCtrl.push('SevenPage',this.ProviderprofileData[0]);
+    }
+  }
+  Allservices() {
+    // if(this.OfferdServices==undefined)
+    // {
+    this.OfferdServices1["companyid"] = this.companyid;
+    this.OfferdServices1["providerid"] = this.providerid;
+    // console.log('set root ')
+    this.navCtrl.push("ProvidersServicesPage", this.OfferdServices1);
+    //this.navCtrl.push('ProvidersServicesPage',this.OfferdServices1)
+    //this.navCtrl.push('NinePage',this.OfferdServices1)
+    // }
+    // else{
+    //   this.OfferdServices1['companyid']=this.companyid
+    //   this.OfferdServices1['providerid']= this.providerid
+    //   this.navCtrl.push('ProvidersServicesPage',this.OfferdServices1)   // added by nsp
+    //this.navCtrl.push(ProvidersServicesPage,this.OfferdServices1)    //commented by nsp
+    // }
+  }
+  getDir() {
+    if (this.latitude != "" && this.longitude != "") {
+      var web = this.inAppBrowser.create(
+        "https://www.google.com/maps/search/?api=1&query=" +
+          this.latitude +
+          "," +
+          this.longitude +
+          " "
+      );
+      // this.navCtrl.push(GetDirectionPage,{lat:this.latitude,long:this.longitude})
+    } else {
+      this.toastCtrl
+        .create({
+          message: "Location is not defined",
+          duration: 2000
+        })
+        .present();
+    }
+  }
+  //
+  async getProfile() {
+    console.log('inside getProfile');
+    if(this.servicesid == 55){
+      this.servicesid = 64;
+    }
+    var request = {
+      companyid: this.companyid,
+      providerid: this.providerid,
+      serviceid: this.servicesid,
+      filterproperty: {
+        dir: "DESC",
+        offset: 0,
+        orderby: "servicename",
+        recordlimit: 25
+      }
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.GET_PROVIDER_PROFILE_data, request)
+      .toPromise();
+    // console.log(response)
+    this.navigationdata = response;
+    this.ProviderprofileData.push(response);
+    //  console.log(this.ProviderprofileData)
+    this.Currency = Helper.getCountryCurrencySymbol(
+      this.ProviderprofileData[0].country
+    );
+    this.firstname = this.ProviderprofileData[0].firstname;
+    this.lastname = this.ProviderprofileData[0].lastname;
+    this.city = this.ProviderprofileData[0].city;
+    this.addressline = this.ProviderprofileData[0].addressline;
+    this.addressline1 = this.ProviderprofileData[0].addressline1;
+    this.latitude = this.ProviderprofileData[0].latitude;
+    this.longitude = this.ProviderprofileData[0].longitude;
+    this.emailid = this.ProviderprofileData[0].emailid;
+    this.phonenumber = this.ProviderprofileData[0].phonenumber;
+    this.OfferdServices1 = this.ProviderprofileData[0]["services"];
+    if (this.ProviderprofileData[0].eqdetails != "") {
+      this.isDescriptionEmpty = false;
+    }
+    if (this.ProviderprofileData[0].hasOwnProperty("providerprofilepic")) {
+      this.SocialSharingLogo = this.ProviderprofileData[0].providerprofilepic;
+    }
+    if (this.ProviderprofileData[0].hasOwnProperty("firstname")) {
+      this.SocialSharingMessage =
+        "Check out this service provider I found on WeMa Life " +
+        this.ProviderprofileData[0].firstname +
+        " " +
+        this.ProviderprofileData[0].lastname;
+    }
+    if (this.ProviderprofileData[0].hasOwnProperty("website")) {
+      this.SocialSharingwebsite = "https://www.wemalife.com";
+    }
+    if (this.servicesid == null && this.ProviderprofileData[0].services) {
+      // console.log("========================OfferdServices=============");
+      // console.log(this.ProviderprofileData[0]);
+      // console.log("========================OfferdServices=============");
+      //set provider's default serviceid if company offered : start here
+      if (
+        this.ProviderprofileData[0].hasOwnProperty("services") &&
+        this.servicesid == null
+      ) {
+        if (this.ProviderprofileData[0].services != null) {
+          for (let k in this.ProviderprofileData[0].services) {
+            if (this.ProviderprofileData[0].services[k].serviceid != "") {
+              this.providerdefaultServiceid = this.ProviderprofileData[0].services[
+                k
+              ].serviceid;
+            }
+          }
+          this.servicesid = this.providerdefaultServiceid;
+          this.BookAppintment.servicesid = this.servicesid;
+        }
+      } //set provider's default serviceid if company offered : start here
+    }
+    if (this.companyid == null) {
+      this.companyid = this.ProviderprofileData[0].companyid;
+      this.BookAppintment.companyid = this.companyid;
+    }
+    this.mapAddress =
+      this.ProviderprofileData[0].addressline +
+      ", " +
+      this.ProviderprofileData[0].addressline1 +
+      ", " +
+      this.ProviderprofileData[0].city +
+      " " +
+      this.ProviderprofileData[0].postcode;
+    this.loadMap();
+    this.addMarker();
+  }
+  // viewContact() {
+  // // console.log(this.company);
+  //   var viewContactPopup = this.modalCtrl.create(ViewContactPopupPage, { emailid: this.emailid, contact: this.phonenumber }, { enableBackdropDismiss: true });
+  //   viewContactPopup.present();
+  // }
+  Allocation() {
+    // console.log('in all location tab')
+    // console.log(this.ProviderprofileData)
+    this.navCtrl.push("ProvidersLocationListPage", this.navigationdata);
+  }
+  clicked(event, item, i) {
+    // console.log('inside clicked');
+    // console.log('event: ');
+    // console.log(event);
+    // console.log('item: ');
+    // console.log(item);
+    // console.log('i: ');
+    // console.log(i);
+    if (AppState.Location == undefined) {
+      this.navCtrl.push("EnableLocationPage");
+    } else {
+      var x = document.querySelectorAll(
+        ".slides > .swiper-container > .swiper-wrapper > .swiper-slide > .slide-zoom > div"
+      );
+      for (var j = 0; j < x.length; j++) {
+        x[j].classList.remove("class4");
+        x[j].classList.remove("class3");
+        x[j].classList.add("class1");
+      }
+      // console.log(item,i)
+      // console.log(item.servicename)
+      this.servicesname = item.servicename;
+      this.servicesid = item.serviceid;
+      item = this.BookAppintment;
+      item["companyid"] = this.companyid;
+      item["providerid"] = this.providerid;
+      item["servicename"] = this.servicesname;
+      item.servicesid = this.servicesid;
+      event.target.classList.add("class3"); // To ADD
+      event.target.classList.remove("class1"); // To Remove
+      event.target.classList.contains("class2"); // To check
+      event.target.classList.toggle("class4"); // To toggle
+      // this.navCtrl.push("SevenPage", item);
+      // console.log(JSON.stringify(item));
+      // console.log(JSON.stringify(this.BookAppintment));
+      // console.log('servicename: '+this.servicesname);
+      // console.log('serviceid: '+this.servicesid);
+    }
+  }
+  servicesinfo(event, item, i) {
+    // console.log(item.serviceid)
+    this.servicesid = item.serviceid;
+  }
+  Heart() {
+    this.visible = !this.visible;
+    // console.log('change colour ')
+    this.addFav();
+  }
+  async addFav() {
+    // console.log(this.favdata)
+    if (this.favdata != undefined) {
+      // console.log('in null')
+      if (this.favdata.provider["0"].fav_id) {
+        //console.log('in null')
+        this.favid = this.favdata.provider["0"].fav_id;
+      }
+    } else {
+      this.favid = null;
+    }
+    let request = {
+      fav_id: this.favid,
+      status: this.status,
+      providerid: this.providerid,
+      companyid: this.companyid,
+      type: "provider",
+      userid: AppState.UserCred.userid
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.AddFavrouties, request)
+      .toPromise();
+    if (response["status"] == "true") {
+      if (this.visible == true) {
+        this.toastCtrl
+          .create({
+            message: "Favourite added successfully",
+            duration: 2000
+          })
+          .present();
+      } else if (this.visible == false) {
+        this.toastCtrl
+          .create({
+            message: "Favourite removed successfully",
+            duration: 2000
+          })
+          .present();
+      }
+      this.getFavroutiesstatus();
+    }
+  }
+  changeListener($event): void {
+    this.base64Image = $event.target.files[0];
+    // console.log(this.base64Image);
+  }
+  /* 
+callJoint(telephoneNumber) {
+this.callNumber.callNumber(`7896341077`, true);
+} */
+  async getFavroutiesstatus() {
+    let request = {
+      //  fav_id:this.favid,
+      // status:'0',
+      providerid: this.providerid,
+      companyid: this.companyid,
+      type: "provider",
+      userid: AppState.UserCred.userid
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.ShowFavrouties, request)
+      .toPromise();
+    if (response != "") {
+      this.favdata = response;
+      if (this.favdata.provider["0"].status == "1") {
+        this.status = this.favdata.provider["0"].status;
+        // console.log("you ar in true ")
+        this.visible = true;
+      } else {
+        this.favid = null;
+        this.status = "0";
+        // console.log("you ar in false ")
+        this.visible = false;
+      }
+    } else {
+      this.favdata = undefined;
+      this.status = "0";
+      // console.log("you ar in false ")
+      this.visible = false;
+    }
+  }
+  /* viewContact1() {
+  this.callNumber.callNumber(this.phonenumber , true);
+}
+ */
+  sendEnquiry() {
+    // this.navCtrl.push(SubmitaqueryPage, this.ProviderprofileData[0])
+    //
+    var bookServicePopup = this.modalCtrl.create(
+      "SendEnquiryPopupPage",
+      this.ProviderprofileData[0].services,
+      { enableBackdropDismiss: true }
+    );
+    bookServicePopup.onDidDismiss(async data => {
+      // console.log(data);
+      if (data != null) {
+        var request = {
+          //    city: this.company.city,
+          city: "",
+          email: data.email,
+          enquireCompanyEmailId: this.emailid,
+          enquireCompanyId: this.companyid,
+          message: data.message,
+          name: data.name,
+          phone: data.contact,
+          postcode: data.postcode,
+          filename: data.filename,
+          serviceselected: {
+            serviceid: data.service.serviceid,
+            servicename: data.service.servicename
+          }
+        };
+        // console.log(request);
+        var response = await this.apiProvider
+          .Post(AppConst.SEND_ENQUIRY, request)
+          .toPromise();
+        if (
+          response != null &&
+          response.hasOwnProperty("status") &&
+          response["status"] == 1
+        ) {
+          this.toastCtrl
+            .create({
+              message: "Your feedback saved successfully",
+              duration: 2000
+            })
+            .present();
+        }
+      }
+    });
+    bookServicePopup.present();
+  }
+  //     let uploadRequest:FormData=new FormData();
+  //     /*uploadRequest.set('files[]',this.base64Image,'file1');
+  //     uploadRequest.set('fileflag','2');
+  //     uploadRequest.set('userid',AppState.UserCred.userid);
+  //     uploadRequest.set('companyid',AppState.UserCred.currentCompanyId);
+  //     uploadRequest.set('auth','false');
+  //     uploadRequest.set('id',response['id']);
+  //     uploadRequest.set('filestatus','1');
+  //     uploadRequest.set('type','bill');
+  //     uploadRequest.set('createdby',AppState.UserCred.userid);*/
+  //     uploadRequest.append('files[]',this.base64Image,'file1');
+  //     uploadRequest.append('fileflag','2');
+  //     uploadRequest.append('userid',AppState.UserCred.userid);
+  //     uploadRequest.append('companyid',AppState.UserCred.currentCompanyId);
+  //     uploadRequest.append('auth','false');
+  //     uploadRequest.append('id',response['id']);
+  //     uploadRequest.append('filestatus','1');
+  //     uploadRequest.append('type','bill');
+  //     uploadRequest.append('createdby',AppState.UserCred.userid);
+  //     console.log(uploadRequest);
+  //     //let uploadResponse = await this.apiProvider.Post(AppConst.FILE_UPLOAD, request).toPromise();
+  //     this.apiProvider.Post(AppConst.FILE_UPLOAD, request).subscribe((uploadResponse)=>{
+  //       if (uploadResponse != null) {
+  //         this.alertCtrl.create({
+  //           message: 'Upload: ' + JSON.stringify(uploadResponse)
+  //         }).present();
+  //       }
+  //     },
+  //   (error)=>{
+  //     this.alertCtrl.create({
+  //       message: 'UploadError: ' + JSON.stringify(error)
+  //     }).present();
+  //   });
+  // }
+  //   }
+  //  });
+  //this.viewCtrl.dismiss();
+  // });
+  whatsappShare() {
+    this.sharingVar
+      .shareViaWhatsApp(
+        this.SocialSharingMessage,
+        this.SocialSharingLogo,
+        this.SocialSharingwebsite
+      )
+      .then(
+        () => {},
+        () => {
+          this.toastCtrl
+            .create({
+              message: "Whatsapp is not installed in your mobile.",
+              duration: 2000
+            })
+            .present();
+        }
+      );
+  }
+  twitterShare() {
+    this.sharingVar
+      .shareViaTwitter(
+        this.SocialSharingMessage,
+        this.SocialSharingLogo,
+        this.SocialSharingwebsite
+      )
+      .then(
+        () => {},
+        () => {
+          this.toastCtrl
+            .create({
+              message: "Twitter is not logged in your mobile.",
+              duration: 2000
+            })
+            .present();
+        }
+      );
+  }
+  otherShare() {
+    this.sharingVar.share();
+    this.sharingVar
+      .share(
+        this.SocialSharingMessage,
+        this.SocialSharingMessage,
+        this.SocialSharingLogo,
+        this.SocialSharingwebsite
+      )
+      .then(
+        () => {},
+        () => {
+          this.toastCtrl
+            .create({
+              message: "Error! try again.",
+              duration: 2000
+            })
+            .present();
+        }
+      );
+  }
+}

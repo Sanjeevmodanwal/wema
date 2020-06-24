@@ -1,0 +1,196 @@
+<ion-header>
+  <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Notification</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+
+    <ion-grid *ngIf="Notifications!='' "  class="clear-box">
+        <ion-row> 
+            <ion-col col-12 text-right>
+                <p><a  (click)="clear()" >Clear All</a></p>
+            </ion-col>
+        </ion-row>
+    </ion-grid> 
+<span *ngFor="let notification of Notifications "> 
+    <ion-list   *ngIf="notification.Status==1" >
+        <ion-item-sliding #item>
+          <ion-item  >
+            <ion-row class="content-box">
+                <ion-col col-4>
+                    <div class="border-box">
+                        <img src="assets/imgs/notifications-icon.png">
+                    </div>
+                </ion-col>
+                <ion-col col-8>
+                    <p class="open">{{notification.Message}}</p>
+                    <h4>{{notification.Title}}</h4>
+                    <p>{{notification.Time}}</p>
+                </ion-col>
+            </ion-row>
+          </ion-item>
+          <!-- <ion-item-options side="left">
+          <button ion-button (click)="favorite(item)">Favorite</button>
+            <button ion-button color="danger" (click)="share(item)">Delete</button>
+          </ion-item-options> -->
+      
+          <ion-item-options side="right">
+            <button ion-button color="danger" (click)="removeItem(notification)"  > <ion-icon ios="ios-trash" md="md-trash"></ion-icon></button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </span>
+<!-- 
+
+  <ion-grid class="clear-box">
+      <ion-row>
+          <ion-col col-12 text-right>
+              <p><a>Clear All</a></p>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+  <ion-grid>
+      <ion-row class="content-box">
+          <ion-col col-4>
+              <div class="border-box">
+                  <img src="assets/imgs/notifications-icon.png">
+              </div>
+          </ion-col>
+          <ion-col col-8>
+              <p class="open">Upcoming Apointment</p>
+              <h4>David Balley <span>for</span> medication prompting</h4>
+              <p>25-11-2018 17:00 18:00</p>
+          </ion-col>
+      </ion-row>
+      <ion-row class="content-box">
+          <ion-col col-4>
+              <div class="border-box">
+                  <img src="assets/imgs/notifications-icon.png">
+              </div>
+          </ion-col>
+          <ion-col col-8>
+              <p class="open">Upcoming Apointment</p>
+              <h4>David Balley <span>for</span> medication prompting</h4>
+              <p>25-11-2018 17:00 18:00</p>
+          </ion-col>
+      </ion-row>
+      <ion-row class="content-box">
+          <ion-col col-4>
+              <div class="border-box">
+                  <img src="assets/imgs/notifications-icon2.png">
+              </div>
+          </ion-col>
+          <ion-col col-8>
+              <p class="open">Upcoming Apointment</p>
+              <h4>David Balley <span>for</span> medication prompting</h4>
+              <p>25-11-2018 17:00 18:00</p>
+          </ion-col>
+      </ion-row>
+      <ion-row class="content-box">
+          <ion-col col-4>
+              <div class="border-box">
+                  <img src="assets/imgs/notifications-icon.png">
+              </div>
+          </ion-col>
+          <ion-col col-8>
+              <p class="open">Upcoming Apointment</p>
+              <h4>David Balley <span>for</span> medication prompting</h4>
+              <p>25-11-2018 17:00 18:00</p>
+          </ion-col>
+      </ion-row>
+      <ion-row class="content-box">
+          <ion-col col-4>
+              <div class="border-box">
+                  <img src="assets/imgs/notifications-icon.png">
+              </div>
+          </ion-col>
+          <ion-col col-8>
+              <p class="open">Upcoming Apointment</p>
+              <h4>David Balley <span>for</span> medication prompting</h4>
+              <p>25-11-2018 17:00 18:00</p>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  <ion-grid class="clear-box">
+      <ion-row>
+        <ion-col col-7>
+            <h3>19 November 2018</h3>
+        </ion-col>
+          <ion-col col-5 text-right>
+              <p><a>Clear All</a></p>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+
+  <ion-grid>
+      <ion-row class="content-box">
+          <ion-col col-4>
+              <div class="border-box">
+                  <img src="assets/imgs/notifications-icon.png">
+              </div>
+          </ion-col>
+          <ion-col col-8>
+              <p class="open">Upcoming Apointment</p>
+              <h4>David Balley <span>for</span> medication prompting</h4>
+              <p>25-11-2018 17:00 18:00</p>
+          </ion-col>
+      </ion-row>
+      <ion-row class="content-box">
+          <ion-col col-4>
+              <div class="border-box">
+                  <img src="assets/imgs/notifications-icon.png">
+              </div>
+          </ion-col>
+          <ion-col col-8>
+              <p class="open">Upcoming Apointment</p>
+              <h4>David Balley <span>for</span> medication prompting</h4>
+              <p>25-11-2018 17:00 18:00</p>
+          </ion-col>
+      </ion-row>
+      <ion-row class="content-box">
+          <ion-col col-4>
+              <div class="border-box">
+                  <img src="assets/imgs/notifications-icon2.png">
+              </div>
+          </ion-col>
+          <ion-col col-8>
+              <p class="open">Upcoming Apointment</p>
+              <h4>David Balley <span>for</span> medication prompting</h4>
+              <p>25-11-2018 17:00 18:00</p>
+          </ion-col>
+      </ion-row>
+      <ion-row class="content-box">
+          <ion-col col-4>
+              <div class="border-box">
+                  <img src="assets/imgs/notifications-icon.png">
+              </div>
+          </ion-col>
+          <ion-col col-8>
+              <p class="open">Upcoming Apointment</p>
+              <h4>David Balley <span>for</span> medication prompting</h4>
+              <p>25-11-2018 17:00 18:00</p>
+          </ion-col>
+      </ion-row>
+      <ion-row class="content-box">
+          <ion-col col-4>
+              <div class="border-box">
+                  <img src="assets/imgs/notifications-icon.png">
+              </div>
+          </ion-col>
+          <ion-col col-8>
+              <p class="open">Upcoming Apointment</p>
+              <h4>David Balley <span>for</span> medication prompting</h4>
+              <p>25-11-2018 17:00 18:00</p>
+          </ion-col>
+      </ion-row>
+  </ion-grid> -->
+
+</ion-content>

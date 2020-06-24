@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Notifications</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-content>
+    <span *ngFor="let notification of Notifications">
+      <ion-list *ngIf="notification.Status==2">
+        <ion-item-sliding>
+          <ion-item>
+            <ion-row class="content-box">
+              <ion-col col-4>
+                <div class="border-box">
+                  <img src="assets/imgs/notifications-icon.png" />
+                </div>
+              </ion-col>
+              <ion-col col-8>
+                <h4>{{notification.Title}}</h4>
+                <p>{{notification.Message}}</p>
+                <p>{{notification.Time}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+          <ion-item-options>
+            <button danger ion-button (click)="removeItem(notification)">
+              <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </span>
+    <!-- <ion-grid>
+            <ion-item-sliding>
+                    <ion-item>
+            <ion-col col-4>
+                <div class="border-box">
+                    <img src="assets/imgs/notifications-icon.png">
+                </div>
+            </ion-col>
+            <ion-col col-8>
+                <h4>New appointment created - Appointment created on 01-09-2018 17:00 18:00</h4>
+                <p>15:00 PM, 16 Augest 2018 </p>
+            </ion-col>
+        </ion-row>
+</ion-item>
+        <ion-item-options>
+        <button danger (click)="removeItem()"> Delete</button>
+      </ion-item-options>
+        </ion-item-sliding> -->
+    <!-- 
+        <ion-row class="content-box">
+            <ion-col col-4>
+                <div class="border-box">
+                    <img src="assets/imgs/notifications-icon.png">
+                </div>
+            </ion-col>
+            <ion-col col-8>
+                <h4>New appointment created - Appointment created on 01-09-2018 17:00 18:00</h4>
+                <p>15:00 PM, 16 Augest 2018 </p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="content-box">
+            <ion-col col-4>
+                <div class="border-box">
+                    <img src="assets/imgs/notifications-icon2.png">
+                </div>
+            </ion-col>
+            <ion-col col-8>
+                <h4>New appointment created - Appointment created on 01-09-2018 17:00 18:00</h4>
+                <p>15:00 PM, 16 Augest 2018 </p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="content-box">
+            <ion-col col-4>
+                <div class="border-box">
+                    <img src="assets/imgs/notifications-icon.png">
+                </div>
+            </ion-col>
+            <ion-col col-8>
+                <h4>New appointment created - Appointment created on 01-09-2018 17:00 18:00</h4>
+                <p>15:00 PM, 16 Augest 2018 </p>
+            </ion-col>
+        </ion-row>
+        <ion-row class="content-box">
+            <ion-col col-4>
+                <div class="border-box">
+                    <img src="assets/imgs/notifications-icon.png">
+                </div>
+            </ion-col>
+            <ion-col col-8>
+                <h4>New appointment created - Appointment created on 01-09-2018 17:00 18:00</h4>
+                <p>15:00 PM, 16 Augest 2018 </p>
+            </ion-col>
+        </ion-row>
+    </ion-grid> 
+-->
+  </ion-content>
+</ion-content>

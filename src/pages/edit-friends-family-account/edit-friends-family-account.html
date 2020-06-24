@@ -1,0 +1,194 @@
+<!--
+  Generated template for the EditFriendsFamilyAccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Existing User Registration</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <div *ngIf="page==1" style="padding: 10px">
+    <ion-label style="color:black;font-weight: bold;font-size: large;position:fixed;top:50px;width:100%;z-index: 1;padding-top: 10px;background: white">{{title}}</ion-label>
+    <ion-item style="margin-top: 20px" no-padding>
+      <ion-label floating>Email
+        <span danger>*</span>
+      </ion-label>
+      <ion-input required type="email" [(ngModel)]="friendEmail"></ion-input>
+    </ion-item>
+    <ion-item style="margin-top: 10px" no-padding>
+      <ion-label floating>Relationship To Member
+        <span danger>*</span>
+      </ion-label>
+      <ion-input required type="text" [(ngModel)]="relationship"></ion-input>
+    </ion-item>
+    <div style="width:100%;padding: 10px;position: fixed;bottom: 10px;left: 0px">
+      <button type="submit" class="custom-button" ion-button (click)="next()" style="float: right">Next</button>
+    </div>
+  </div>
+  <div *ngIf="page==2" style="padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom: 65px;position: relative;">
+    <form [formGroup]="myForm" (ngSubmit)="next()">
+      <ion-label style="color:black;font-weight: bold;font-size: large;position:fixed;top:50px;width:100%;z-index: 1;padding-top: 10px;background: white">{{title}}</ion-label>
+      <ng-template #myTemplate ngFor let-field [ngForOf]="formFields" style="margin-top:10px;">
+        <div *ngIf="isWemaplus">
+          <ion-item *ngIf="field.type === 'text' && field.name==='companynumber'" (focusout)="onFocusOut()" style="margin-top:20px;"
+            no-padding>
+            <ion-label floating>{{field.label}}
+              <span *ngIf="field.required" danger>*</span>
+            </ion-label>
+            <ion-input [formControlName]='field.name' required [(ngModel)]="values[field.name]"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="field.type === 'text' && field.name==='company'" no-padding>
+            <ion-label floating>{{field.label}}
+              <span *ngIf="field.required" danger>*</span>
+            </ion-label>
+            <ion-input disabled="true" [formControlName]='field.name' required [(ngModel)]="values[field.name]"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="field.type === 'text' && field.name==='uniquenumber'" no-padding>
+            <ion-label floating>{{field.label}}
+              <span *ngIf="field.required" danger>*</span>
+            </ion-label>
+            <ion-input type="number" [formControlName]='field.name' required [(ngModel)]="values[field.name]" (focusout)="onFocusOut()"></ion-input>
+          </ion-item>
+        </div>
+        <div *ngIf="field.type === 'text' && (field.name!='companynumber' && field.name!='company' && field.name!='uniquenumber' && field.name!='emailid')">
+          <ion-item *ngIf="field.subtype == 'tel'" no-padding>
+            <ion-label floating>{{field.label}}
+              <span *ngIf="field.required" danger>*</span>
+            </ion-label>
+            <ion-input type="tel" [maxlength]="field.maxlength" [formControlName]='field.name' ng-attr-required="field.required" [(ngModel)]="values[field.name]"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="field.subtype == 'text' && field.name=='postcode'" no-padding>
+            <ion-label floating>{{field.label}}
+              <span *ngIf="field.required" danger>*</span>
+            </ion-label>
+            <ion-input type="text" maxlength="8" [formControlName]='field.name' ng-attr-required="field.required" [(ngModel)]="values[field.name]"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="field.subtype == 'text'&& field.name!='postcode'" no-padding>
+            <ion-label floating>{{field.label}}
+              <span *ngIf="field.required" danger>*</span>
+            </ion-label>
+            <ion-input type="text" [formControlName]='field.name' ng-attr-required="field.required" [(ngModel)]="values[field.name]"></ion-input>
+          </ion-item>
+        </div>
+        <ion-item *ngIf="(field.type === 'select' || field.type ==='radio-group') && field.name != 'country'" style="margin-top:20px"
+          no-padding>
+          <ion-label style="color:black">{{field.label}}
+            <span *ngIf="field.required" danger>*</span>
+          </ion-label>
+          <ion-select *ngIf="field.required" [formControlName]='field.name' [(ngModel)]="values[field.name]" placeholder="{{field.label}}*"
+            class="full-width-select">
+            <ion-option *ngFor="let value of field.values">{{value.label}}</ion-option>
+          </ion-select>
+          <ion-select *ngIf="!field.required" [formControlName]='field.name' [(ngModel)]="values[field.name]" placeholder="{{field.label}}"
+            class="full-width-select">
+            <ion-option *ngFor="let value of field.values">{{value.label}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="field.type === 'select' && field.name === 'country'" style="margin-top:20px" no-padding>
+          <ion-label style="color:black">{{field.label}}
+            <span *ngIf="field.required" danger>*</span>
+          </ion-label>
+          <ion-select *ngIf="field.required" [formControlName]='field.name' [(ngModel)]="values[field.name]" placeholder="{{field.label}}*"
+            class="full-width-select">
+            <ion-option [value]="1">United Kingdom</ion-option>
+            <ion-option [value]="2">India</ion-option>
+          </ion-select>
+          <ion-select *ngIf="!field.required" [formControlName]='field.name' [(ngModel)]="values[field.name]" placeholder="{{field.label}}"
+            class="full-width-select">
+            <ion-option [value]="1">United Kingdom</ion-option>
+            <ion-option [value]="2">India</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="field.type === 'paragraph'" no-padding>
+          <ion-label>{{field.label}}</ion-label>
+        </ion-item>
+        <ion-item *ngIf="field.type === 'textarea'" no-padding>
+          <ion-label floating>{{field.label}}
+            <span *ngIf="field.required" danger>*</span>
+          </ion-label>
+          <ion-textarea [formControlName]='field.name' [(ngModel)]="values[field.name]"></ion-textarea>
+        </ion-item>
+        <ion-item *ngIf="field.type === 'date'" style="margin-top:20px" no-padding>
+          <ion-label style="color:black">{{field.label}}
+            <span *ngIf="field.required" danger>*</span>
+          </ion-label>
+          <ion-datetime [formControlName]='field.name' displayFormat="DD-MM-YYYY" [(ngModel)]="values[field.name]"></ion-datetime>
+        </ion-item>
+      </ng-template>
+      <div style="background: white;position:fixed;bottom:0px;left:0px;width:100%;padding:10px;">
+        <button ion-button (click)="previous()" class="custom-button">Previous</button>
+        <button ion-button type="submit" class="custom-button" style="float:right">Next</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="page==3" style="padding: 10px">
+      <form [formGroup]="myForm" (ngSubmit)="next()">
+    <ion-label style="color:black;font-weight: bold;font-size: large;position:fixed;top:50px;width:100%;z-index: 1;padding-top: 10px;background: white">{{title}}</ion-label>
+    <ion-item style="margin-top: 20px" no-padding>
+      <ion-label floating>Email
+        <span danger>*</span>
+      </ion-label>
+      <ion-input formControlName='emailid' [(ngModel)]="emailId" type="email"></ion-input>
+    </ion-item>
+    <ion-item style="margin-top: 5px" no-padding>
+      <ion-label floating>Password
+        <span danger>*</span>
+      </ion-label>
+      <ion-input formControlName='password' [(ngModel)]="password" [type]="showPass == true ? 'text' : 'password'"></ion-input>
+      <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword(true)">
+        <ion-icon name="ios-eye-off-outline"></ion-icon>
+      </button>
+      <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword(true)">
+        <ion-icon name="ios-eye-outline"></ion-icon>
+      </button>
+    </ion-item>
+    <ion-item disabled="password==''" style="margin-top: 5px" no-padding>
+      <ion-label floating>Confirm Password
+        <span danger>*</span>
+      </ion-label>
+      <ion-input formControlName='confirmpassword' (ionChange)="passwordChange()" [(ngModel)]="confirmPassword" [type]="showConfirmPass == true ? 'text' : 'password'"></ion-input>
+      <button *ngIf="!showConfirmPass" ion-button clear color="dark" type="button" item-right (click)="showPassword(false)">
+        <ion-icon name="ios-eye-off-outline"></ion-icon>
+      </button>
+      <button *ngIf="showConfirmPass" ion-button clear color="dark" type="button" item-right (click)="showPassword(false)">
+        <ion-icon name="ios-eye-outline"></ion-icon>
+      </button>
+    </ion-item>
+    <div class="custom-label" *ngIf="password!='' && confirmPassword!='' && !isMatched" style="color:#f53d3d;font-size: 12px">Password mismatch!</div>
+      <br/>
+      <label class="custom-label" style="font-size:12px;color:gray;margin-top: 30px">Password should consist of atleat 1 uppercase character and 1 numerric digit and should be 7-8 character long.
+        <br/>
+        <br/> Use of special characters Dot(.).Dollar($),space and hyphen(-)are not permitted
+      </label>
+    <div style="position:fixed;bottom:0;left:0;width:100%;padding:10px;">
+      <button ion-button (click)="previous()" class="custom-button">Previous</button>
+      <button ion-button type="submit" class="custom-button" style="float:right">Next</button>
+    </div>
+      </form>
+  </div>
+  <div *ngIf="page==4" style="padding:0px">
+    <div style="background:#08a79d;padding:20px" text-center>
+      <ion-label style="color:white">
+        <b>Set your profile picture</b>
+      </ion-label>
+      <div class="profile-photo" (click)="choosePopup()" style="background:white;height:150px;width:150px;margin-left: auto; margin-right: auto"
+        text-center>
+        <img [src]="base64Image" style="margin:auto;top:0;bottom:0;left:0;right:0;height:150px;width:150px" />
+      </div>
+    </div>
+    <div style="position:fixed;bottom:0;width:100%;padding:10px;">
+      <ion-item no-padding no-lines>
+        <ion-label class="line-break">I agree to Lavanya's Terms of Service. Payments Terms of Service and Privacy Policy</ion-label>
+        <ion-checkbox color="Dark" checked="false"></ion-checkbox>
+      </ion-item>
+      <div>
+        <button ion-button (click)="previous()" style="text-transform:none;">Previous</button>
+        <button ion-button (click)="registerMember()" style="text-transform:none;float:right">Register</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

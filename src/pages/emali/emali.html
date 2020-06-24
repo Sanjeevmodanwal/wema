@@ -1,0 +1,87 @@
+<ion-header >
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Email</ion-title>
+    </ion-navbar> 
+
+    <ion-toolbar no-border-top class="tab-toolbar"> 
+        <ion-segment [(ngModel)]="pet">
+          <ion-segment-button value="kittens" class="border-right">
+                  <p><ion-icon name="ios-mail-outline"></ion-icon></p>
+                  <h6>Inbox</h6>
+          </ion-segment-button>
+          <ion-segment-button value="puppies">
+                  <p><ion-icon name="ios-send-outline"></ion-icon></p>
+                  <h6>Sent</h6> 
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+
+  </ion-header>
+
+<ion-content>
+        <ion-refresher (ionRefresh)="doRefresh($event)" class="refresher">
+                <ion-refresher-content  class="refresher"
+                  pullingIcon="arrow-dropdown"
+                  pullingText=""
+                  refreshingSpinner="circles"
+                  refreshingText="">
+                </ion-refresher-content>
+              </ion-refresher>
+
+
+    <div [ngSwitch]="pet">
+        <ion-list *ngSwitchCase="'kittens'">
+            <ion-item>
+               <ion-row class="box-pading" *ngFor="let iemail of InboxEmails" (click)="inboxItemClick(iemail)">
+                   <ion-col col-3>
+                      <div class="carcl-box">
+                          <h2>{{iemail.senderShortName}}</h2>
+                      </div>
+                   </ion-col>
+                   <ion-col col-9> 
+                      <div class="left-all-text">
+                          <h4>{{iemail.sender}}</h4>
+                          <h5>{{iemail.subject}} </h5>
+                          <p> {{iemail.message}}</p>
+                          <h6>{{iemail.createddatetime | date: 'd MMM HH:mm a'}}</h6>
+                      </div>
+                   </ion-col>
+               </ion-row>
+               
+            </ion-item>
+          </ion-list>
+
+        <ion-list *ngSwitchCase="'puppies'">
+          <ion-item>
+            <ion-row class="box-pading check" *ngFor="let semail of SentEmails" (click)="sentItemClick(semail)">
+                <ion-col col-3>
+                   <div class="carcl-box">
+                       <h2>{{semail.receiverShortName}}</h2>
+                   </div>
+                </ion-col>
+                <ion-col col-9>
+                   <div class="left-all-text">
+                       <h4>{{semail.receiver}}</h4>
+                       <h5> {{semail.subject}}</h5>
+                       <p>{{semail.message}}</p>
+                       <h6>{{semail.createddatetime | date: 'd MMM HH:mm a'}}</h6>
+                   </div>
+                </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </div>
+
+
+<!-- <div class="text-edite">
+    <ion-icon name="md-create" (click)="composeEmail()"></ion-icon>
+</div> -->
+<ion-fab bottom right>
+    <button (click)="composeEmail()" ion-fab fab-fixed class="text-edite" style="margin: 0px 0px 0px 0px">
+      <ion-icon   name="md-create" ></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

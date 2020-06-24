@@ -1,0 +1,32 @@
+<ion-header >
+    <ion-navbar class="dawn-bar">
+     
+    </ion-navbar> 
+    <ion-grid class="location-box-nav">
+        <ion-row>
+            <ion-item>
+
+                <ion-searchbar [(ngModel)]="Postcode"  #searchbar  placeholder="Location, street or postcode..."></ion-searchbar>
+                <!-- <ion-searchbar  [(ngModel)]="Postcode"  #searchbar placeholder="Location, street or postcode..." ></ion-searchbar> -->
+                <div id="map" #map></div> 
+            </ion-item>
+            <!-- <div id="map" #map></div>  -->
+        </ion-row>
+    </ion-grid>
+  </ion-header>
+
+<ion-content>
+    <ion-grid class="location-box">
+        <ion-row>
+            <p  (click)='getCurrentPosition()'><ion-icon name="ios-send"></ion-icon> Use my current location</p>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid class="button-box">
+            <ion-row>
+                
+                      <button (click)="done()">DONE</button>
+              
+            </ion-row>
+        </ion-grid>
+</ion-content>

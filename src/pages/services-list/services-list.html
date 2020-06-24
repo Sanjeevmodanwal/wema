@@ -1,0 +1,73 @@
+<!--
+  Generated template for the ServicesListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar class="dawn-bar"> 
+        <ion-icon name="arrow-round-back" (click)="Goback()" style="font-size: 31px;
+                position: absolute;
+                left: 15px;
+                color: #13a89e;
+                z-index: 99999;"></ion-icon>
+    <ion-title> Services offered</ion-title>
+ <!--  <P  class="care-row">{{companyname}}</P> -->
+  </ion-navbar>
+</ion-header>
+<!-- (click)="page_info (item,i)"-->
+
+<ion-content padding>
+    <div class="map" [class.hidemap]="!((switch == 'map') || error)">
+        <ion-searchbar #searchbar placeholder="search" [hidden]="!search"></ion-searchbar>
+        <div id="map" #map></div>
+      </div>
+<ion-grid *ngFor="let item of Care;  let i = index; "  class="care-page"  >
+  <ion-row    (click)="dismissPopup(item,i)"  class="care-row"  >
+      <ion-col  col-9>
+          <h3>{{item.servicename}}</h3>
+          <div  *ngIf="item.description!=null" >
+              <p>{{(item.description.length > 100) ? (item.description | slice:0:100) +'...':(this.description)}}</p>
+          </div>
+      </ion-col>
+  
+          <ion-col  col-3>
+              <span *ngIf="item.servicename=='Chiropractors'">
+               <img src="assets/imgs/Chiropractors.png"/>
+               </span>
+               <span  *ngIf="item.servicename=='Companionship'"> <img src="assets/imgs/companionship.png"/></span>
+               <span *ngIf="item.servicename=='Dementia Care'"><img src="assets/imgs/dementia_care.png"/></span>
+               <span *ngIf="item.servicename=='Domestic Help'"> <img src="assets/imgs/domestic_help.png"/></span>
+               <span *ngIf="item.servicename=='Elderly Care'"> <img src="assets/imgs/elderly_care.png"/></span>  
+               <span *ngIf="item.servicename=='Household Help'">  <img src="assets/imgs/Household_help.png"/></span>
+               <span *ngIf="item.servicename=='Live in care'"> <img src="assets/imgs/live_in_care.png"/></span>
+               <span *ngIf="item.servicename=='Massage therapy'"><img src="assets/imgs/Massage_therapy.png"/></span>
+               <span *ngIf="item.servicename=='no-service-icon-green'">  <img src="assets/imgs/no-service-icon-green.png"/></span>
+               <span *ngIf="item.servicename=='Nursing Care'"> <img src="assets/imgs/nursing_care.png"/></span>
+               <span *ngIf="item.servicename=='Nutrition'"> <img src="assets/imgs/Nutrition.png"/></span>
+               <span *ngIf="item.servicename=='Nutritionist'"><img src="assets/imgs/nutritionist.png"/></span>
+               <span *ngIf="item.servicename=='Occupational Therapy'"> <img src="assets/imgs/Occupational_therapy.png"/></span>
+               <span *ngIf="item.servicename=='Osteopathy'"> <img src="assets/imgs/Osteopathy.png"/></span>
+              <span *ngIf="item.servicename=='Personal care'"> <img src="assets/imgs/personal_care.png"/></span>
+               <span *ngIf="item.servicename=='Personal training' || item.servicename=='Personal Training'">  <img src="assets/imgs/personal_training.png"/></span>
+               <span *ngIf="item.servicename=='Physiotherapy'"><img src="assets/imgs/Physiotherapy.png"/></span>
+               <span *ngIf="item.servicename=='pilates'"> <img src="assets/imgs/pilates.png"/></span>
+               <span *ngIf="item.servicename=='Spcialist care'"><img src="assets/imgs/Spcialist_care.png"/></span>
+               <span *ngIf="item.servicename=='Yoga'"><img src="assets/imgs/Yoga.png"/></span>     
+               <span *ngIf="item.servicename=='Medication prompting'"><img src="assets/imgs/Pilates.png"/></span>     
+               <span *ngIf="item.servicename=='Pilates'"><img src="assets/imgs/Pilates.png"/></span>   
+               <span *ngIf="item.servicename=='Communication'">
+                    <img src="assets/imgs/communication.png"/>
+                    </span>
+    
+                    <span *ngIf="item.servicename=='Interpreting Services'">
+                      <img src="assets/imgs/interpreting_services.png"/>
+                      </span> 
+         
+            </ion-col>
+   
+      </ion-row>
+    </ion-grid>
+  
+</ion-content>

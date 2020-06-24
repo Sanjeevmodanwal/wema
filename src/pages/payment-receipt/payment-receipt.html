@@ -1,0 +1,106 @@
+<!--
+  Generated template for the PaymentReceiptPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar hideBackButton="{{!hasBackButton}}">
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-7>
+        <img src="companyData.companylogo" style="width: 40px;height: 40px" />
+      </ion-col>
+      <ion-col col-5></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-7>
+        <ion-label style="font-size: medium;color: baseColor"><b>{{companyData.companyname}}</b></ion-label>
+      </ion-col>
+      <ion-col col-5>
+        <ion-label style="font-size: medium;color: baseColor"><b>Order Number</b></ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-7>
+        <ion-label style="font-size: 14px;color:baseColor">{{companyData.displayaddress1}}</ion-label>
+      </ion-col>
+      <ion-col col-5>
+        <ion-label style="font-size: medium;color:#2B2A29"><b>{{receipt.id}}</b></ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-7>
+        <ion-label style="font-size: 14px;color: baseColor">{{companyData.displayaddress}}</ion-label>
+      </ion-col>
+      <ion-col col-5>
+        <ion-label style="color: #5B5B5B;font-size: 14px">{{receipt.paymentstartdatereceipt}}</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-7>
+        <ion-label style="font-size: 14px;color: baseColor">{{companyData.regpostalcode}}</ion-label>
+      </ion-col>
+      <ion-col col-5></ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-grid>
+    <ion-row>
+        <div style="color: silver;height: 1px;width: 100%"></div>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-6>
+         <ion-label style="font-size: 14px;color: baseColor">Service Name</ion-label>
+      </ion-col>
+      <ion-col col-4>
+       <ion-label style="font-size: 14px;color: baseColor"><b>Amount</b></ion-label> 
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
+    <ion-row>
+      <div style="color: silver;height: 1px;width: 100%"></div>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-6>
+       <ion-label style="color: #5B5B5B;font-size: 12px">{{serviceDescription}}</ion-label>
+      </ion-col>
+      <ion-col col-4>
+       <ion-label style="color: #5B5B5B;font-size: 13px">{{totalWithCurrency}}</ion-label> 
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
+    <ion-row>
+      <div style="color: silver;height: 1px;width: 100%"></div>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-6></ion-col>
+      <ion-col col-4>
+       <ion-label style="color: #5B5B5B;font-size: 14px"><b>{{totalWithCurrency}}</b></ion-label>
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
+  </ion-grid>
+  <div>
+    <ion-label style="font-size: 18px"><b>Payment Success</b></ion-label>
+    <ion-label style="font-size: 14px;color: #5B5B5B"><b>Transaction ID: {{receipt.transactionId}}</b></ion-label>
+  </div>
+
+  <ion-row>
+    <button  (click)= "homePage()"class="done-button">Back to Home Page</button>
+</ion-row>
+</ion-content>

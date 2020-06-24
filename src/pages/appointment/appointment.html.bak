@@ -1,0 +1,102 @@
+<!--
+  Generated template for the AppointmentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Appointment</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid   class="appointment-box">
+      <ion-row>
+          <ion-col col-12>
+              <h2>{{data.membername}}</h2>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col  col-12>
+              <div class="box-one">
+                <p>Date</p>
+                <h3>{{data.start  | date: 'd  MMM, y  h:mm a '}}</h3>
+                <p *ngIf="data.service !=''">Service</p>
+                <h3 *ngIf="data.service !=''">{{data.service}}</h3>
+                <p *ngIf="data.providerdetails.postcode !=''">Postal Code</p>
+                <h3 *ngIf="data.providerdetails.postcode !=''">{{data.providerdetails.postcode}}</h3>
+              </div>
+              <div class="box-two">
+                  <p>Area</p>
+                  <h3>{{data.providerdetails.city}}</h3>
+                  <p>Service For</p>
+                  <h3>Self</h3>
+                  <p style="opacity: 0;">Demo</p>
+                  <h4><a>View Route Map <ion-icon name="md-play" float-right></ion-icon></a></h4>
+              </div>
+              <div *ngIf="data.status==1" class="button-box">
+                  <h5> {{appState.CheckinTimer}} mins remaining to active check in</h5>
+                  <button  [disabled]="appState.CheckinTimer!='00:00'"  (click)="checkin(data)" >CHECK IN</button>
+                 <!-- <button *ngIf="appState.CheckinTimer=='00:00'" class="box"  >CHARGE NOW </button> 
+
+
+
+
+                  <p>If you want early check in? <a (click)="checkin(data)">Click here</a></p>-->
+              </div>
+             
+            <div *ngIf="data.status==4"  class="button-box">
+                <button   (click)="checkin(data)" >Check out</button><br/>
+                <!-- <button class="button-two">complete Visit Notes</button> -->
+                <button class="button-three">Charge Now</button>
+                <p>If you want early check out? <a (click)="checkin(data)">Click here</a></p>
+            </div>
+            <div *ngIf="data.status==5" class="button-box">             
+                <button >Completed</button>          
+            </div>
+          </ion-col>
+      </ion-row>
+</ion-grid>
+
+<ion-grid  class="view-report">
+    <ion-col col-12>
+        <h2>Past appointments done for <span>{{data.membername}}</span></h2>
+    </ion-col>
+</ion-grid>
+
+
+<ion-grid *ngFor="let past of pastVisits" class="view-report" >
+    <ion-row  *ngIf="past.doneforthismember">
+        <ion-col col-3>
+            <p>{{past.appdate | date :'d  MMM, y'}}</p>
+           
+        </ion-col>
+        <ion-col col-9>
+          <div class="mine-box">
+            <div class="text-box">
+                  <h3 *ngIf="past.membername !=''">{{past.membername}} <span>for</span> {{past.servicename}}</h3>
+                  <p><ion-icon name="md-time"></ion-icon> {{past.starttime | date:'hh:mm a'}}</p>
+                  <p><!--<ion-icon name="ios-pin"></ion-icon> Kidderminster-->&nbsp;</p> 
+              </div>
+              <div class="button-box-two">
+                    <button (click)="viewVisitReport(past)" *ngIf=" past.providerreport==''  " >SUBMIT NOW</button>
+                    <button (click)="viewVisitReport(past)"  *ngIf=" past.providerreport!=''" >View report</button>
+              </div>
+            </div>
+           
+        </ion-col>
+        
+        
+    </ion-row>
+</ion-grid>
+<div *ngIf="isPastAppointmentDoneEmpty" text-center style="background: #ededed;padding: 10px;margin: 10px; color: darkGreen">
+        No Appointments
+ </div>
+
+
+</ion-content>

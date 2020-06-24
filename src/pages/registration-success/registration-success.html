@@ -1,0 +1,55 @@
+<!--
+  Generated template for the RegistrationSuccessPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Registration Success</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div text-center>
+    <img src="assets/imgs/wema.png" style="width: 150px;height: 150px;" />
+    <br/>
+    <label style="color: #00A79D;font-size: medium">
+      <b>{{company}}</b>
+    </label>
+    <br/>
+    <img src="assets/imgs/tickimage.jpg" style="margin-top: 10px;width: 50px;height: 50px;" />
+    <br/>
+    <label style="color: #1f1f1d;font-size: 20px;margin-top: 5px">
+      <b>Registration request completed</b>
+    </label>
+    <br/>
+    <label style="color: #1f1f1d;font-size: 20px;margin-top: 5px">
+      <b>awaiting Manager's approval</b>
+    </label>
+    <br/>
+    <button (click)="login()" ion-button class="custom-button" style="margin-top: 20px">Login here</button>
+    <br/>
+    <div style="margin-top: 5px">
+      <label style="color: #2B2A29;font-size:small;">You will receive an activation email</label>
+      <br/>
+      <label style="color: #2B2A29;font-size:small;">on</label>
+      <label style="color: #4090D5;font-size:small;margin-left: 3px">{{emailId}}</label>
+      <label style="color: #2b2a29;font-size:small;margin-left: 3px">once approved</label>
+    </div>
+    <br/>
+    <div style="margin-top: 5px">
+      <label style="color: #2b2a29;font-size:small;">
+        <b>For support:</b>
+      </label>
+      <label style="color: #4090D5;font-size:small;">
+        <b>
+          <u>support@wemaplus.com</u>
+        </b>
+      </label>
+    </div>
+  </div>
+</ion-content>

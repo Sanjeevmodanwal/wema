@@ -1,0 +1,15 @@
+
+<ion-content>
+ 
+
+  <ion-grid class="popup-check-out">
+      <ion-col col-12>
+          <h4 *ngIf="loggedin.firstname !='' || loggedin.lasttname !=''">{{loggedin.firstname}} {{loggedin.lasttname}} manages your profile</h4>
+      </ion-col>
+      <ion-col col-12>
+          <button class="deny" (click)="deleteMemberList(data)">Deny</button>
+          <button class="allow"  (click)="allow(allow)">Allow</button>
+      </ion-col>
+  </ion-grid>
+  
+</ion-content>

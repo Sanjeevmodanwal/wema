@@ -1,0 +1,109 @@
+page-book-appointment {
+    ion-title{
+        display: block;
+        margin-top: 5px;
+    }
+    .dawn-bar .toolbar-title {
+        color: #13a89e;
+    }
+    .dawn-bar span {
+        padding: 0px 12px;
+        display: block;
+    }
+    .selector {
+        line-height: 1.2;
+        letter-spacing: 0.1px;
+        color: #29235e;
+        width: 100% !important;
+        max-width: 100% !important;
+        justify-content: center;
+        border: solid 2px #e8ebf0;
+        background-color: #ffffff;
+      }
+    ion-grid.location-of-service.grid h2 {
+        margin: 0px;
+        font-size: 16px;
+        color: #3d3d3d;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-grid.location-of-service.grid p {
+        margin: 0px;
+        font-size: 13px;
+        color: #878787;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+        padding-top: 5px;
+    }
+    ion-grid.location-of-service.grid h3 {
+        margin: 0px;
+        font-size: 16px;
+        color: #3d3d3d;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-row.text-centext-align.row {
+        text-align: center;
+        padding-top: 20px;
+    }
+    ion-row.text-centext-align.row h3{
+        font-size: 14px;
+    }
+    ion-row.text-centext-align.row p{
+        font-size: 13px;
+    }
+  .scroll-content {
+        background: #eeeeee;
+    }
+    ion-grid.location-of-service.grid {
+        background: #fff;
+        padding: 15px 5px;
+        margin-top: 7px;
+    }
+    ion-grid.location-of-service.price.grid h1{
+        padding: 0px;
+        font-size: 20px;
+        color: #3d3d3d;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+        margin: 0px;
+        padding-top: 5px;
+    }
+    ion-grid.location-of-service.price.grid p{
+        padding: 0px;
+        font-size: 26px;
+        color: #13a89e;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+        margin: 0px;
+        text-align: right;
+    }
+    ion-grid.location-of-service-button.grid {
+        background: #faa615;
+        margin-top: 7px;
+        padding: 10px 0px;
+        position: relative;
+        bottom: -71px;
+    }
+    ion-grid.location-of-service-button.grid button{
+        background: #faa615;
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+        color: #fff;
+        text-transform: uppercase;
+        line-height: 1.4;
+    }
+    ion-grid.location-of-service-button.grid ion-icon{
+        float: right;
+        font-size: 20px;
+        padding-top: 3px;
+        color: #fff;
+    }
+    ion-icon {
+        display: inline-block;
+        font-size: 1.2em;
+        color: #646464;
+    }
+}

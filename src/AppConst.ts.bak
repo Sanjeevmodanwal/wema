@@ -1,0 +1,184 @@
+export class AppConst {
+    public static readonly WEMA_AZURE_LIVE = "https://www.wemalife.com/data";
+
+
+    public static readonly WEMA_AWS_LIVE = "http://www.wema.eu-west-2.elasticbeanstalk.com/data";
+
+    public static readonly WEMA_AWS_DEV = "http://www.wemadev.eu-west-2.elasticbeanstalk.com/data";
+
+    public static readonly WEMA_DESIGN = "http://wema-env-design.eu-west-2.elasticbeanstalk.com/data";
+
+    public static readonly WEMA_GURGAON = "http://wema-env-gurgaon.xevcp7jpna.eu-west-2.elasticbeanstalk.com/data";
+
+   // public static readonly WEMA_DEV = "http://wema-dev.eu-west-2.elasticbeanstalk.com/data";
+    //public static readonly WEMA_DEV = "http://wema-3.eu-west-2.elasticbeanstalk.com/data";
+   // public static readonly WEMA_DEV_ROOT = "http://wema-3.eu-west-2.elasticbeanstalk.com/";
+
+    public static readonly WEMA_DEV = "https://www.wemalife.com/data";
+    public static readonly WEMA_DEV_ROOT = "https://www.wemalife.com/";
+
+    public static readonly  = "/api/memberslist/cud";
+
+    public static readonly DELETE_MEMBER = "/api/memberslist/cud";
+
+   public static readonly DELETE_ADDRESS_BOOK = "/api/registration/removeaddressbook";
+   
+    public static readonly FORM_BUILDER = "/api/formbuilder";
+
+    public static readonly REGISTER = "/api/registration/cud";
+
+    public static readonly PROVIDER_REGISTER="/api/providers/cud";
+    public static readonly PROVIDER_REGISTER_WEMALIFE="/api/life/savereginterestform";
+
+    public static readonly LOGIN = "/secureapi/login/applogin";
+
+    public static readonly SEARCH_COMPANIES = "/api/companies/cud";
+
+    public static readonly SERVICE_CATEGORIES = "/api/servicecategories";
+
+    public static readonly VERIFY_CODE = "/api/registration/verifycode";
+
+    public static readonly RESEND_CODE = "/api/registration/resendcode";
+
+    public static readonly GET_USER_PROFILE = "/api/memberslist";
+
+    public static readonly GET_APPOINTMENTS = "/api/appointments/showavailability";
+
+    public static readonly ADD_COMPANY = "/api/users/addcompany";
+
+    public static readonly GET_NOTIFICATIONS = "/api/pushnotifications";
+
+    public static readonly UPDATE_PREFERENCE = "/api/users/cud";
+
+    public static readonly GET_INBOX_EMAILS = "/api/privatemessages/inbox";
+
+    public static readonly GET_SENT_EMAILS = "/api/privatemessages/sent";
+
+    public static readonly SEND_EMAIL = "/api/privatemessages/send";
+
+    public static readonly EMAIL_LOOKUP = "/api/lookup/emailid";
+
+    public static readonly GET_EMAIL_MESSAGE = "/api/privatemessages/message";
+
+    public static readonly LOGOUT = "/secureapi/login/applogout";
+
+    public static readonly GET_SERVICES = "/api/services";
+
+    public static readonly GET_COMPANY_LIST = "/api/life/getcompaniesandproviders";
+    public static readonly GET_PROVIDER_PROFILE_data = "/api/life/providerprofile";
+   // public static readonly GET_WEMALIFE_COMPANIES = "/api/bookings/adhocbookings";
+   public static readonly GET_WEMALIFE_COMPANIES = "/api/bookings/adhocbookingswithproviders";
+   // http://wema-3.eu-west-2.elasticbeanstalk.com/data/api/bookings/adhocbookingswithproviders
+    public static readonly GET_ADHOC_PROVIDER_AVAILABILITY = "/api/bookings/adhocprovider";
+
+    public static readonly GET_CAREPLANS = "/api/plans";
+    public static readonly GET_CAREPLANS_COMPANY = "/api/life/companyplans ";
+
+    public static readonly GET_COMPANY_REVIEWS = "/api/life/companyreview";
+
+    public static readonly SEND_ENQUIRY = "/api/life/savefeedback";
+
+    public static readonly CREATE_CART_SESSION = "/api/cart/createsession";
+
+    public static readonly SAVE_CART_ITEMS = "/api/cart/savecart";
+
+    public static readonly GET_CART_DETAILS = "/api/cart";
+
+    public static readonly ADHOC_BOOKING = "/api/bookings";
+
+    public static readonly GET_ADHOC_ORDER_RECEIPT = "/api/bookings/receipts";
+
+    public static readonly REMOVE_CART_ITEM = "/api/cart/removeitem";
+
+    public static readonly FORGOT_PASSWORD = "/api/registration/forgotpassword";
+
+    public static readonly EMPTY_CART = "/api/cart/empty";
+
+    public static readonly GET_MEMBER_REPORTS = "/api/reports/members";
+
+    public static readonly GET_PROVIDER_PROFILE = "/api/providers";
+
+    public static readonly CANCEL_APPOINTMENT = "/api/appointments/cud";
+
+    public static readonly GET_PAST_VISITS = "/api/appointments/latestvisit";
+
+    public static readonly ADD_OR_UPDATE_COMMENTS = "/api/appointments/services";
+
+    public static readonly GET_All_BILLS = "/api/expense";
+
+    public static readonly CREATE_BILL = "/api/expense/cud";
+
+    public static readonly GET_MILEAGE = "/api/bookings/getmileages";
+
+    public static readonly GET_ALL_BILL_REPORTS = "/api/providers/providerpayroll";
+
+    public static readonly FILE_UPLOAD = "/api/fileupload/upload";
+    public static readonly GET_FILE="/api/fileupload"
+
+    public static readonly GET_FRIENDS_AND_FAMILY = "/api/memberslist";
+
+    public static readonly GET_SAVED_FRIENDS_AND_FAMILY = "/api/memberslist";
+
+    public static readonly GET_SUBSCRIPTIONS = "/api/bookings/careplanbookings";
+
+    public static readonly CANCEL_SUBSCRIPTION = "/api/bookings/cancelsubscription";
+
+    public static readonly GET_CARE_PLAN_PROVIDER_AVAILABILITY = "/api/bookings/adhocprovider";
+
+    public static readonly REQUEST_CARE_PLAN_BOOKING = "/api/bookings/careplanrequest";
+
+    public static readonly GET_PROVIDER_REPORTS = "/api/reports/providers";
+
+    public static readonly GET_EXPENSES_REPORT = "/api/reports/financial";
+
+    public static readonly GET_PROVIDER_AVAILABILITY = "/api/providers/availability";
+
+    public static readonly SET_PRIMARY_CONTACT = "/api/memberslist/addprimarycontact";
+
+    public static readonly GET_PROVIDERS = "/api/providers";
+
+    public static readonly SEND_EMERGENCY_ALARM = "/api/users/alarm";
+
+    public static readonly VERIFY_EMAIL="/secureapi/login/apploginverify";
+
+    public static readonly RESEND_EMAIL="/api/registration/resendemail";
+
+    public static readonly Get_QR_CODE="/api/appointments/services";
+
+    public static readonly CHECK_INOUT="/api/appointments/services";
+
+    public static readonly GET_SKILLS="/api/skills";
+
+    public static readonly GET_INTERESTS="/api/interest";
+    public static readonly GET_CLINIC_LIST="/api/clinic/cliniclistonproviderpage";
+    public static readonly clinic ="/api/clinic"
+    public static readonly GET_PROVIDER_DATA="/api/life/companyproviders";
+
+    public static readonly GET_Random_Company="/api/life/getrandomcompanies";
+    public static readonly GET_PopulerServices=  "/api/life/getpopularservices"
+
+    public static readonly GetAddressData="/api/registration/addressbook"
+
+    public static readonly ProviderAppointment="/api/appointments/allappointments"
+    public static readonly providerReport="/api/reports/providers"
+
+    public static readonly AddFavrouties="/api/life/addmyfavroutes"
+
+    public static readonly ShowFavrouties="/api/life/myfavroutescompany "
+    public static readonly showAllfav="/api/life/myfavroutes"
+
+    public static readonly AddAddress="/api/registration/cud"
+
+    public static readonly memberInfo ="/api/life/getmemberinfo"
+
+
+    public static readonly Notificaions="/api/life/notificationInfo"
+
+    public static readonly DeleteNotification="/api/life/deletenotification"
+
+    public static readonly GET_COMPANYPROFILE ="/api/life/companyprofile"
+    public static GetWemaBaseAddress() {
+        return this.WEMA_DEV;
+    }
+    
+}

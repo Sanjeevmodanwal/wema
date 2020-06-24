@@ -1,0 +1,865 @@
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  Renderer
+} from "@angular/core";
+import {
+  IonicPage,
+  NavController,
+  ModalController,
+  NavParams,
+  ToastController
+} from "ionic-angular";
+import { AppConst } from "../../AppConst";
+import { ApiProvider } from "../../providers/api/api";
+import { SocialSharing } from "@ionic-native/social-sharing";
+import { AppState } from "../../AppStates";
+import { CartPage } from "../cart/cart";
+//import { CallNumber } from '@ionic-native/call-number';
+import { Storage } from "@ionic/storage";
+//import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+//import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+import { InAppBrowser } from "../../../node_modules/@ionic-native/in-app-browser";
+import { Helper } from "../../helpers/helper";
+declare var google;
+/**
+ * Generated class for the CompanyProfilePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+@IonicPage({
+  name: "CompanyProfilePage"
+})
+@Component({
+  selector: "page-company-profile",
+  templateUrl: "company-profile.html"
+})
+export class CompanyProfilePage implements OnInit {
+  @ViewChild("map") mapElement: ElementRef;
+  map: any;
+  Company: any;
+  providers1: any;
+  providersName: any;
+  companyid: any;
+  providerid: any;
+  servicesid: any;
+  Providerinfo: Object;
+  ProviderData: any;
+  CarePlan: any;
+  Sum: any;
+  calulatedSum = [];
+  Review: any;
+  latitude: any;
+  longitude: any;
+  servicesList: any;
+  OfferdServices: any;
+  Currency: any;
+  Service: any;
+  Total = 0;
+  Hours = [];
+  Data: any;
+  Care: any;
+  ServicesOffered: any;
+  buttonColor: string = "primary";
+  click: boolean = false;
+  buttonColor1: string;
+  buttonColor3: string;
+  buttonColor2: string;
+  click2: boolean = false;
+  click3: boolean = false;
+  click1: boolean = false;
+  //buttonColor: string = "primary";
+  //totalPrice = 0.00;
+  destination: string;
+  start: string;
+  public appState = AppState;
+  changeColour: boolean;
+  visible: boolean;
+  favdata: any;
+  favid: any;
+  status: any;
+  DataArray = [];
+  ContactNo: any;
+  viewall = [];
+  viewalllength: any;
+  providerpicture: string;
+  companypicture: string;
+  text: string;
+  url: string;
+  recientlyviewd: any;
+  SocialSharingLogo: any = null;
+  SocialSharingMessage: any = "";
+  SocialSharingwebsite: any = "";
+  distance: any = "";
+  servicename: any = "";
+  mapAddress: any;
+  selectedService: any;
+  constructor(
+    private modalCtrl: ModalController,
+    private inAppBrowser: InAppBrowser,
+    //private launchNavigator: LaunchNavigator,
+    //private socialSharing: SocialSharing,
+    private sharingVar: SocialSharing,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public renderer: Renderer,
+    private apiProvider: ApiProvider,
+    //private callNumber: CallNumber,
+    private toastCtrl: ToastController,
+    private storage: Storage
+  ) {
+    // console.log("CompanyProfilePage constructor");
+    // console.log(navParams.data);
+    this.Company = navParams.data;
+    this.Currency = navParams.data.currency;
+    if (this.Currency == undefined || this.Currency == "") {
+      if (navParams.data.hasOwnProperty("country")) {
+        if (navParams.data.country != "") {
+          this.Currency = Helper.getCountryCurrencySymbol(
+            navParams.data.country
+          );
+        }
+      }
+    }
+    this.latitude = navParams.data.latitude;
+    this.longitude = navParams.data.longitude;
+    this.servicesList = navParams.data.servicesList;
+    this.servicesid = navParams.data.serviceid;
+    if (this.Company.listingtype != "provider") {
+      //  console.log('in providers ')
+      this.companyid = navParams.data.companyid;
+      this.ContactNo = navParams.data.primarycontactno;
+      // this.providerid=navParams.data.providers[0]
+      // this.providers1=this.Company.providers[0]
+      //  this.servicesid=this.Company.parentCategory['0'].serviceid
+      // this.providersName=this.Company.providersname[this.providers1]
+      //console.log(this.providersName,this.providers1)
+    } else {
+      // console.log("in providers ");
+      //  this.navCtrl.push(ProviderInfoPage,this.Company )
+      this.companyid = navParams.data.companyid;
+    }
+    this.start = "London";
+    this.destination = "Westminster";
+    if (navParams.data.hasOwnProperty("complogo")) {
+      this.SocialSharingLogo = navParams.data.complogo;
+    }
+    if (navParams.data.hasOwnProperty("companyname")) {
+      this.SocialSharingMessage =
+        "Check out this company I found on WeMa Life " +
+        navParams.data.companyname;
+    }
+    if (navParams.data.hasOwnProperty("website")) {
+      this.SocialSharingwebsite = navParams.data.website;
+    }
+    if (navParams.data.hasOwnProperty("companyid")) {
+      if (navParams.data.hasOwnProperty("parentCategory")) {
+        if (navParams.data.parentCategory["0"].servicename != "") {
+          this.servicename = navParams.data.parentCategory["0"].servicename;
+        }
+      }
+      var postcodevalue = navParams.data.postalcode;
+      var providercontent = navParams.data.providers;
+      var datetime = "";
+      var duration = "";
+      var action = "normal";
+      var categorysearch = false;
+      var searchCategory = "servicesearch";
+      var home_clinic = "2"; // for all availability
+      var rating = navParams.data.ratings;
+      var indiviprovider = btoa(
+        navParams.data.serviceid +
+          "|" +
+          this.servicename +
+          "|" +
+          duration +
+          "|" +
+          datetime +
+          "|" +
+          postcodevalue +
+          "|" +
+          searchCategory
+      );
+      var latlong = btoa(
+        navParams.data.latitude +
+          "|" +
+          navParams.data.longitude +
+          "|" +
+          navParams.data.companyid
+      );
+      var reviewdetail = btoa(
+        "reviews" + "|" + rating + "|" + navParams.data.currencyclass
+      );
+      var parameter = btoa(
+        navParams.data.companyid +
+          "|" +
+          navParams.data.complogo +
+          "|" +
+          this.distance +
+          "|" +
+          navParams.data.primarycontactno +
+          "|" +
+          navParams.data.serviceid +
+          "|" +
+          this.servicename +
+          "|" +
+          datetime +
+          "|" +
+          duration +
+          "|" +
+          action +
+          "|" +
+          categorysearch +
+          "|" +
+          postcodevalue +
+          "|" +
+          navParams.data.latitude +
+          "|" +
+          navParams.data.longitude +
+          "|" +
+          providercontent +
+          "|" +
+          searchCategory +
+          "|" +
+          navParams.data.currencyclass +
+          "|" +
+          categorysearch +
+          "|" +
+          home_clinic
+      );
+      this.SocialSharingwebsite =
+        AppConst.WEMA_DEV_ROOT +
+        "companiesprofileview/" +
+        parameter +
+        "/" +
+        indiviprovider +
+        "/" +
+        reviewdetail +
+        "/" +
+        latlong +
+        "/" +
+        action +
+        "/" +
+        home_clinic;
+    }
+    this.mapAddress = "";
+    if (navParams.data.hasOwnProperty("address")) {
+      this.mapAddress = this.mapAddress + " " + navParams.data.address;
+    }
+    if (navParams.data.hasOwnProperty("address2")) {
+      this.mapAddress = this.mapAddress + " " + navParams.data.address2;
+    }
+    if (navParams.data.hasOwnProperty("county")) {
+      this.mapAddress = this.mapAddress + " " + navParams.data.county;
+    }
+    if (navParams.data.hasOwnProperty("city")) {
+      this.mapAddress = this.mapAddress + " " + navParams.data.city;
+    }
+  }
+  viewCart() {
+    this.navCtrl.push("CartPage");
+  }
+  ionViewDidLoad() {
+    this.text = "Check out the profile !";
+    this.url = "https://google.com";
+    this.companypicture = AppConst.WEMA_DEV_ROOT + "images/company.jpg";
+    // console.log("ionViewDidLoad company profile page");
+    this.getProviders();
+    this.getCarePlan();
+    this.getReview();
+    this.loadMap();
+    this.addMarker();
+    this.GetpoularServices();
+    this.getFavroutiesstatus();
+  }
+  loadMap() {
+    let latLng = new google.maps.LatLng(this.latitude, this.longitude);
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  }
+  addMarker() {
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: new google.maps.LatLng(this.latitude, this.longitude)
+    });
+    let content = "<h4>" + this.mapAddress + "</h4>";
+    this.addInfoWindow(marker, content);
+  }
+  addInfoWindow(marker, content) {
+    let infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
+    google.maps.event.addListener(marker, "click", () => {
+      infoWindow.open(this.map, marker);
+    });
+  }
+  accordionExapanded = false;
+  @ViewChild("cc") cc: any;
+  @ViewChild("ccc") ccc: any;
+  @ViewChild("cccc") cccc: any;
+  @ViewChild("ccd") ccd: any;
+  ngOnInit() {
+    //console.log(this.cc.nativeElement);
+    this.renderer.setElementStyle(
+      this.cc.nativeElement,
+      "webkitTranstiion",
+      "max-height 500ms, padding 500ms"
+    );
+  }
+  toggleAccordiond() {
+    if (this.accordionExapanded) {
+      this.renderer.setElementStyle(
+        this.ccd.nativeElement,
+        "max-height",
+        "0px"
+      );
+      this.renderer.setElementStyle(
+        this.ccd.nativeElement,
+        "padding",
+        "0px 0px"
+      );
+    } else {
+      this.renderer.setElementStyle(
+        this.ccd.nativeElement,
+        "max-height",
+        "3500px"
+      );
+      this.renderer.setElementStyle(
+        this.ccd.nativeElement,
+        "padding",
+        "0px 0px 0px"
+      );
+    }
+    this.accordionExapanded = !this.accordionExapanded;
+  }
+  toggleAccordion() {
+    if (this.accordionExapanded) {
+      this.renderer.setElementStyle(this.cc.nativeElement, "max-height", "0px");
+      this.renderer.setElementStyle(
+        this.cc.nativeElement,
+        "padding",
+        "0px 0px"
+      );
+    } else {
+      this.renderer.setElementStyle(
+        this.cc.nativeElement,
+        "max-height",
+        "500px"
+      );
+      this.renderer.setElementStyle(
+        this.cc.nativeElement,
+        "padding",
+        "0px 0px 0px"
+      );
+    }
+    this.accordionExapanded = !this.accordionExapanded;
+  }
+  toggleAccordion1() {
+    if (this.accordionExapanded) {
+      this.renderer.setElementStyle(
+        this.ccc.nativeElement,
+        "max-height",
+        "0px"
+      );
+      this.renderer.setElementStyle(
+        this.ccc.nativeElement,
+        "padding",
+        "0px 0px"
+      );
+    } else {
+      this.renderer.setElementStyle(
+        this.ccc.nativeElement,
+        "max-height",
+        "800px"
+      );
+      this.renderer.setElementStyle(
+        this.ccc.nativeElement,
+        "padding",
+        "0px 0px 0px"
+      );
+    }
+    this.accordionExapanded = !this.accordionExapanded;
+  }
+  toggleAccordion2() {
+    if (this.accordionExapanded) {
+      this.renderer.setElementStyle(
+        this.cccc.nativeElement,
+        "max-height",
+        "0px"
+      );
+      this.renderer.setElementStyle(
+        this.cccc.nativeElement,
+        "padding",
+        "0px 0px"
+      );
+    } else {
+      this.renderer.setElementStyle(
+        this.cccc.nativeElement,
+        "max-height",
+        "800px"
+      );
+      this.renderer.setElementStyle(
+        this.cccc.nativeElement,
+        "padding",
+        "0px 0px 0px"
+      );
+    }
+    this.accordionExapanded = !this.accordionExapanded;
+  }
+  async getProviders() {
+    //  alert(this.servicesid);
+    var request = {
+      companyid: this.companyid,
+      providerids: this.providerid,
+      serviceid: this.servicesid
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.GET_PROVIDER_DATA, request)
+      .toPromise();
+    // console.log(response);
+    if (response != null && response["providers"] != null) {
+      this.viewall = [];
+      this.Providerinfo = response;
+      // console.log(this.Providerinfo["compinfo"]);
+      //this.OfferdServices=response['']
+      // console.log(this.Providerinfo["providers"]);
+      this.ProviderData = this.Providerinfo["providers"];
+      // console.log(this.ProviderData);
+      this.viewall.push(this.ProviderData);
+      this.providerpicture = AppConst.WEMA_DEV_ROOT + "images/person.jpg";
+      // console.log("in lenght", this.viewall[0].length);
+      this.viewalllength = this.viewall[0].length;
+    }
+    //console.log(response['records'])
+    //this.ServicesLogo=response['records']
+  }
+  async getCarePlan() {
+    var request = {
+      companyid: this.companyid,
+      // providerids: this.providerid,
+      serviceid: this.servicesid
+      // filterproperty: {offset: 0, recordlimit: 0, orderby: "planname"}
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.GET_CAREPLANS_COMPANY, request)
+      .toPromise();
+    // console.log(response);
+    // console.log("-------------------offeredservices---------------------");
+    this.OfferdServices = response["compinfo"].offeredservices;
+    // console.log(this.OfferdServices);
+    this.setSelectedService(this.OfferdServices);
+    // console.log("----------------------offeredservices------------------");
+    this.Company = response["compinfo"];
+    this.CarePlan = response["plans"];
+    //  this.Service=this.CarePlan
+    // console.log(this.Service);
+    for (var key in this.CarePlan) {
+      // this.Total += parseFloat(this.Service[key].hours);
+      // console.log(this.CarePlan[key].plan);
+      this.Total = 0;
+      for (var i in this.CarePlan[key].plan) {
+        // console.log(this.CarePlan[key].plan[i].hours);
+        this.Total += parseFloat(this.CarePlan[key].plan[i].hours);
+        // console.log(this.Total);
+      }
+      // console.log(this.Total);
+      this.CarePlan[key]["TotalHours"] = this.Total;
+    }
+    // console.log(this.CarePlan);
+    // console.log(this.Hours);
+    // console.log(this.Total);
+  }
+  async getReview() {
+    var request = {
+      companyid: this.companyid
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.GET_COMPANY_REVIEWS, request)
+      .toPromise();
+    // console.log(response);
+    this.Review = response["customreviews"];
+    // console.log(this.Review);
+  }
+  getDir() {
+    this.navCtrl.push("SumupPage");
+    // var web=this.inAppBrowser.create('https://www.google.com/maps/search/?api=1&query='+this.latitude+','+this.longitude+' ');
+    // var web=this.inAppBrowser.create('https://www.google.com/maps/dir/?api=1&'+this.latitude+','+this.longitude+' ');
+    // //this.navCtrl.push(GetDirectionPage,{lat:this.latitude,long:this.longitude})
+    // let options: LaunchNavigatorOptions = {
+    // //  start: [this.latitude,this.longitude],
+    // start: 'London, ON',
+    // app: this.launchNavigator.APP.GOOGLE_MAPS
+    // };
+    // this.launchNavigator.navigate('Toronto, ON', options)
+    //   .then(
+    //     success => console.log('Launched navigator'),
+    //     error => console.log('Error launching navigator', error)
+    //   );
+  }
+  clicked(event, item, i) {
+    var x = document.querySelectorAll(
+      ".slides > .swiper-container > .swiper-wrapper > .swiper-slide > .slide-zoom > div"
+    );
+    // console.log(x);
+    for (var j = 0; j < x.length; j++) {
+      x[j].classList.remove("class4");
+      x[j].classList.remove("class3");
+      x[j].classList.add("class1");
+    }
+    event.target.classList.add("class3"); // To ADD
+    event.target.classList.remove("class1"); // To Remove
+    event.target.classList.contains("class2"); // To check
+    event.target.classList.toggle("class4"); // To toggle
+    // console.log(item.serviceid);
+    this.servicesid = item.serviceid;
+    this.getProviders();
+    // this.navCtrl.push(SevenPage,item)
+  }
+  servicesinfo(event, item, i) {
+    // console.log(item.serviceid);
+    this.servicesid = item.serviceid;
+    this.getProviders();
+  }
+  page_info(item, i) {
+    // this.storage.get('viewedList').then((data) => {
+    //   if (data != null) {
+    //   this.recientlyviewd = JSON.parse(data);
+    //   console.log("================recently view=====================");
+    //   console.log(this.recientlyviewd)
+    //   console.log("================recently view=====================");
+    //  }
+    //   });
+    // console.log(i);
+    // console.log(item);
+    // this.companyid['companyid']=item
+    item["companyid"] = this.companyid;
+    item["servicesid"] = this.servicesid;
+    item["Currency"] = this.Currency;
+    this.DataArray.push(this.recientlyviewd);
+    this.DataArray.push(item);
+    // this.storage.set('viewedList', JSON.stringify(this.DataArray));
+    this.navCtrl.push("ProviderInfoPage", item);
+  }
+  Allservices() {
+    // console.log(this.company);
+    var viewContactPopup = this.modalCtrl.create(
+      "ServicesListPage",
+      this.OfferdServices,
+      { enableBackdropDismiss: true }
+    );
+    viewContactPopup.onDidDismiss(data => {
+      if (data != null) {
+        // console.log(data.serviceid);
+        this.servicesid = data.serviceid;
+        this.getProviders();
+      }
+    });
+    viewContactPopup.present();
+    //this.navCtrl.push(ServicesListPage,this.OfferdServices)
+  }
+  async GetpoularServices() {
+    var response = await this.apiProvider
+      .Post(AppConst.GET_PopulerServices)
+      .toPromise();
+    // console.log(response);
+    this.ServicesOffered = response["data"];
+    // console.log(this.ServicesOffered);
+  }
+  itemTapped($event, i, ser) {
+    if (this.click == false) {
+      this.buttonColor = "#FFFF00";
+      this.click = true;
+    } else if (this.click == true) {
+      // console.log("colour changed");
+      this.buttonColor = "#ffffff";
+      this.click = false;
+      // console.log(this.buttonColor);
+    }
+    //  console.log(amit)
+  }
+  itemTapped1($event, i, ser) {
+    if (this.click1 == false) {
+      this.buttonColor1 = "#FFFF00";
+      this.click1 = true;
+      this.buttonColor = "#ffffff";
+    } else if (this.click1 == true) {
+      // console.log("colour changed");
+      this.buttonColor1 = "#ffffff";
+      this.click1 = false;
+      // console.log(this.buttonColor1);
+    }
+    //  console.log(amit)
+  }
+  itemTapped2($event, i, ser) {
+    if (this.click2 == false) {
+      this.buttonColor2 = "#FFFF00";
+      this.click2 = true;
+      this.buttonColor1 = "#ffffff";
+    } else if (this.click2 == true) {
+      // console.log("colour changed");
+      this.buttonColor2 = "#ffffff";
+      this.click2 = false;
+      // console.log(this.buttonColor2);
+    }
+    //  console.log(amit)
+  }
+  itemTapped3($event, i, ser) {
+    if (this.click3 == false) {
+      this.buttonColor3 = "#FFFF00";
+      this.click3 = true;
+      this.buttonColor2 = "#ffffff";
+    } else if (this.click3 == true) {
+      // console.log("colour changed");
+      this.buttonColor3 = "#ffffff";
+      this.click3 = false;
+      // console.log(this.buttonColor3);
+    }
+    //  console.log(amit)
+  }
+  itemTapped4($event, i, ser) {
+    if (this.click == false) {
+      this.buttonColor = "#13a89e";
+      this.click = true;
+    } else if (this.click == true) {
+      // console.log("colour changed");
+      this.buttonColor = "#ffffff";
+      this.click = false;
+      // console.log(this.buttonColor);
+    }
+    //  console.log(amit)
+  }
+  Providerslist() {
+    this.ProviderData["companyname"] = this.Company.companyname;
+    this.ProviderData["location"] = this.Company.city;
+    this.ProviderData["companyid"] = this.companyid;
+    this.ProviderData["servicesid"] = this.servicesid;
+    this.ProviderData["Currency"] = this.Currency;
+    this.navCtrl.push("ProvidersPage", this.ProviderData);
+  }
+  Reviewlist() {
+    this.Review["companyname"] = this.Company.companyname;
+    this.Review["location"] = this.Company.city;
+    this.Review["ratings"] = this.Company.ratings;
+    this.navCtrl.push("CustomerReviewsPage", this.Review);
+  }
+  ShowAllLocation() {
+    // console.log("allloacion");
+    this.navCtrl.push("ProvidersLocationListPage", this.Company);
+  }
+  Heart() {
+    this.visible = !this.visible;
+    // console.log("change colour ", this.visible);
+    this.addFav();
+  }
+  async addFav() {
+    // console.log(this.favdata);
+    if (this.favdata != undefined) {
+      // console.log("in null");
+      if (this.favdata.company["0"].fav_id) {
+        // console.log("in null");
+        this.favid = this.favdata.company["0"].fav_id;
+      }
+    } else {
+      this.favid = null;
+    }
+    let request = {
+      fav_id: this.favid,
+      status: this.status,
+      providerid: this.providerid,
+      companyid: this.companyid,
+      type: "company",
+      userid: AppState.UserCred.userid
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.AddFavrouties, request)
+      .toPromise();
+    if (response["status"] == "true") {
+      if (this.visible == true) {
+        this.toastCtrl
+          .create({
+            message: "Favourite added successfully",
+            duration: 2000
+          })
+          .present();
+      } else if (this.visible == false) {
+        this.toastCtrl
+          .create({
+            message: "Favourite removed successfully",
+            duration: 2000
+          })
+          .present();
+      }
+      this.getFavroutiesstatus();
+    }
+  }
+  callJoint(telephoneNumber) {
+    //this.callNumber.callNumber(this.ContactNo, true);
+  }
+  async getFavroutiesstatus() {
+    let request = {
+      //  fav_id:this.favid,
+      // status:'0',
+      providerid: this.providerid,
+      companyid: this.companyid,
+      type: "company",
+      userid: AppState.UserCred.userid
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.ShowFavrouties, request)
+      .toPromise();
+    if (response != "") {
+      this.favdata = response;
+      if (this.favdata.company["0"].status == "1") {
+        this.status = this.favdata.company["0"].status;
+        // console.log("you ar in true ");
+        this.visible = true;
+      } else {
+        this.favid = null;
+        this.status = "0";
+        // console.log("you ar in false ");
+        this.visible = false;
+      }
+    } else {
+      this.favdata = undefined;
+      this.status = "0";
+      // console.log("you ar in false ");
+      this.visible = false;
+    }
+  }
+  shareWhatsApp() {
+    // this.shareWhatsApp1()
+  }
+  /*async shareWhatsApp1() {
+  // Text + Image or URL works
+  this.socialSharing.shareViaWhatsApp(this.text, null, this.url).then(() => {
+    console.log('in social shairing ')
+    // Success
+  }).catch((e) => {
+    // Error!
+  });
+}*/
+  whatsappShare() {
+    this.sharingVar
+      .shareViaWhatsApp(
+        this.SocialSharingMessage,
+        this.SocialSharingLogo,
+        this.SocialSharingwebsite
+      )
+      .then(
+        () => {},
+        () => {
+          this.toastCtrl
+            .create({
+              message: "Whatsapp is not installed in your mobile.",
+              duration: 2000
+            })
+            .present();
+        }
+      );
+  }
+  twitterShare() {
+    this.sharingVar
+      .shareViaTwitter(
+        this.SocialSharingMessage,
+        this.SocialSharingLogo,
+        this.SocialSharingwebsite
+      )
+      .then(
+        () => {},
+        () => {
+          this.toastCtrl
+            .create({
+              message: "Twitter is not logged in your mobile.",
+              duration: 2000
+            })
+            .present();
+        }
+      );
+  }
+  otherShare() {
+    this.sharingVar
+      .share(
+        this.SocialSharingMessage,
+        this.SocialSharingMessage,
+        this.SocialSharingLogo,
+        this.SocialSharingwebsite
+      )
+      .then(
+        () => {},
+        () => {
+          this.toastCtrl
+            .create({
+              message: "Error! try again.",
+              duration: 2000
+            })
+            .present();
+        }
+      );
+  }
+  sendEnquiry() {
+    // this.navCtrl.push(SubmitaqueryPage, this.ProviderprofileData[0])
+    //
+    var bookServicePopup = this.modalCtrl.create(
+      "SendEnquiryPopupPage",
+      this.Company.offeredservices,
+      { enableBackdropDismiss: true }
+    );
+    bookServicePopup.onDidDismiss(async data => {
+      // console.log('bookServicePopup data: ');
+      // console.log(data);
+      if (data != null) {
+        var request = {
+          //    city: this.company.city,
+          city: "",
+          email: data.email,
+          enquireCompanyEmailId: this.Company.companyemailid,
+          enquireCompanyId: this.companyid,
+          message: data.message,
+          name: data.name,
+          phone: data.contact,
+          postcode: data.postcode,
+          filename: data.filename,
+          serviceselected: {
+            serviceid: data.service.serviceid,
+            servicename: data.service.servicename
+          }
+        };
+        // console.log(request);
+        var response = await this.apiProvider
+          .Post(AppConst.SEND_ENQUIRY, request)
+          .toPromise();
+        if (
+          response != null &&
+          response.hasOwnProperty("status") &&
+          response["status"] == 1
+        ) {
+          this.toastCtrl
+            .create({
+              message: "Your feedback saved successfully",
+              duration: 2000
+            })
+            .present();
+        }
+      }
+    });
+    bookServicePopup.present();
+  }
+  setSelectedService(services) {
+    // console.log('inside setSelectedService');
+    // console.log(services.length);
+    for (let i = 0; i < services.length; i++) {
+      // console.log(JSON.stringify(services[i]));
+      if (services[i].serviceid == this.servicesid) {
+        this.selectedService = i + 1;
+      }
+    }
+  }
+}

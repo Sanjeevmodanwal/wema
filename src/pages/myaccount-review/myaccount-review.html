@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Reviews</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="body-itam-grid">
+    <span *ngFor="let review of Review ">
+      <div (click)="editReview(review)">
+          <span *ngIf="review.rating!=0">
+               <ion-row *ngIf="review.companyid!=null" class="body-itam-box">
+          <ion-col *ngIf="review.companylogo ==''  " col-4 class="left-image"
+               ><img src="{{companypicture}}"
+          /></ion-col>
+          <ion-col *ngIf="review.companylogo !='' " col-4 class="left-image"
+               ><img src="{{review.companylogo}}"
+          /></ion-col>
+          <ion-col col-8 class="right-box">
+               <div class="one-box">
+               <h2>{{review.companyname}}</h2>
+               <p>{{review.date }}</p>
+               </div>
+               <div class="two-box">
+               <p *ngIf="review.rating==0">
+               Not rated
+               </p>
+               <p *ngIf="review.rating==1">
+               <ion-icon name="ios-star"></ion-icon>
+               </p>
+               <p *ngIf="review.rating==2">
+               <ion-icon *ngFor="let i of [1,2]" name="ios-star"></ion-icon>
+               </p>
+               <p *ngIf="review.rating==3">
+               <ion-icon *ngFor="let i of [1,2,3]" name="ios-star"></ion-icon>
+               </p>
+               <p *ngIf="review.rating==4">
+               <ion-icon *ngFor="let i of [1,2,3,4]" name="ios-star"></ion-icon>
+               </p>
+               <p *ngIf="review.rating==5">
+               <ion-icon
+                    *ngFor="let i of [1,2,3,4,5]"
+                    name="ios-star"
+               ></ion-icon>
+               </p>
+               <!-- <p>5 of {{review.rating}}</p> -->
+               </div>
+               <div class="body-text">
+               <p>{{review.comments}}</p>
+               </div>
+          </ion-col>
+               </ion-row>
+          </span>
+        </div>
+    </span>
+    <!-- <ion-row class="body-itam-box">
+                   <ion-col col-4 class="left-image"><img src="assets/imgs/epoch_logo.png"></ion-col>
+                        <ion-col col-8 class="right-box">
+                          <div class="one-box">
+                            <h2>Dawn Recruitment</h2>
+                            <p>23th July 2018</p>
+                            </div>
+                            <div class="two-box">
+                            <p>
+                                <ion-icon name="ios-star"></ion-icon>
+                                <ion-icon name="ios-star"></ion-icon>
+                                <ion-icon name="ios-star"></ion-icon>
+                                <ion-icon name="ios-star"></ion-icon>
+                                <ion-icon name="ios-star"></ion-icon>
+                            </p>
+                            <p>5 of 5</p>
+                            </div>
+                            <div class="body-text">
+                               <p>Dawn recruitment is a fast growing recruitment agency in the South East, supplying staff in various sectors both public and private e.g Care homes, hospitals, catering... </p>
+                            </div>
+                        </ion-col>
+                   </ion-row>
+                   <ion-row class="body-itam-box">
+                       <ion-col col-4 class="left-image"><img src="assets/imgs/epoch_logo.png"></ion-col>
+                            <ion-col col-8 class="right-box">
+                              <div class="one-box">
+                                <h2>Dawn Recruitment</h2>
+                                <p>23th July 2018</p>
+                                </div>
+                                <div class="two-box">
+                                <p>
+                                    <ion-icon name="ios-star"></ion-icon>
+                                    <ion-icon name="ios-star"></ion-icon>
+                                    <ion-icon name="ios-star"></ion-icon>
+                                    <ion-icon name="ios-star"></ion-icon>
+                                    <ion-icon name="ios-star"></ion-icon>
+                                </p>
+                                <p>5 of 5</p>
+                                </div>
+                                <div class="body-text">
+                                   <p>Dawn recruitment is a fast growing recruitment agency in the South East, supplying staff in various sectors both public and private e.g Care homes, hospitals, catering... </p>
+                                </div>
+                            </ion-col>
+                       </ion-row>
+                       <ion-row class="body-itam-box">
+                           <ion-col col-4 class="left-image"><img src="assets/imgs/epoch_logo.png"></ion-col>
+                                <ion-col col-8 class="right-box">
+                                  <div class="one-box">
+                                    <h2>Dawn Recruitment</h2>
+                                    <p>23th July 2018</p>
+                                    </div>
+                                    <div class="two-box">
+                                    <p>
+                                        <ion-icon name="ios-star"></ion-icon>
+                                        <ion-icon name="ios-star"></ion-icon>
+                                        <ion-icon name="ios-star"></ion-icon>
+                                        <ion-icon name="ios-star"></ion-icon>
+                                        <ion-icon name="ios-star"></ion-icon>
+                                    </p>
+                                    <p>5 of 5</p>
+                                    </div>
+                                    <div class="body-text">
+                                       <p>Dawn recruitment is a fast growing recruitment agency in the South East, supplying staff in various sectors both public and private e.g Care homes, hospitals, catering... </p>
+                                    </div>
+                                </ion-col>
+                           </ion-row> -->
+  </ion-grid>
+  <!-- <div class="botton-icon">
+           <ion-icon (click)="addReview()" name="md-add"></ion-icon>
+       </div> -->
+  <ion-fab *ngIf="!isReviewEmpty" bottom right>
+    <button
+      (click)="addReview()"
+      ion-fab
+      fab-fixed
+      class="botton-icon"
+      style="margin: 0px 0px 0px 0px"
+    >
+      <ion-icon name="md-add" is-active="false"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,58 @@
+<!--
+  Generated template for the SumupPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Pay using SumUp</ion-title>
+  </ion-navbar>
+</ion-header>
+<!-- <ion-content padding>
+  <h2>Provider Details</h2>
+  <p>Name: {{data.providerdetails.firstname}}</p>
+  <p>Address : {{data.providerdetails.addressline}} {{data.providerdetails.addressline1}}</p>
+  <p>City: {{data.providerdetails.city}}</p>
+
+  <h2>Member Details</h2>
+  <p>Name: {{data.memberdetails.title}} {{data.memberdetails.firstname}} {{data.memberdetails.lastname}}</p>
+  <p>Gender : {{data.memberdetails.gender}} {{data.memberdetails.addressline1}}</p>
+  <p>City: {{data.memberdetails.city}}</p>
+  <p>Service: {{data.service}}</p>
+  <p>Service Start: {{data.start | date : "dd-MM-yyyy"}} {{data.start | date : "hh:mm:ss"}}</p>
+  <p>Service End: {{data.end  | date : "dd-MM-yyyy" }}  {{data.end | date : "hh:mm:ss"}}</p>
+  <p>Amount: {{currency}} {{data.total}}</p>
+</ion-content>
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+		<button ion-button full (click)="paySumup">CHARGE NOW</button>
+	</ion-toolbar>
+</ion-footer> -->
+
+<ion-content>
+  <h2>Functions to test using sumup</h2>
+  <div class="ion-padding">
+    <button ion-button full (click)="login()">login</button>
+    <button ion-button full (click)="auth()">auth</button>
+    <button ion-button full (click)="getSettings()">getSettings</button>
+    <button ion-button full (click)="isLoggedIn()">isLoggedIn</button>
+    <button ion-button full (click)="prepare()">prepare</button>
+    <button ion-button full (click)="logout()">logout</button>
+    <button ion-button full (click)="closeConnection()">closeConnection</button>
+    <button ion-button full (click)="pay()">pay</button>
+
+    <!-- <button ion-button color="primary" expand="full" (click)="login()">login</button>
+    <ion-button color="secondary" expand="block" (click)="auth()">auth</ion-button>
+    <ion-button color="tertiary" expand="full" (click)="getSettings()">getSettings</ion-button>
+    <ion-button color="success" expand="full" (click)="isLoggedIn()">isLoggedIn</ion-button>
+    <ion-button color="warning" expand="full" (click)="prepare()">prepare</ion-button>
+    <ion-button color="danger" expand="full" (click)="logout()">logout</ion-button>
+    <ion-button color="light" expand="full" (click)="closeConnection()">closeConnection</ion-button>
+    <ion-button color="medium" expand="full" (click)="pay()">pay</ion-button> -->
+  </div>
+  <div class="ion-padding">
+    <h2>Data Response</h2>
+    <p>{{ response | json }}</p>
+  </div>
+</ion-content>

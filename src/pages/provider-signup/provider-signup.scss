@@ -1,0 +1,221 @@
+page-provider-signup {
+    .toolbar-background {
+        background: #fff;
+        border-color: transparent;
+      }
+    
+      .slide-zoom {
+        height: 100%;
+      }
+    
+      .slide-title {
+        margin-top: 2.8rem;
+      }
+    
+      .slide-image {
+        max-height: 100%;
+        max-width: 100%;
+        margin: 0px 0;
+      }
+    
+      b {
+        font-weight: 500;
+      }
+    
+      p {
+        padding: 0 40px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #60646B;
+    
+        b {
+          color: #000000;
+        }
+    }
+    .toolbar-background {
+        background: transparent;
+        border-color: transparent;
+    }
+    ion-toolbar.toolbar {
+        position: absolute;
+        background: transparent;
+    }
+    span.button-inner {
+        background: #fff;
+        padding: 10px 16px;
+        color: #13a89e;
+        font-size: 14px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 600;
+        text-transform: capitalize;
+        border-radius: 2px;
+    }
+    h2.slide-title{
+        font-size: 22px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 800;
+        color: #000000;
+    }
+    p{
+        font-size: 16px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 600;
+        color: #585858;
+        padding: 0px 27px;
+    }
+    button {
+        background: #fdb913;
+        padding: 14px 40px;
+        font-size: 14px;
+        color: #fff;
+        font-family: 'Muli', sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+    }
+    .toolbar-background {
+        background: transparent;
+        border-color: transparent;
+    }
+    .list-child-text.toolbar {
+        position: relative;
+        background: transparent;
+    }
+    .list-child-text.toolbar span.button-inner {
+        background: #00a59d;
+        padding: 10px 16px;
+        color: #fff;
+        font-size: 14px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 600;
+        text-transform: capitalize;
+        border-radius: 2px;
+    }
+    .scroll-content {
+        padding-bottom: 0px !important;
+        margin-bottom: 0px !important;
+    }
+    .swiper-container {
+        overflow:scroll !important;
+    }
+    .swiper-pagination {
+        position: fixed;
+    }
+    .item-block{
+        padding-right: 16px !important; 
+        padding-right: 16px !important;
+        width: 100%;
+    }
+    .border-none .item-inner {
+        padding-right: 0px !important;
+        border-bottom: none !important;
+    }
+      .border-none ion-label{
+          color: #3d3d3d;
+          font-size: 14px;
+          font-family: 'Muli', sans-serif;
+          font-weight: 600;
+          margin-bottom: 0px;
+          margin-top: 26px;
+      } 
+      ion-icon {
+        display: inline-block;
+        font-size: 24px;
+        color: #b1b1b1;
+    }
+    button.sign-button {
+        margin-top: 20px;
+    }
+    p.signup-text a {
+        color: #3d3d3d;
+        font-weight: bold;
+    }    
+    h2.slide-title.text {
+        font-size: 40px;
+    }
+    p.sign-text-up {
+        color: #dadada;
+        font-size: 16px;
+        padding: 0px;
+        margin: 0px;
+        font-weight: 500;
+    }
+    input.text-input::placeholder {
+        color: #3d3d3d !important;
+        font-size: 16px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 600;
+    }
+    .border-none.two ion-label{
+        margin: 0px;
+    }
+    .border-none.two ion-label a{
+        color: #3d3d3d;
+        text-decoration: none;
+        font-size: 14px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+    }
+    .border-none.two span.button-inner{
+        display: none;
+    }
+    .border-none.two .checkbox {
+        margin: 9px 10px 9px 4px;
+    }
+    .checkbox-icon{
+        border-width: 1px !important;
+        border-style: solid;
+        border-color: #c5c5c5 !important;
+        width: 15px !important;
+        height: 15px !important;
+    }
+    ion-label#lbl-20 {
+        color: #848383;
+        font-size: 14px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+    }
+     .checkbox-checked {
+        border-color: #488aff !important;
+        background-color: #488aff;
+    }
+    .select-text{ z-index: 9;}
+    .signupform span.button-inner {
+        background: transparent;
+      
+    }
+  
+    .input-wrapper {
+        display: block !important;
+    }
+    ion-select {
+        max-width: 100%;
+    }
+ 
+    .text-input {
+        margin: 0px 0px;
+        padding: 0;
+        width: calc(100% - 0px - 0px) !important;
+        background: #efefef;
+        padding: 13px;
+    }
+    .item-block .item-inner {
+        padding-right: 0px !important;
+        border-bottom: none !important;
+    }
+    .item-inner {
+        box-shadow: none !important;
+    }
+    .item-block {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        width: 100%;
+    }
+    .select {
+        padding: 13px 13px 13px 13px;
+        background: #efefef;
+    }
+    .item-input ion-label{
+        max-width: 100%;
+    }
+}

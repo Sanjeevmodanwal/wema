@@ -1,0 +1,93 @@
+<!-- <ion-header>
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Filter</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+
+<ion-content>
+ 
+  <ion-grid class="heding-box">
+      <ion-row>
+        <ion-col col-6>
+            <h3>Filter</h3>
+        </ion-col>
+        <ion-col col-6 text-right>
+            <button class="bg-button" (click)="Filter()">Done</button>
+        </ion-col>
+        <!-- <ion-col col-6 >
+            <button (click)="Reset()">Reset</button>
+        </ion-col> -->
+      </ion-row>
+  </ion-grid>
+
+
+  <!-- <ion-grid class="day-box">
+      <ion-row *ngIf="buttonClicked">
+        <ion-col col-12>
+            <ul>
+                <li class="active">Sun</li>
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+            </ul>
+        </ion-col>
+      </ion-row>
+  </ion-grid> -->
+
+
+  
+
+
+  <ion-grid class="select-box">
+      <ion-row class="select-box-one">
+        <ion-col col-12>
+            <ion-item>
+                <!-- <ion-label>Location</ion-label> -->
+                <ion-searchbar   #searchbar [(ngModel)]="Postcode"  placeholder="Enter location" ></ion-searchbar>
+                <div id="map" #map></div> 
+            </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row class="select-box-two">
+        <ion-col col-5>
+            <ion-item>
+                <ion-label>Availability</ion-label>
+                <ion-select placeholder="Select" [(ngModel)]="availibility">
+                    <ion-option  >All</ion-option>
+                    <ion-option>In Home</ion-option>
+                    <ion-option>In Clinic</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-col>
+        
+      </ion-row>
+  </ion-grid>
+  <ion-grid class="available-box">
+    <ion-row>
+      <ion-col col-12>
+          <button [ngClass]="{'bg-button' : 'Today' == selectedday }" (click)="submit('Today')" >Today</button>
+          <button  [ngClass]="{'bg-button' : 'Tomorrow' == selectedday }" (click)="submit('Tomorrow')">Tomorrow</button>
+          <button   [ngClass]="{'bg-button' : 'Next' == selectedday }" (click)="submit('Next')">Next Week</button>
+      </ion-col>
+    </ion-row>
+</ion-grid> 
+<ion-grid class="available-box">
+  <ion-row>
+    <ion-col col-12>
+        <h4>Provider Type</h4>
+    </ion-col>
+    <ion-col col-12>
+        <button  (click)="submit1('Company')" [ngClass]="{'bg-button' : Company }"  >Company</button>
+        <button (click)="submit1('Individual')"  [ngClass]="{'bg-button' : Individual}" >Individual</button>
+    </ion-col>
+  </ion-row>
+</ion-grid> 
+
+</ion-content>

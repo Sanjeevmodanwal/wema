@@ -1,0 +1,585 @@
+<!--
+  Generated template for the CompanyProfilePage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar class="dawn-bar">
+    <ion-buttons end>
+      <button
+        *ngIf="appState.CartCount>0"
+        clear
+        style="color:black;background: transparent"
+      >
+        {{appState.CartTimer}}
+      </button>
+      <ion-icon
+        *ngIf="appState.CartCount>0"
+        ios="ios-cart"
+        md="md-cart"
+      ></ion-icon>
+      <button
+        *ngIf="appState.CartCount>0"
+        clear
+        style="color:black;background: transparent"
+        (click)="viewCart()"
+      >
+        ({{appState.CartCount}})
+      </button>
+    </ion-buttons>
+    <ion-title>{{Company.companyname}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="header-part">
+    <ion-row>
+      <ion-col>
+        <div class="img">
+          <img
+            *ngIf="Company.complogo!=''"
+            style="width: 97px;height: 96.75px;"
+            src="{{Company.complogo}}"
+          />
+          <img
+            *ngIf="Company.complogo==''"
+            style="width: 97px;height: 96.75px;"
+            src="{{companypicture}}"
+          />
+        </div>
+        <h1>{{Company.companyname}}</h1>
+        <p><ion-icon name="ios-pin"></ion-icon> &nbsp; {{Company.city}}</p>
+        <h2>
+          <label *ngIf="Company.ratings==0">
+            <p class="textStyle">Not rated</p>
+          </label>
+          <label *ngIf="Company.ratings==1">
+            <p>
+              <ion-icon style=" color: #fdb915;" name="ios-star"></ion-icon>
+            </p>
+          </label>
+          <label *ngIf="Company.ratings==2">
+            <p>
+              <ion-icon
+                style=" color: #fdb915;"
+                *ngFor="let i of [1,2]"
+                name="ios-star"
+              ></ion-icon>
+            </p>
+          </label>
+          <label *ngIf="Company.ratings==3">
+            <p>
+              <ion-icon
+                style=" color: #fdb915;"
+                *ngFor="let i of [1,2,3]"
+                name="ios-star"
+              ></ion-icon>
+            </p>
+          </label>
+          <label *ngIf="Company.ratings==4">
+            <p>
+              <ion-icon
+                style=" color: #fdb915;"
+                *ngFor="let i of [1,2,3,4]"
+                name="ios-star"
+              ></ion-icon>
+            </p>
+          </label>
+          <label *ngIf="Company.ratings==5">
+            <p>
+              <ion-icon
+                style=" color: #fdb915;"
+                *ngFor="let i of [1,2,3,4,5]"
+                name="ios-star"
+              ></ion-icon>
+            </p>
+          </label>
+        </h2>
+        <div class="call-icon">
+          <a href="tel:{{ContactNo}}"> <ion-icon name="ios-call"></ion-icon></a>
+          <a
+            *ngIf="Company.companyemailid !=''"
+            href="mailto:{{Company.companyemailid}}"
+            ><ion-icon name="ios-mail"></ion-icon
+          ></a>
+          <ion-icon name="ios-map-outline" (click)="getDir()"></ion-icon>
+          <ion-icon  name="md-help" (click)="sendEnquiry()"></ion-icon>
+        </div>
+      </ion-col>
+      <div class="right-icon">
+        <!--  <ion-icon [color]="Company.complogo ? 'danger' : 'dark'" name="heart"></ion-icon>
+              <ion-icon name="ios-heart-outline"></ion-icon> -->
+        <ion-icon
+          [name]="visible ? 'heart' : 'heart-outline'"
+          (click)="Heart()"
+        ></ion-icon>
+        <!-- <ion-icon name="ios-heart-outline" [color]="changeColour ? 'danger' : 'dark'" (click)="Heart()"></ion-icon> 
+              <ion-icon  (click)="shareWhatsApp()" name="md-share"></ion-icon>-->
+        <ion-fab class="share-icon-area" style="right: -15px;">
+          <button ion-fab mini>
+            <ion-icon name="md-share"></ion-icon>
+          </button>
+          <!-- <button  ion-fab mini >
+                        <ion-icon name="share"></ion-icon>
+                </button> -->
+          <ion-fab-list side="left">
+            <button (click)="twitterShare()" ion-fab mini>
+              <ion-icon name="logo-twitter"></ion-icon>
+            </button>
+            <button (click)="whatsappShare()" ion-fab mini>
+              <ion-icon name="logo-whatsapp"></ion-icon>
+            </button>
+            <button (click)="otherShare()" ion-fab mini>
+              <ion-icon name="at"></ion-icon>
+            </button>
+          </ion-fab-list>
+        </ion-fab>
+      </div>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="Company.companydescription">
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header (click)="toggleAccordiond()">
+            Overview
+            <ion-icon
+              name="ios-arrow-down"
+              style="float: right; font-size: 19px;"
+            ></ion-icon>
+          </ion-card-header>
+          <ion-card-content #ccd>
+            <p [innerHTML]="Company.companydescription "></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="popular-services">
+    <ion-row>
+      <ion-col col-10>
+        <h4>SERVICES OFFERED</h4>
+      </ion-col>
+      <ion-col col-2>
+        <!-- <p class="ios-arrow" text-right>
+                <ion-icon name="ios-arrow-down" style="font-size: 19px;"></ion-icon>
+                </p>-->&nbsp;
+      </ion-col>
+      <ion-slides
+        #slides
+        spaceBetween="10"
+        slidesPerView="3"
+        class="slider-one"
+      >
+      <ng-container *ngFor="let item of OfferdServices ; let i = index">
+        <ng-container *ngIf="servicesid == item.serviceid">
+          <ion-slide>
+            <div (click)="clicked($event,item,i)">
+              <span
+                class="orange"
+                (click)="servicesinfo($event,item,i)"
+                ><img
+                  src="assets/imgs/orange/{{item.servicenameicon}}.png"
+              /></span>
+              <p
+                (click)="servicesinfo($event,item,i)"
+                (click)="servicesinfo($event,item,i)"
+              >
+                {{item.servicename}}
+              </p>
+            </div>
+          </ion-slide>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngFor="let item of OfferdServices ; let i = index">
+        <ng-container *ngIf="servicesid != item.serviceid">
+          <ion-slide>
+            <div (click)="clicked($event,item,i)">
+              <span
+                class=""
+                (click)="servicesinfo($event,item,i)"
+                ><img
+                  src="assets/imgs/green/{{item.servicenameicon}}.png"
+              /></span>
+              <p
+                (click)="servicesinfo($event,item,i)"
+                (click)="servicesinfo($event,item,i)"
+              >
+                {{item.servicename}}
+              </p>
+            </div>
+          </ion-slide>
+        </ng-container>
+      </ng-container>
+
+
+        <!-- <ion-slide *ngFor="let item of OfferdServices ; let i = index" *ngIf="servicesid == item.serviceid"> -->
+          
+          
+          <!-- <div (click)="clicked($event,item,i)" *ngIf=" servicesid == item.serviceid ">
+            <span
+              class="{{(servicesid == item.serviceid)?'orange':''}}"
+              (click)="servicesinfo($event,item,i)"
+              ><img
+                src="assets/imgs/{{(servicesid == item.serviceid)?'orange':'green'}}/{{item.servicenameicon}}.png"
+            /></span>
+            <p
+              (click)="servicesinfo($event,item,i)"
+              (click)="servicesinfo($event,item,i)"
+            >
+              {{item.servicename}}
+            </p>
+          </div> -->
+        <!-- </ion-slide> -->
+
+
+
+        <!-- <ion-slide *ngFor="let item of OfferdServices ; let i = index">
+          <div (click)="clicked($event,item,i)">
+            <span
+              class="{{(servicesid == item.serviceid)?'orange':''}}"
+              (click)="servicesinfo($event,item,i)"
+              ><img
+                src="assets/imgs/{{(servicesid == item.serviceid)?'orange':'green'}}/{{item.servicenameicon}}.png"
+            /></span>
+            <p
+              (click)="servicesinfo($event,item,i)"
+              (click)="servicesinfo($event,item,i)"
+            >
+              {{item.servicename}}
+            </p>
+          </div>
+        </ion-slide> -->
+        <!-- <ion-slides   class="slider-one">
+          <ion-slide >
+            <div      *ngFor="let item of ServicesOffered ; let i of index" class="class1 class2" (click)="clicked($event,item,i)">
+                <span   (click)="servicesinfo($event,item,i)"  class="block-img" *ngIf="item.servicename=='Companionship'"> <img src="assets/imgs/companionship.png"/></span>
+                <span   (click)="servicesinfo($event,item,i)"  class="none-img"  *ngIf="item.servicename=='Companionship'"> <img src="assets/imgs/orange/Companionship_personal_assitance.png"/></span>
+                <span   (click)="servicesinfo($event,item,i)"  class="block-img" *ngIf="item.servicename=='Domestic Help'"> <img src="assets/imgs/domestic_help.png"/></span>
+                <span   (click)="servicesinfo($event,item,i)"  class="none-img" *ngIf="item.servicename=='Domestic Help'"> <img src="assets/imgs/orange/Personalcare_hygiene.png"/></span>
+              <span   (click)="servicesinfo($event,item,i)" class="block-img" *ngIf="item.servicename=='Yoga'"><img src="assets/imgs/Yoga.png" ></span>
+              <span   (click)="servicesinfo($event,item,i)"  class="none-img" *ngIf="item.servicename=='Yoga'" ><img src="assets/imgs/orange/Yoga.png" /></span>
+              <span   (click)="servicesinfo($event,item,i)"  class="block-img" *ngIf="item.servicename=='Nutrition'"> <img src="assets/imgs/Nutrition.png"/></span>
+              <span   (click)="servicesinfo($event,item,i)"  class="none-img"  *ngIf="item.servicename=='Nutrition'"> <img src="assets/imgs/orange/nutritionist.png"/></span>
+              <p (click)="servicesinfo($event,item,i)" *ngIf="item.servicename=='Yoga'" >Yoga</p>
+              <p  (click)="servicesinfo($event,item,i)" *ngIf="item.servicename=='Nutrition'" >Nutrition</p>
+                <p  (click)="servicesinfo($event,item,i)" *ngIf="item.servicename=='Companionship'" >Companionship</p>
+                <p  (click)="servicesinfo($event,item,i)" *ngIf="item.servicename=='Domestic Help'" >Domestic Help</p>
+              </div>
+        </ion-slide>
+        <ion-slide>
+            <div      *ngFor="let item of ServicesOffered ; let i of index" class="class1 class2" (click)="clicked($event,item,i)">
+                <span   (click)="servicesinfo($event,item,i)" class="block-img" *ngIf="item.servicename=='Elderly Care'"><img src="assets/imgs/elderly_care.png" ></span>
+                <span   (click)="servicesinfo($event,item,i)"  class="none-img" *ngIf="item.servicename=='Elderly Care'" ><img src="assets/imgs/orange/Orange_elderly_care.png" /></span>
+                <span   (click)="servicesinfo($event,item,i)"  class="block-img" *ngIf="item.servicename=='Nursing Care'"> <img src="assets/imgs/nursing_care.png"/></span>
+                <span   (click)="servicesinfo($event,item,i)"  class="none-img"  *ngIf="item.servicename=='Nursing Care'"> <img src="assets/imgs/orange/nursing-care-black.png"/></span>
+                <span   (click)="servicesinfo($event,item,i)"  class="block-img" *ngIf="item.servicename=='Live in care'"><img src="assets/imgs/live_in_care.png"/></span>
+                <span   (click)="servicesinfo($event,item,i)"  class="none-img" *ngIf="item.servicename=='Live in care'"><img src="assets/imgs/orange/Live_in_Care.png"/></span>    
+                <span   (click)="servicesinfo($event,item,i)"  class="block-img" *ngIf="item.servicename=='Massage therapy'"> <img src="assets/imgs/Massage_therapy.png"/></span>
+                <span   (click)="servicesinfo($event,item,i)"  class="none-img" *ngIf="item.servicename=='Massage therapy'"> <img src="assets/imgs/orange/Massage_therapy.png"/></span>
+                <p (click)="servicesinfo($event,item,i)" *ngIf="item.servicename=='Elderly Care'" >Elderly Care</p>
+                <p  (click)="servicesinfo($event,item,i)" *ngIf="item.servicename=='Nursing Care'" >Nursing Care</p>
+                <p  (click)="servicesinfo($event,item,i)" *ngIf="item.servicename=='Live in care'" >Live in care</p>
+                <p  (click)="servicesinfo($event,item,i)" *ngIf="item.servicename=='Massage therapy'" >Massage therapy</p>
+              </div>
+            </ion-slide>
+         -->
+      </ion-slides>
+    </ion-row>
+    <ion-row>
+      <ion-col class="view-all">
+        <a (click)="Allservices()">View All</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="providers">
+    <ion-col col-12 class="heading-text">
+      <h2>providers</h2>
+    </ion-col>
+    <span *ngFor="let item of ProviderData ; let i=index">
+      <ion-row
+        *ngIf="i< 3"
+        (click)="page_info (item,i)"
+        class="inner-providers"
+      >
+        <ion-col col-3 class="col-3">
+          <span class="img-curcal" *ngIf="item.providerprofilepic==''"
+            ><img src="{{providerpicture}}"
+          /></span>
+          <span class="img-curcal" *ngIf="item.providerprofilepic!=''"
+            ><img src="{{item.providerprofilepic}}"
+          /></span>
+        </ion-col>
+        <ion-col col-5 class="col-5">
+          <h2>{{item.firstname}} {{item.lastname}}</h2>
+          <p class="pin-lu">
+            <ion-icon name="ios-pin"></ion-icon> {{item.providerdetails.city}}
+          </p>
+        </ion-col>
+        <ion-col col-4 class="align-right">
+          <h4>{{Currency}}{{(item.amount*item.inhome_session)/60}}</h4>
+          <p>Per session</p>
+        </ion-col>
+      </ion-row>
+    </span>
+    <span>
+      <ion-row *ngIf="viewalllength > 2">
+        <ion-col class="view-all">
+          <a (click)="Providerslist()" href="#">View All</a>
+        </ion-col>
+      </ion-row>
+    </span>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header (click)="toggleAccordion()">
+            Plans
+            <ion-icon
+              name="ios-arrow-down"
+              style="float: right; font-size: 19px;"
+            ></ion-icon>
+          </ion-card-header>
+          <ion-card-content #cc>
+            <ion-slides
+              *ngIf="CarePlan!=null ||  CarePlan!='' || CarePlan!=undefined "
+              class="plan-slider"
+            >
+              <ion-slide *ngFor="let care of CarePlan ">
+                <div>
+                  <h5>{{care.planname}}</h5>
+                  <p class="text-desccripsan">{{care.plandescription}}</p>
+                  <h6>Services</h6>
+                  <div *ngFor="let  services of care.plan ">
+                    <p class="care-at-home">
+                      {{services.servicename}} <b>{{services.hours }} hours</b>
+                    </p>
+                  </div>
+                  <p class="time">
+                    <b>{{care.currency}} {{care.price}}</b> {{care.TotalHours}}
+                    hours
+                  </p>
+                </div>
+              </ion-slide>
+            </ion-slides>
+            <p
+              *ngIf="CarePlan==null ||  CarePlan=='' || CarePlan==undefined"
+              class="text-desccripsan"
+            >
+              No Plans Available
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid style="padding: 5px 0px;">
+    <ion-row>
+      <ion-col style="padding:0px;">
+        <ion-card style="padding:0px;">
+          <ion-card-header (click)="toggleAccordion1()" class="card-header-two">
+            LOCATIONS
+            <ion-icon
+              name="ios-arrow-down"
+              style="float: right; font-size: 19px;"
+            ></ion-icon>
+          </ion-card-header>
+          <ion-card-content #ccc>
+            <ion-col style="padding:0px;">
+              <div #map id="map"></div>
+            </ion-col>
+            <ion-row class="border-bottom">
+              <ion-col col-7>
+                <h4>{{Company.companyname}}</h4>
+                <p>
+                  {{Company.address}} {{Company.city}},-{{Company.postalcode}}
+                </p>
+              </ion-col>
+              <ion-col col-5>
+                <p (click)="getDir()">
+                  <ion-icon name="ios-send" style="color: #13a89e"></ion-icon>
+                  Get Directions
+                </p>
+              </ion-col>
+            </ion-row>
+            <ion-row class="border-bottom-none">
+              <ion-col>
+                <a (click)="ShowAllLocation()">View all locations</a>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="Review!=null">
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header
+            (click)="toggleAccordion2()"
+            class="customer-reviews"
+          >
+            customer reviews
+            <ion-icon
+              name="ios-arrow-down"
+              style="float: right; font-size: 19px;"
+            ></ion-icon>
+          </ion-card-header>
+          <ion-card-content #cccc>
+            <ion-col col-12>
+              <p class="date-and-time">
+                <label *ngIf="Company.ratings==0">
+                  <p class="textStyle">
+                    Not rated {{Company.ratings}} out of 5 star
+                  </p>
+                </label>
+                <label *ngIf="Company.ratings==1">
+                  <p class="text-coustomer-reviews">
+                    <ion-icon
+                      style=" color: #fdb915;"
+                      name="ios-star"
+                    ></ion-icon>
+                    {{Company.ratings}} out of 5 star
+                  </p>
+                </label>
+                <label *ngIf="Company.ratings==2">
+                  <p class="text-coustomer-reviews">
+                    <ion-icon
+                      style=" color: #fdb915;"
+                      *ngFor="let i of [1,2]"
+                      name="ios-star"
+                    ></ion-icon>
+                    {{Company.ratings}} out of 5 star
+                  </p>
+                </label>
+                <label *ngIf="Company.ratings==3">
+                  <p class="text-coustomer-reviews">
+                    <ion-icon
+                      style=" color: #fdb915;"
+                      *ngFor="let i of [1,2,3]"
+                      name="ios-star"
+                    ></ion-icon>
+                    {{Company.ratings}} out of 5 star
+                  </p>
+                </label>
+                <label *ngIf="Company.ratings==4">
+                  <p class="text-coustomer-reviews">
+                    <ion-icon
+                      style=" color: #fdb915;"
+                      *ngFor="let i of [1,2,3,4]"
+                      name="ios-star"
+                    ></ion-icon>
+                    {{Company.ratings}} out of 5 star
+                  </p>
+                </label>
+                <label *ngIf="Company.ratings==5">
+                  <p class="text-coustomer-reviews">
+                    <ion-icon
+                      style=" color: #fdb915;"
+                      *ngFor="let i of [1,2,3,4,5]"
+                      name="ios-star"
+                    ></ion-icon>
+                    {{Company.ratings}} out of 5 star
+                  </p>
+                </label>
+                <!-- <p class="text-coustomer-reviews1">{{Company.ratings}} out of 5 star</p>-->
+              </p></ion-col
+            >
+            <span *ngFor="let review of Review; let i = index ">
+              <ion-row *ngIf="i< 3" class="customer-reviews">
+                <ion-col col-7>
+                  <p class="text-coustomer-reviews">{{review.comments}}</p>
+                  <span class="user-name-view">
+                    <ion-icon name="ios-checkmark-circle"></ion-icon> Verified
+                    User
+                  </span>
+                </ion-col>
+                <ion-col col-5 text-right>
+                  <label *ngIf="review.rating==0">
+                    <ion-icon
+                      style=" color: #fdb915;"
+                      name="ios-star-outline"
+                    ></ion-icon>
+                    <ion-icon
+                      style=" color: #fdb915;"
+                      name="ios-star-outline"
+                    ></ion-icon>
+                    <ion-icon
+                      style=" color: #fdb915;"
+                      name="ios-star-outline"
+                    ></ion-icon>
+                    <ion-icon
+                      style=" color: #fdb915;"
+                      name="ios-star-outline"
+                    ></ion-icon>
+                    <ion-icon
+                      style=" color: #fdb915;"
+                      name="ios-star-outline"
+                    ></ion-icon>
+                  </label>
+                  <label *ngIf="review.rating==1">
+                    <p>
+                      <ion-icon
+                        name="ios-star"
+                        style=" color: #fdb915;"
+                      ></ion-icon>
+                    </p>
+                  </label>
+                  <label *ngIf="review.rating==2">
+                    <p>
+                      <ion-icon
+                        *ngFor="let i of [1,2]"
+                        style=" color: #fdb915;"
+                        name="ios-star"
+                      ></ion-icon>
+                    </p>
+                  </label>
+                  <label *ngIf="review.rating==3">
+                    <p>
+                      <ion-icon
+                        *ngFor="let i of [1,2,3]"
+                        style=" color: #fdb915;"
+                        name="ios-star"
+                      ></ion-icon>
+                    </p>
+                  </label>
+                  <label *ngIf="review.rating==4">
+                    <p>
+                      <ion-icon
+                        *ngFor="let i of [1,2,3,4]"
+                        style=" color: #fdb915;"
+                        name="ios-star"
+                      ></ion-icon>
+                    </p>
+                  </label>
+                  <label *ngIf="review.rating==5">
+                    <p>
+                      <ion-icon
+                        *ngFor="let i of [1,2,3,4,5]"
+                        style=" color: #fdb915;"
+                        name="ios-star"
+                      ></ion-icon>
+                    </p>
+                  </label>
+                  <p>
+                    <span>
+                      {{review.starttime | date:' d MMM, y' }}
+                    </span>
+                  </p>
+                </ion-col>
+              </ion-row>
+            </span>
+            <ion-row *ngIf="Review.length > 3">
+              <ion-col class="view-all">
+                <a (click)="Reviewlist()">View All</a>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <div class="sharethis-inline-share-buttons"></div> -->
+</ion-content>

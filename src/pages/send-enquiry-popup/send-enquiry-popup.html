@@ -1,0 +1,146 @@
+<!--
+  Generated template for the SendEnquiryPopupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- 
+<ion-content padding>
+  <div style="overflow-y: scroll;height: 500px;">
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+    <ion-label>Name*</ion-label>
+    <ion-card>
+      <ion-item no-padding no-lines>
+        <ion-input required formControlName='name' type="text"></ion-input>
+      </ion-item>
+    </ion-card>
+    <div *ngIf="name.invalid && isSubmitted" style="color: red"> Name is required!</div>
+    <ion-label style="margin-top: 10px">Email*</ion-label>
+    <ion-card>
+      <ion-item no-padding no-lines>
+        <ion-input required formControlName='email' type="email"></ion-input>
+      </ion-item>
+    </ion-card>
+    <div *ngIf="email.invalid && isSubmitted" style="color: red"> Email is required!</div>
+    <div *ngIf="email.dirty && email.invalid" style="color: red"> Invalid email!</div>
+  <ion-label style="margin-top: 10px">Contact No*</ion-label>
+  <ion-card class="card-innner">
+    <ion-item no-padding no-lines>
+      <ion-input required type="number" formControlName='contact'></ion-input>
+    </ion-item>
+  </ion-card>
+  <div *ngIf="contact.invalid && isSubmitted" style="color: red"> Contact is required!</div>
+  <div *ngIf="contact.dirty && contact.invalid" style="color: red"> Invalid contact number!</div>
+  <ion-label style="margin-top: 10px">Postcode*</ion-label>
+  <ion-card>
+    <ion-item no-padding no-lines>
+      <ion-input required type="text" formControlName='postcode'></ion-input>
+    </ion-item>
+  </ion-card>
+  <div *ngIf="postcode.invalid && isSubmitted" style="color: red"> Postcode is required!</div>
+  <div *ngIf="postcode.dirty && postcode.invalid" style="color: red"> Invalid postcode!</div>
+  <ion-label style="margin-top: 10px">Service*</ion-label>
+  <ion-card>
+    <ion-item no-lines>
+      <ion-label>Service</ion-label>
+      <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="data.service" (ngModelChange)="selectService(services, $event, 'someProperty')" placeholder="Select service"
+        class="full-width-select">
+        <ion-option *ngFor="let item of services" [value]="item">{{item.servicename}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+  <div *ngIf="data.service==null && isSubmitted" style="color: red"> Service is required!</div>
+  <ion-label style="margin-top: 10px">Message*</ion-label>
+  <textarea required class="form-control form-rounded" formControlName='message' rows="5" style="padding: 5px"></textarea>
+  <div *ngIf="message.invalid && isSubmitted" style="color: red"> Message is required!</div>
+  <button type="submit" class="custom-button" full ion-button style="margin-top: 10px;margin-bottom: 20px">Send Enquiry</button>
+</form>
+</div>
+</ion-content> -->
+
+<ion-content>
+
+  <ion-grid class="location-from">
+
+    <div class="background-color-top"></div>
+    <ion-col class="button-save" col-12 right>
+       <!-- <button  click="closepopup()">Close</button>-->
+    </ion-col>
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+      <ion-row>
+          <ion-col>
+
+              <ion-item class="border-none">
+                  <ion-label>User Name<span>*</span></ion-label>
+              </ion-item>
+              <ion-item>
+                  <ion-label class="margin-0"><ion-icon name="md-person"></ion-icon></ion-label>
+                  <ion-input  required formControlName='name' type="text"  placeholder="User Name"></ion-input>
+              </ion-item>
+              <div *ngIf="name.invalid && isSubmitted" style="color: red; padding-left: 16px;"> Name is required!</div>
+              <ion-item class="border-none">
+                  <ion-label>Email<span>*</span></ion-label>
+              </ion-item>
+              <!-- <div *ngIf="name.invalid && isSubmitted" style="color: red ; padding-left: 16px;"> Name is required!</div> -->
+            
+              <ion-item>
+                  <ion-label class="margin-0"><ion-icon name="md-mail-open"></ion-icon></ion-label>
+                  <ion-input  required formControlName='email' type="email" placeholder="Email"></ion-input>
+              </ion-item>
+              <div *ngIf="email.invalid && isSubmitted" style="color: red ; padding-left: 16px;"> Email is required!</div>
+              <div *ngIf="email.dirty && email.invalid" style="color: red; padding-left: 16px;"> Invalid email!</div>
+              <ion-item class="border-none">
+                  <ion-label>Mobile Number<span>*</span></ion-label>
+              </ion-item>
+              <ion-item>
+                  <ion-label class="margin-0"><ion-icon name="ios-call"></ion-icon></ion-label>
+                  <ion-input required type="number" formControlName='contact'  placeholder="Mobile Number"></ion-input>
+              </ion-item>
+              <div *ngIf="contact.invalid && isSubmitted" style="color: red; padding-left: 16px;"> Contact is required!</div>
+              <div *ngIf="contact.dirty && contact.invalid" style="color: red; padding-left: 16px;"> Invalid contact number!</div>
+              <ion-item class="border-none">
+                    <ion-label>Postcode<span>*</span></ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label class="margin-0"><ion-icon name="ios-locate"></ion-icon></ion-label>
+                    <ion-input required type="number" formControlName='postcode'  placeholder="Postcode"></ion-input>
+                </ion-item>
+                <div *ngIf="postcode.invalid && isSubmitted" style="color: red"> Postcode is required!</div>
+                <div *ngIf="postcode.dirty && postcode.invalid" style="color: red"> Invalid postcode!</div>
+            
+                    <ion-label style="margin-top: 10px">Service*</ion-label>
+                    <ion-card>
+                      <ion-item no-lines>
+                        <ion-label class="margin-0" >Service</ion-label>
+                        <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="data.service" (ngModelChange)="selectService(services, $event, 'someProperty')" placeholder="Select service"
+                          class="full-width-select">
+                          <ion-option *ngFor="let item of services" [value]="item">{{item.servicename}}</ion-option>
+                        </ion-select>
+                      </ion-item>
+                    </ion-card>                 
+                    <div *ngIf="data.service==null && isSubmitted" style="color: red"> Service is required!</div>
+                    <ion-item class="border-none">
+                    <ion-label>Descriptions<span>*</span></ion-label>
+              </ion-item>
+              <ion-item>
+                  <ion-textarea required formControlName='message'  placeholder="Enter your query"></ion-textarea>
+              </ion-item>
+              <div *ngIf="message.invalid && isSubmitted" style="color: red; padding-left: 16px;"> Message is required!</div>
+              <!-- <ion-item class="border-none last">
+                  <ion-label><ion-icon name="ios-attach"></ion-icon> Add Attachment</ion-label>
+              </ion-item> -->
+              <!-- <ion-row>
+                <p style="margin-top: 10px;">{{billName}}</p>
+                <label class="profile-photo" (click)="choosePopup()" style="background:white; height: 40px;width:40px;margin-left:20px">
+                  <img [src]="base64Image" />
+                </label>
+              </ion-row> -->
+            <!-- <input type="file" (change)="changeListener($event)" /> -->
+          </ion-col>
+          <ion-col class="button-save" col-12>
+              <button  type="submit">Submit</button>
+          </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

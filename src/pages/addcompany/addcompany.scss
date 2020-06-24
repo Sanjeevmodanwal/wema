@@ -1,0 +1,62 @@
+page-addcompany {
+    .scroll-content {
+        background: #eeeeee;
+    }
+    .grid {
+        padding: 20px 5px 30px;
+        background: #fff;
+        margin-top: 10px;
+    }
+    .toolbar-background{
+        border-color: #ffffff;
+        background: #ffffff;
+    }
+    .input-wrapper { 
+        display: block !important;
+    }
+    .text-input {
+        margin: 0px 0px 13px!important;
+    }
+    .item-block .item-inner {
+        padding-right: 0px !important;
+        margin-bottom: 10px;
+    }
+    .item {
+        padding-left: 0px !important;
+    }
+    .label{
+        font-size: 16px;
+        color: #282828 !important;
+        font-family: 'Muli', sans-serif;
+        font-weight: bold;
+    }
+    .text-input::placeholder{
+        font-size: 14px;
+        color: #bcbcbc !important;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+    }
+    .item-block .item-inner{
+        box-shadow: none !important;
+        border-bottom: 1px solid #ededed !important;
+    }
+    ion-col.button-box-send button {
+        padding: 10px 30px;
+        margin-right: 10px;
+        font-size: 14px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #fff;
+        font-family: 'Muli', sans-serif;
+        font-weight: 600;
+        margin-top: 15px;
+    }
+     button.button-company {
+       background: #17a9a0;
+    }
+    button.button-clear{
+        background: transparent;
+        color: #282828 !important;
+        opacity: 0.5;
+    }
+}

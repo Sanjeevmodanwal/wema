@@ -1,0 +1,234 @@
+<!--
+  Generated template for the CarePage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+--><!--
+<ion-header>
+  <ion-navbar>
+    <ion-title>Care</ion-title>
+    <ion-buttons end>
+       <ion-title><img src="assets/imgs/WemaLife.png"></ion-title>
+      <button ion-button end icon-only (click)="seachbar()">
+          <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button end icon-only style="color:#12a89d;">
+        LoGIN  <ion-icon name="ios-arrow-forward"></ion-icon>
+    </button>
+   </ion-buttons>
+   <!-- <button ion-button icon-only (click)='toggleSearch()'>
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div *ngFor="let item of Care" style="margin-top: 10px;padding: 5px">
+    <ion-card>
+      <ion-item no-padding>
+        <label style="color:black;">{{item.servicename}}</label>
+        <br/>
+        <br/>
+        <p class="alignleft-text"></p>
+        <label style="padding-top:10px; color:#08a79d;">
+          <div>
+              <p  style="margin:5px"  [innerHTML]="item.description" ></p>
+          </div>
+          <span class="span1" ><img class="slider-one" src="assets/imgs/Household_help.png" /></span>
+        </label>
+      </ion-item>
+     <!-- <ion-row>
+        <ion-col>
+          <button class="custom-button" ion-button style="float: right" (click)='openCompanyDetail(item)'>
+            Book Now
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+</ion-content>
+-->
+<ion-header>
+  <ion-navbar class="dawn-bar">
+    <ion-buttons end>
+      <button
+        *ngIf="appState.CartCount>0"
+        clear
+        style="color:black;background: transparent"
+      >
+        {{appState.CartTimer}}
+      </button>
+      <ion-icon
+        *ngIf="appState.CartCount>0"
+        ios="ios-cart"
+        md="md-cart"
+      ></ion-icon>
+      <button
+        *ngIf="appState.CartCount>0"
+        clear
+        style="color:black;background: transparent"
+        (click)="viewCart()"
+      >
+        ({{appState.CartCount}})
+      </button>
+    </ion-buttons>
+    <ion-title>Care</ion-title>
+    <ion-buttons end>
+      <button ion-button end icon-only (click)="toggleSearch()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="map" [class.hidemap]="!((switch == 'map') || error)">
+    <ion-searchbar
+      #searchbar
+      placeholder="Service*"
+      [hidden]="!search"
+    ></ion-searchbar>
+    <div id="map" #map></div>
+    <ion-searchbar
+      #searchbar
+      placeholder="Company or Doctor Name"
+      [hidden]="!search"
+    ></ion-searchbar>
+    <div id="map" #map></div>
+    <ion-searchbar
+      #searchbar
+      placeholder="Location"
+      [hidden]="!search"
+    ></ion-searchbar>
+    <div id="map" #map></div>
+  </div>
+  <!--  <div class="map" [class.hidemap]="!((switch == 'map') || error)">
+                    <ion-searchbar #searchbar placeholder="Company or Doctor Name" [hidden]="!search"></ion-searchbar>
+                    <div id="map" #map></div>
+                  </div>
+                  <div class="map" [class.hidemap]="!((switch == 'map') || error)">
+                        <ion-searchbar #searchbar placeholder="Location" [hidden]="!search"></ion-searchbar>
+                        <div id="map" #map></div>
+                      </div>-->
+  <ion-grid *ngFor="let item of Care  " class="care-page">
+    <ion-row
+      *ngIf="item.category=='44'"
+      (click)="page_info (item,i)"
+      class="care-row"
+    >
+      <ion-col col-9>
+        <h3>{{item.servicename}}</h3>
+        <p>
+          {{(item.description.length > 100) ? (item.description | slice:0:100)
+          +'...':(this.description)}}
+        </p>
+        <!--  <p >{{item.description}}</p>-->
+      </ion-col>
+      <ion-col col-3>
+        <h3>&nbsp;</h3>
+        <span *ngIf="item.servicename=='Chiropractors'">
+          <img src="assets/imgs/chiropractors.png" />
+        </span>
+        <span *ngIf="item.servicename=='Companionship'">
+          <img src="assets/imgs/companionship.png"/>
+        </span>
+        <span *ngIf="item.servicename=='Dementia Care'"
+          ><img src="assets/imgs/dementia_care.png"
+        /></span>
+        <span *ngIf="item.servicename=='Domestic Help'">
+          <img src="assets/imgs/domestic_help.png"
+        /></span>
+        <span *ngIf="item.servicename=='Elderly Care'">
+          <img src="assets/imgs/elderly_care.png"
+        /></span>
+        <span *ngIf="item.servicename=='Household Help'">
+          <img src="assets/imgs/Household_help.png"
+        /></span>
+        <span *ngIf="item.servicename=='Live in care'">
+          <img src="assets/imgs/live_in_care.png"
+        /></span>
+        <span *ngIf="item.servicename=='Massage therapy'"
+          ><img src="assets/imgs/massage_therapy.png"
+        /></span>
+        <span *ngIf="item.servicename=='no-service-icon-green'">
+          <img src="assets/imgs/no-service-icon-green.png"
+        /></span>
+        <span *ngIf="item.servicename=='Nursing Care'">
+          <img src="assets/imgs/nursing_care.png"
+        /></span>
+        <span *ngIf="item.servicename=='Nutrition'">
+          <img src="assets/imgs/nutrition.png"
+        /></span>
+        <span *ngIf="item.servicename=='Nutritionist'"
+          ><img src="assets/imgs/nutritionist.png"
+        /></span>
+        <span *ngIf="item.servicename=='Occupational Therapy'">
+          <img src="assets/imgs/occupational_therapy.png"
+        /></span>
+        <span *ngIf="item.servicename=='Personal care'">
+          <img src="assets/imgs/personal_care.png"
+        /></span>
+        <span *ngIf="item.servicename=='Personal training'">
+          <img src="assets/imgs/personal_training.png"
+        /></span>
+        <span *ngIf="item.servicename=='physiotherapy'"
+          ><img src="assets/imgs/physiotherapy.png"
+        /></span>
+        <span *ngIf="item.servicename=='pilates'">
+          <img src="assets/imgs/pilates.png"
+        /></span>
+        <span *ngIf="item.servicename=='Spcialist care'"
+          ><img src="assets/imgs/Spcialist_care.png"
+        /></span>
+        <span *ngIf="item.servicename=='Yoga'"
+          ><img src="assets/imgs/yoga.png"
+        /></span>
+        <span *ngIf="item.servicename=='Medication prompting'"
+          ><img src="assets/imgs/pilates.png"
+        /></span>
+      </ion-col>
+    </ion-row>
+    <!--<ion-row class="care-row">
+        <ion-col col-9>
+            <h3>Household Help</h3>
+            <p>Lorem ipsum dolor sit amet, sapientem delicatissi-mi concludaturque ad sit</p>
+        </ion-col>
+        <ion-col col-3>
+            <span>
+               <img src="assets/imgs/Household_help.png" />
+            </span>
+        </ion-col>
+    </ion-row>
+    <ion-row class="care-row">
+        <ion-col col-9>
+            <h3>Household Help</h3>
+            <p>Lorem ipsum dolor sit amet, sapientem delicatissi-mi concludaturque ad sit</p>
+        </ion-col>
+        <ion-col col-3>
+            <span>
+               <img src="assets/imgs/Household_help.png" />
+            </span>
+        </ion-col>
+    </ion-row>
+    <ion-row class="care-row">
+        <ion-col col-9>
+            <h3>Household Help</h3>
+            <p>Lorem ipsum dolor sit amet, sapientem delicatissi-mi concludaturque ad sit</p>
+        </ion-col>
+        <ion-col col-3>
+            <span>
+               <img src="assets/imgs/Household_help.png" />
+            </span>
+        </ion-col>
+    </ion-row>
+    <ion-row class="care-row">
+        <ion-col col-9>
+            <h3>Household Help</h3>
+            <p>Lorem ipsum dolor sit amet, sapientem delicatissi-mi concludaturque ad sit</p>
+        </ion-col>
+        <ion-col col-3>
+            <span>
+               <img src="assets/imgs/Household_help.png" />
+            </span>
+        </ion-col>
+    </ion-row>
+  -->
+  </ion-grid>
+</ion-content>

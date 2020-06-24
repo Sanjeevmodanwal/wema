@@ -1,0 +1,78 @@
+page-upcomingappointment {
+    .scroll-content {
+        background: #eeeeee;
+    }
+    ion-row.images-and-text-box.row {
+        background: #fff;
+        margin-bottom: 7px;
+    }
+    ion-grid.grid {
+        padding: 0px;
+        margin: 25px 0px 0px;
+        
+    }
+    ion-col.images-box.col {
+        background: #fdb915;
+        text-align: center;
+        padding: 15px 5px;
+    }
+    ion-col.images-box.col h6{
+        font-size: 14px; 
+        color: #ffffff;
+        font-weight: 600;
+        font-family: 'Muli', sans-serif;
+        margin: 0px;
+        margin-top: 5px;
+    }
+    ion-col.images-box.col p{
+        font-size: 14px; 
+        color: #ffffff;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+        margin: 0px;
+        margin-top: 5px;
+    }
+    ion-col.text-box.col{
+        padding: 21px 10px;
+    }
+    ion-col.text-box.col h4{
+        font-size: 18px; 
+        color: #000000;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+        margin: 0px;
+        margin-bottom: 5px;
+    }
+    ion-col.text-box.col h6{
+        font-size: 16px; 
+        color: #fdb915;
+        margin: 0px;
+        margin-bottom: 5px;
+    }
+
+    ion-col.text-box.col p{
+        font-size: 14px; 
+        color: #5d5b5b;
+        font-weight: 600;
+        font-family: 'Muli', sans-serif;
+        margin: 0px;
+    }
+
+    @media screen and (max-width: 100000px) and (min-width: 480px){
+        ion-col.images-box.col {
+           text-align: center;
+           padding: 15px 5px;
+           width: 30%;
+           max-width: 30%;
+           flex: 0 0 30%;
+       }
+       ion-col.text-box.col {
+           padding: 21px 10px;
+           width: 70%;
+           max-width: 70%;
+           flex: 0 0 70%;
+       }
+       
+     
+   }
+}

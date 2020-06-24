@@ -1,0 +1,52 @@
+page-company-provider-profile {
+
+  .scroll {
+    height: 100%
+  }
+
+  #map {
+    width: 100%;
+    height: 25%;
+  }
+ 
+    #email_tab .scroll-tabs .scroll-container .section {
+        min-width: 50% !important;
+        display: inline-block;
+        white-space: nowrap;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        padding-bottom: 0;
+      }
+
+      #email_tab .scroll-tabs .scroll-container .scroll-content {
+        padding: 0px;
+    }
+      
+      #email_tab .scroll-tabs .scroll-container .section .tab9-button.three {
+        width: 100% !important;
+        font-weight: bold !important;
+      }
+      
+      #email_tab .scroll-tabs .scroll-container {
+        height: 6vh;
+        overflow: scroll;
+        white-space: nowrap;
+        border-bottom: 1px solid #f4f4f4;
+      }
+      
+      #email_tab .scroll-tabs .scroll-container .section .tab9-button.selected {
+        color: #08a79d;
+        border-bottom: 3px solid #b1ca80;
+        font-weight: bold !important; 
+      }
+      
+      #email_tab .scroll-tabs .scroll-container .section .tab9-button{
+        color: #808080;
+        font-weight: bold !important;
+      }
+      
+.iconcolour {
+ // display: inline-block;
+  color:#08a79d;
+}
+}

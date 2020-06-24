@@ -1,0 +1,209 @@
+
+
+
+
+<ion-content>
+   <!-- <ion-grid class="household-page">
+
+
+
+       <ion-row>
+            <ion-col col-12>
+                <ul class="household-page-menu">
+                    <a *ngFor="let item of items" [ngClass]="{'active': carInfo == 'item1'}" (click)="toggleClass('item1')"><li><ion-icon name="ios-menu"></ion-icon>List View</li></a>
+
+                    <a *ngFor="let item of items" [ngClass]="{'active': carInfo == 'item2'}"
+                    (click)="toggleClass('item2')"><li><ion-icon name="md-map"></ion-icon>Map View</li></a>
+
+                    <a *ngFor="let item of items" [ngClass]="{'active': carInfo == 'item3'}" 
+                    (click)="toggleClass('item3')"><li><ion-icon name="md-podium"></ion-icon>Popularity</li></a>
+
+                    <a *ngFor="let item of items" [ngClass]="{'active': carInfo == 'item4'}" 
+                    (click)="toggleClass(item3)"><li><ion-icon name="md-options"></ion-icon>Filter</li></a>
+                </ul>
+            </ion-col>
+       </ion-row>
+   </ion-grid> -->
+
+   <ion-grid  class="body-itam-grid">
+        <ion-row   *ngFor="let item of filteredCompanies  ; " (click)="itemTapped( item)"class="body-itam-box">
+                <ion-col  col-8   >
+                    <div *ngIf="item.companyname!=''">
+                     <h2>{{item.companyname}}</h2>
+                    </div>
+                    <div *ngIf="item.companyname==''">
+                            <h2>{{item.firstname}} {{item.lastname}}</h2>
+                           </div>
+                   <!-- <p>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                    </p>-->
+                    <label *ngIf="item.ratings==0" >
+
+                       <p class="textStyle"> Not rated</p> 
+                          <!--  <ion-icon style=" color: #fdb915;" name="ios-star-outline"></ion-icon>
+                            <ion-icon   style=" color: #fdb915;"  name="ios-star-outline"></ion-icon>
+                            <ion-icon  style=" color: #fdb915;"  name="ios-star-outline"></ion-icon>
+                            <ion-icon  style=" color: #fdb915;"  name="ios-star-outline"></ion-icon>
+                            <ion-icon  style=" color: #fdb915;"  name="ios-star-outline"></ion-icon>-->
+                          </label>
+                          <label *ngIf="item.ratings==1" >
+                              <p> <ion-icon name="ios-star"></ion-icon></p> 
+                          </label>
+                          <label *ngIf="item.ratings==2" >
+                            <p><ion-icon *ngFor="let i of [1,2]" name="ios-star"></ion-icon></p>
+                          </label>
+                          <label *ngIf="item.ratings==3" >
+                          <p><ion-icon *ngFor="let i of [1,2,3]" name="ios-star"></ion-icon></p>  
+                          </label>
+                          <label *ngIf="item.ratings==4" >
+                           <p><ion-icon *ngFor="let i of [1,2,3,4]" name="ios-star"></ion-icon></p> 
+                          </label>
+                          <label *ngIf="item.ratings==5" >
+                          <p> <ion-icon *ngFor="let i of [1,2,3,4,5]" name="ios-star"></ion-icon></p> 
+                          </label>
+                </ion-col>
+               <!-- <ion-col   col-4 class="right-image"><img src="assets/imgs/epoch_logo.png"></ion-col>-->
+               <ion-col  *ngIf="item.complogo!='' " col-4 class="right-image"><img src="{{item.complogo}}"></ion-col>
+              <ion-col  *ngIf="item.complogo==''" col-4 class="right-image" ><img   style="width:80px;height: 61.75px;" src={{companypicture}} ></ion-col>
+               <ion-col  *ngIf="item.avatar!=null" col-4 class="imagePosition" ><img  src="{{item.avatar}}" ></ion-col>
+             
+             
+               <div   *ngIf="item.complogo!='' && item.complogo==null ">
+               <ion-col  *ngIf="item.avatar==null" col-4 class="imagePosition" ><img  src={{companypicture}} ></ion-col>
+            </div>
+               <!--  <div *ngIf="item.complogo==''">
+                <ion-col  *ngIf="item.city==null" col-4 class="imagePosition" ><img  src="http://wema-3.eu-west-2.elasticbeanstalk.com/images/company.jpg" ></ion-col>
+               </div>
+         
+              <ion-col  *ngIf="item.avatar==''" col-4 class="imagePosition" ><img  src="http://wema-3.eu-west-2.elasticbeanstalk.com/images/company.jpg" ></ion-col>
+                
+             <ion-col  *ngIf="item.avatar==null" col-4 class="imagePosition" ><img  src="http://wema-3.eu-west-2.elasticbeanstalk.com/images/company.jpg" ></ion-col>
+             <ion-col  *ngIf="item.avatar==''" col-4 class="imagePosition" ><img  src="http://wema-3.eu-west-2.elasticbeanstalk.com/images/company.jpg" ></ion-col>-->
+             <!--   <ion-col  *ngIf="item.avatar==null" col-4 class="imagePosition" ><img  src="http://wema-3.eu-west-2.elasticbeanstalk.com/images/company.jpg" ></ion-col>
+                 <div *ngIf="item.avatar==null">
+               <ion-col  *ngIf="item.avatar==null"> <img  src="assets/imgs/company.png" style="width:100px;height: 100px;" />  </ion-col>    
+              <ion-col  *ngIf="item.avatar">  <img   src= {{company.avatar}} style="width:100px;height: 100px;" /> </ion-col> 
+            </div>
+        -->
+        
+                <ion-col  *ngIf="item.companydescription != null"col-8 class="body-text">
+                        <p  [innerHTML]="item.companydescription   | safeHtml :100  " ></p>
+                       <!-- <div class="text">
+                                <p >{{item.companydescription}}</p>
+                               </div> 
+                               <div *ngIf="item.companydescription > 2">
+                                    <p  [innerHTML]="item.companydescription" ></p>
+                               </div>-->
+                                <!--<div *ngIf="item.companydescription != null" >
+                                    <p  [innerHTML]="item.companydescription" ></p>
+                                </div>   
+                             <p>{{(item.companydescription.length > 100) ? (item.companydescription | slice:0:100) +'...':(this.companydescription)}}</p>
+                            -->
+                        <!--     <p {{([innerHTML]="item.companydescription.length" >100) ?(item.companydescription | slice:0:100)+'...': (this.companydescription)}} </p> 
+                    <p> {{(item.companydescription  | limitTo: 100) + (item.companydescription.length > 100 ? '...' : '')}}</p>
+                   <p  class="ellipsis"  [innerHTML]="item.companydescription"> </p>-->
+                    
+                </ion-col>
+    <ion-col col-12 class="pin-box">
+                    <ion-col   col-5>
+                       <span   *ngIf="item.city!=null"><ion-icon name="ios-pin"></ion-icon> {{item.city}}</span>
+                    </ion-col>
+                      <ion-col  col-7>
+                        <span  *ngIf="item.longitude!=''"><ion-icon name="md-navigate"></ion-icon> {{item.distance | number:'1.0-0'}} miles from you</span>
+                        <span  *ngIf="item.longitude==''"><ion-icon name="md-navigate"></ion-icon> Location is not defind</span>
+                    </ion-col>
+                </ion-col> 
+           </ion-row>
+         
+        
+       
+<!--
+           <ion-row class="body-itam-box">
+                <ion-col col-8>
+                    <h2>Dawn Recruitment</h2>
+                    <p>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                    </p>
+                </ion-col>
+                <ion-col col-4 class="right-image"><img src="assets/imgs/epoch_logo.png"></ion-col>
+                
+                <ion-col col-8 class="body-text">
+                    <p>Dawn recruitment is a fast growing recruitment agency in the South East, supplying staff in various sectors both public and private e.g Care homes, hospitals, catering... </p>
+                </ion-col>
+                <ion-col col-12 class="pin-box">
+                    <ion-col col-5>
+                       <span><ion-icon name="ios-pin"></ion-icon> Portsmouth</span>
+                    </ion-col>
+                    <ion-col col-7>
+                        <span><ion-icon name="md-navigate"></ion-icon> 8 miles from you</span>
+                    </ion-col>
+                </ion-col> 
+           </ion-row>
+
+
+           <ion-row class="body-itam-box">
+                <ion-col col-8>
+                    <h2>Dawn Recruitment</h2>
+                    <p>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                    </p>
+                </ion-col>
+                <ion-col col-4 class="right-image"><img src="assets/imgs/epoch_logo.png"></ion-col>
+                
+                <ion-col col-8 class="body-text">
+                    <p>Dawn recruitment is a fast growing recruitment agency in the South East, supplying staff in various sectors both public and private e.g Care homes, hospitals, catering... </p>
+                </ion-col>
+                <ion-col col-12 class="pin-box">
+                    <ion-col col-5>
+                       <span><ion-icon name="ios-pin"></ion-icon> Portsmouth</span>
+                    </ion-col>
+                    <ion-col col-7>
+                        <span><ion-icon name="md-navigate"></ion-icon> 8 miles from you</span>
+                    </ion-col>
+                </ion-col> 
+           </ion-row>
+
+
+           <ion-row class="body-itam-box">
+                <ion-col col-8>
+                    <h2>Dawn Recruitment</h2>
+                    <p>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                        <ion-icon name="ios-star"></ion-icon>
+                    </p>
+                </ion-col>
+                <ion-col col-4 class="right-image"><img src="assets/imgs/epoch_logo.png"></ion-col>
+                
+                <ion-col col-8 class="body-text">
+                    <p>Dawn recruitment is a fast growing recruitment agency in the South East, supplying staff in various sectors both public and private e.g Care homes, hospitals, catering... </p>
+                </ion-col>
+                <ion-col col-12 class="pin-box">
+                    <ion-col col-5>
+                       <span><ion-icon name="ios-pin"></ion-icon> Portsmouth</span>
+                    </ion-col>
+                    <ion-col col-7>
+                        <span><ion-icon name="md-navigate"></ion-icon> 8 miles from you</span>
+                    </ion-col>
+                </ion-col> 
+           </ion-row>
+    
+        -->
+      
+   </ion-grid>
+
+</ion-content>

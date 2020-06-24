@@ -1,0 +1,99 @@
+<ion-header>
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Expenses</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid class="period">
+      <ion-row>  
+          <ion-col col-8>
+              <p>Period</p>
+              <h6 *ngIf="fromDate!=''">{{datePeriod}}</h6>
+          </ion-col>
+          <ion-col col-4>
+             <!--<button (click)="showFilterPopup()">Change</button>-->
+             <button (click)="showFilterPopupFilter()">Change</button>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  <ion-grid class="date-box-deta">
+    <ion-row class="overflow" *ngIf="!isEmpty">
+      <ion-row class="heding-row">
+          <ion-col col-2>
+              <h3>Date</h3>
+          </ion-col>
+          <ion-col col-3>
+              <h3>Name</h3>
+          </ion-col>
+          <ion-col col-1 text-center>
+              <h3>Type</h3>
+          </ion-col>
+          <ion-col col-2 text-center>
+                <h3>Document</h3>
+          </ion-col>
+          <ion-col col-2 text-center>
+              <h3>Status</h3>
+        </ion-col>
+        <ion-col col-2 text-right>
+            <h3>Amount</h3>
+      </ion-col>
+      </ion-row>
+  
+      <ion-row class="deta-row"  *ngFor="let item of bills">
+          <ion-col col-2>
+            <p>{{item.actualdate | date:'dd MMM'}}</p>
+          </ion-col>
+          <ion-col col-3>
+            <p>{{item.details['0']?.billname}}</p>
+          </ion-col>
+          <ion-col col-1 text-center>
+            <p>{{item.type}}</p>
+          </ion-col>
+          <ion-col col-2 text-center>
+              <ion-icon name="md-download" (click)="download(item)"></ion-icon>
+          </ion-col>
+          <ion-col col-2 text-center>
+            {{item.statusReport}}
+          </ion-col>
+          <ion-col col-2 text-right>
+              <h4> {{item.currency}}{{item.amount_value?item.amount_value:0}}</h4>
+          </ion-col>
+      </ion-row>
+     
+     
+      
+     
+   </ion-row>
+   <ion-row  *ngIf="isEmpty" >
+    No expenses available
+   </ion-row >
+</ion-grid>
+
+<ion-grid>
+  <ion-row>
+      <ion-col col-12 class="not-pay">
+          <button  (click)="addBill()">add expense</button>
+      </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-grid class="total-earning">
+    <ion-row class="total-earning-up total-amunt">
+        <ion-col col-7>
+          <h3>Total Expenses</h3>
+          <p  *ngIf="fromDate!=''">{{datePeriod}}</p>
+        </ion-col>
+        <ion-col col-5 text-right>
+            <h6><span>{{currencySymb}}</span>{{totalExpenses | number : '1.2-2' }}</h6>
+            
+          </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

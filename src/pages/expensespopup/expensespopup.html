@@ -1,0 +1,86 @@
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Add Expense</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="popup-check-out">
+      <ion-row>            
+            <ion-col col-12 text-right>
+                <button  (click)="closeModal()">cancel</button>
+                <button class="submit" (click)="submit(data)">ADD</button>
+            </ion-col>
+      </ion-row>  </ion-grid>
+  <ion-grid class="popup-check-text">
+        <div *ngIf="!isEmpty">
+        <ion-row>
+            <ion-col col-12>
+                <h2>Name<span>*</span></h2>
+              
+                    <ion-item>
+                        <ion-input type="text" placeholder="Name" [(ngModel)]="data.billName"></ion-input>
+                    </ion-item>
+                
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-5>
+                <h2>Date<span>*</span></h2>
+                    <ion-item no-lines>
+                         <ion-datetime pickerFormat="MM/DD/YYYY" min="2018" max="2050" [(ngModel)]="data.expensesdate" placeholder="Enter Date"></ion-datetime> 
+                    </ion-item>
+            </ion-col>
+            <ion-col col-2 class="border-none"></ion-col>
+            <ion-col col-5 class="none-e">
+                <h2>Type<span>*</span></h2>
+                    <ion-item>
+                        <ion-select [(ngModel)]="data.type">
+                            <ion-option value="bill">Bill</ion-option>
+                           <!-- <ion-option value="milease">Milease</ion-option>-->
+                        </ion-select>        
+                    </ion-item>
+
+                    <ion-item no-padding no-lines hide style="display:none;">
+                    <textarea [(ngModel)]=data.Description placeholder="Enter your Description" class="form-control form-rounded" ></textarea>
+                    </ion-item>
+            </ion-col>
+            <ion-col col-5 class="text-color">
+                <h2>Amonut<span>*</span></h2>
+                
+                    <ion-item>
+                            <ion-input type="text" placeholder="Enter Amount" [(ngModel)]=data.billAmount ></ion-input>
+                    </ion-item>
+               
+            </ion-col>
+            <ion-col col-12 class="padding-check">
+               
+                    <h2>Upload documents</h2>
+                   
+                    <div class="upload-documents">
+                        <div (click)="choosePopup()">
+                            <ion-icon name="md-cloud-upload" *ngIf="base64Image=='assets/imgs/camera.png'"></ion-icon>
+                            <ion-icon name="checkmark" *ngIf="base64Image!='assets/imgs/camera.png'"></ion-icon>
+                            <h6>Upload Documents</h6> 
+                            <p>Maximum file size: 10MB</p>
+                        </div>
+                    </div>
+                    
+                    <p>Supported documents jpg, png, gif and pdf</p>
+            </ion-col>
+        </ion-row>
+        </div>
+        <div *ngIf="isEmpty" style=" position: fixed;top: 50%;left: 50%; transform: translate(-50%, -50%);color:#4F5673">
+                No bill available
+              </div>
+  </ion-grid>
+ <ion-grid *ngIf="isReportEmpty">
+            <ion-row  >
+                No reports found
+               </ion-row >
+            </ion-grid>
+  
+</ion-content>

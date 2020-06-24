@@ -1,0 +1,24 @@
+
+<ion-content>
+    <ion-grid class="view-report grid">
+        <ion-col col-12>
+            <h2>Past appointment done for <span>{{name}}</span></h2>
+        </ion-col>
+    </ion-grid>
+
+    <ion-grid class="popup-check-out">
+        <ion-col col-12>
+            <h2>{{title}}</h2>
+            <button  (click)="dismiss('cancel')" >cancel</button>
+            <button  (click)="dismiss('ok')"   class="submit">Submit</button>
+        </ion-col>
+    </ion-grid>
+    <ion-grid class="popup-check-text">
+        <ion-col col-12>
+            <h2>Give Reason<span>*</span></h2>          
+                <ion-item>
+                  <ion-input   [(ngModel)]="reason"   class="form-control form-rounded"  type="text" placeholder=" {{title}}"></ion-input>
+                </ion-item>            
+        </ion-col>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Visit History</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-grid   *ngFor="let item of pastVisits; let i = index"  class="view-report">
+      <ion-col col-12 class="date-box" >
+          <!-- <h3>{{fullMonth}},{{item1.date | date: " y"}}</h3>*ngFor="let item1 of pastVisits"
+         *ngIf="item.date!=item[i-1].date"  *ngIf="i!=2" -->
+         <h3 *ngIf="i==0 " > {{item.date | date: " MMMM ,y"}}</h3>
+          <h3 *ngIf="(i > 0) && item.date!=pastVisits[i-1].date" > {{item.date | date: " MMMM ,y"}}</h3>
+        </ion-col>
+        <ion-row >
+            <ion-col col-3>
+                <h6>{{item.date | date: "dd MMM"}}</h6>
+                <p>{{item.showstartdatetimeformat | date: "HH:mm a"}}</p>
+            </ion-col>
+            <ion-col col-9>
+                <div class="mine-box"> 
+                    <div class="text-box">
+                          <h3>{{item.membername}} <span>for</span> {{item.servicename}}</h3>
+                          <p>{{item.comments}}</p>
+                    </div>
+                    <div class="button-box-two">
+                        <!-- <p><ion-icon name="pin"></ion-icon> {{item.city}}</p> -->
+                        <button (click)="viewVisitReport(item)">View report</button>
+                    </div>
+                  </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

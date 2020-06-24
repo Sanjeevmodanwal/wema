@@ -1,0 +1,61 @@
+<!--
+  Generated template for the ComapanyPurchasePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <ion-buttons end>
+          <button *ngIf="appState.CartCount>0" clear style="color:black;background: transparent">
+              {{appState.CartTimer}}
+            </button>
+        <button *ngIf="appState.CartCount>0" clear style="color:black;background: transparent" (click)="viewCart()">
+          Cart({{appState.CartCount}})
+        </button>
+      </ion-buttons>
+    <ion-title>Confirm Purchase</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+<div *ngIf="!isEmpty">
+  <ion-item *ngFor="let item of cartItems" no-padding>
+    <ion-thumbnail item-start>
+      <img src="assets/imgs/services.png">
+    </ion-thumbnail>
+    <!-- <img src="assets/imgs/wema.png" width="60" height="60" /> -->
+    <p style="color:gray;font-size:14px;"><b>Provider:</b>
+      <label style="color:green;font-size:13px;">{{item.providername}}</label>
+    </p>
+    <!-- <p class="alignleft-text" style="color:red;"><b>Provider:</b>LouisLift</p> -->
+
+    <p style="padding-top:10px; color:grey;font-size:14px;font-size: 14px;">
+      <b>Service: </b>{{item.servicename}}
+      <p style="font-size: 14px; font-size: 10px;">{{item.duration}} hr</p>
+      <p style="font-size: 10px;">{{item.date}}</p>
+    <p style="padding-top:10px; color:grey;font-size: 14px;">
+      <b>Rate/hr: </b>{{item.currency}}{{item.itemprice}}
+    </p>
+    <p style="padding-top:10px; color:grey;font-size: 14px;">
+      <b>SubTotal:</b>
+      <strong style="color: red;">{{item.currency}}{{item.total}}</strong>
+    </p>
+    <button class="custom-button" ion-button color="light" (click)="delete(item)" style="float: right;position: absolute;right: 0;top:60%;">Delete</button>
+  </ion-item>
+  <hr>
+  <ion-item>
+    <p style="padding-top:10px; color:grey;">
+      Cart SubTotal({{cartCount}} items)
+      <label style="float: right;color: red;">{{displayTotalPrice}}</label>
+    </p>
+  </ion-item>
+  <button class="custom-button" ion-button block (click)="proceedToPay('paynow')" style="text-transform:none;">Pay Now</button>
+  <button class="custom-button" ion-button block (click)="proceedToPay('paylater')" [disabled]="!enablePayLater" style="margin-top:10px;text-transform:none;">Pay Later</button>
+</div>
+
+<div *ngIf="isEmpty" text-center style="height: 100%;">
+<p style="font-size: 15px" style="vertical-align: middle">Cart is empty !</p>
+</div>
+</ion-content>

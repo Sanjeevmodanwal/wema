@@ -1,0 +1,114 @@
+<ion-header>
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title> <span *ngIf = "user['formvalues']['title']!=''">{{user['formvalues']['title']}}</span> <span *ngIf = "user['firstname']!=''">{{user['firstname']}}</span>  <span *ngIf = "user['lastname']!=''">{{user['lastname']}}</span> Profile</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+<ion-content>
+  <ion-grid>
+      <ion-row>
+          <div class="images-box">
+              <div class="inner-images-box"  (click)="choosePopup()" >
+                  <img [src]="ProfilePic">
+              </div>
+              <ion-icon (click)="choosePopup()" name="md-create"></ion-icon>
+          </div>
+      </ion-row>
+  </ion-grid>
+<ion-grid class="background-c">
+    <ion-row>
+        <ion-col col-8>
+            <h2>Company Information</h2>
+        </ion-col>
+        <ion-col col-4 text-right>
+             
+        <!--  <p  >{{profile_completion_percentage[0].company_information}}%  </p> -->
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<ion-grid class="background-f">
+    <ion-row>
+        <ion-col col-12>
+            <p  *ngIf = "user.currentCompany['companyno']!=''">Company Number</p>
+            <h2 *ngIf = "user.currentCompany['companyno']!=''">#{{user.currentCompany['companyno']}}</h2>
+            <p *ngIf = "user.currentCompany['companyname']!=''">Company Name</p>
+            <h2 *ngIf = "user.currentCompany['companyname']!=''">{{user.currentCompany['companyname']}}</h2>
+           <!-- <p *ngIf = "user['companyid']!=''">Unique Number</p>
+            <h2 *ngIf = "user['companyid']!=''">{{user['companyid']}}</h2>-->
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<ion-grid class="background-c">
+    <ion-row>
+        <ion-col col-8>
+            <h2>Personal Information</h2>
+        </ion-col>
+        <ion-col col-4 text-right>
+               <!-- <p>{{profile_completion_percentage[1].personal_information}}%  </p> -->
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<ion-grid class="background-f">
+    <ion-row>
+        <ion-col col-12>
+            <p>Name</p>
+            <h2><span *ngIf = "user['formvalues']['title']!=''">{{user['formvalues']['title']}}</span> <span *ngIf = "user['firstname']!=''">{{user['firstname']}}</span>  <span *ngIf = "user['lastname']!=''">{{user['lastname']}}</span></h2>
+            
+            <p *ngIf="Gender !=''">Gender</p>
+            <h2 *ngIf="Gender !=''">{{Gender}}</h2>
+            <p>Date of birth</p>
+            <h2 *ngIf="Dob !=''">{{Dob}}</h2>
+            <p *ngIf = "user['emailid']!=''">Email</p>
+            <h2 *ngIf = "user['emailid']!=''">{{user['emailid']}}</h2>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<ion-grid   *ngIf="user['usertype']!='Member'" class="background-c">
+    <ion-row>
+        <ion-col col-8>
+            <h2>Qualification Information</h2>
+        </ion-col>
+        <ion-col col-4 text-right>
+           <!-- <p>{{profile_completion_percentage[2].qualification_information}}%</p>-->
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<ion-grid  *ngIf="user['usertype']!='Member'"  class="background-f">
+    <ion-row>
+        <ion-col col-12>
+           <!-- <p  *ngIf = "user['formvalues']['eqdetails']!=''">Qualifications</p>
+            <h2  *ngIf = "user['formvalues']['eqdetails']!=''">{{user['formvalues']['eqdetails']}}</h2>-->
+            <p *ngIf = "user['formvalues']['experience']!=''">Years of Experience</p>
+            <h2 *ngIf = "user['formvalues']['experience']!=''">{{user['formvalues']['experience']}} Years</h2>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<!-- <ion-grid class="background-c" *ngIf="providerskills.length >0"> -->
+        <ion-grid   *ngIf="user['usertype']!='Member'" class="background-c">
+    <ion-row>
+        <ion-col col-12>
+            <h2>Other Skills</h2>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<ion-grid  *ngIf="user['usertype']!='Member'"  class="background-f two"> 
+    <ion-row>
+        <ion-col col-12>
+            <ul>
+                <li *ngFor="let providerskill of providerskills"  >{{providerskill}}</li>
+                <li *ngIf = "user['formvalues']['otherskills']!=''" >{{user['formvalues']['otherskills']}}</li>
+            </ul>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<ion-grid>
+    <ion-row>
+        <ion-col col-12>
+            <button  (click)="editProfile()" class="edit-profile">Edit Profile</button>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+</ion-content>

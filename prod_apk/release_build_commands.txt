@@ -1,0 +1,11 @@
+"C:\Program Files\Java\jdk1.8.0_171\bin\jarsigner" -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore wemalife-android-key.keystore app-release-unsigned.apk wemalife
+
+C:\Users\dell\AppData\Local\Android\Sdk\build-tools\27.0.3\zipalign -v 4 app-release-unsigned.apk WemaLife.apk
+
+#update by corusview
+
+ionic cordova build --release android
+
+"C:\Program Files\Java\jdk1.8.0_231\bin\jarsigner.exe" -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore wemalife-android-key.keystore app-release-unsigned.apk wemalife
+
+"C:\Users\ayushi\AppData\Local\Android\Sdk\build-tools\28.0.3\zipalign" -v 4 app-release-unsigned.apk WemaLife.apk

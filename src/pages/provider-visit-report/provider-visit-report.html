@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar class="dawn-bar">
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Visit Report</ion-title>
+      </ion-navbar>
+
+
+</ion-header>
+<ion-content>
+
+    <ion-grid class="period" >
+        <ion-row>  
+            
+            <ion-col col-8>
+              <p>Total visits for the period</p>
+              <p>{{datePeriod}}</p>
+          </ion-col>
+          <ion-col col-4>
+             <!--<button (click)="showFilterPopup()">Change</button>-->
+             <button (click)="showFilterPopup()">Change</button>
+          </ion-col>
+
+        </ion-row>
+    </ion-grid>
+  <ion-grid    *ngFor="let item of visitReports; let i = index"  class="view-report">
+    <ion-col col-12 class="date-box" >
+        <!-- <h3>{{fullMonth}},{{item1.date | date: " y"}}</h3>*ngFor="let item1 of visitReports"
+       *ngIf="item.date!=item[i-1].date"  *ngIf="i!=2" -->
+       <h3 *ngIf="i==0 " > {{item.showdateformat | date: " MMMM' y"}}</h3>
+        <h3 *ngIf="(i > 0) && item.date!=visitReports[i-1].date" > {{item.showdateformat | date: " MMMM ,y"}}</h3>
+      </ion-col>
+      <ion-row >
+          <ion-col col-3> 
+              <h6>{{item.showdateformat | date: "dd MMM"}}</h6>
+              <p>{{item.showstartdatetimeformat | date: "HH:mm a"}}</p>
+          </ion-col>
+          <ion-col col-9>
+              <div class="mine-box"> 
+                  <div class="text-box">
+                        <h3>{{item.membername}}<!-- <span>for</span> {{item.servicename}}--></h3>
+                        <p>{{item.comments}}</p>
+                  </div>
+                  <div class="button-box-two">
+                      <p *ngIf="item.city"><ion-icon name="pin"></ion-icon>{{item.city}}</p>
+                      <button (click)="viewVisitReport(item)">View report</button>
+                  </div>
+                </div>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="isReportEmpty">
+      <ion-row  >
+          No reports found
+         </ion-row >
+      </ion-grid>
+</ion-content>
+
+

@@ -1,0 +1,88 @@
+<!--
+  Generated template for the MonitoringReportPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons right>
+      <button style="color:black;background: transparent" (click)="showFilterPopup()">
+        <ion-icon ios="ios-funnel" md="ios-funnel" style="zoom: 1.5;"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Monitoring Report</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+
+    <ion-grid class="period" >
+        <ion-row>  
+            <ion-col col-12>
+                <p>Monitoring report for the period</p>
+            </ion-col>
+            <ion-col col-12>
+                <p>{{datePeriod}}</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+ 
+    
+
+    <ion-card *ngIf="!isReportEmpty">
+      <ion-grid class="custom-grid" style="background: #ebedec;padding: 5px">
+        <ion-row style="margin-top: 5px" no-padding>
+          <ion-col style="font-size: 14px;color:#797979" no-padding>
+            <b>Provider :</b>
+          </ion-col>
+          <ion-col style="font-size: 14px;color:#797979;margin-left: 5px" no-padding>{{monitoringReport?.provider}}</ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px" no-padding>
+          <ion-col style="font-size: 14px;color:#797979" no-padding>
+            <b>On Time :</b>
+          </ion-col>
+          <ion-col style="font-size: 14px;color:#797979;margin-left: 5px" no-padding>{{monitoringReport?.ontime}}</ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px" no-padding>
+          <ion-col style="font-size: 14px;color:#797979" no-padding>
+            <b>Early :</b>
+          </ion-col>
+          <ion-col style="font-size: 14px;color:#797979;margin-left: 5px" no-padding>{{monitoringReport?.early}}</ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px" no-padding>
+          <ion-col style="font-size: 14px;color:#797979" no-padding>
+            <b>Delayed :</b>
+          </ion-col>
+          <ion-col style="font-size: 14px;color:#797979;margin-left: 5px" no-padding>{{monitoringReport?.delayed}}</ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px" no-padding>
+          <ion-col style="font-size: 14px;color:#797979" no-padding>
+            <b>Missed :</b>
+          </ion-col>
+          <ion-col style="font-size: 14px;color:#797979;margin-left: 5px" no-padding>{{monitoringReport?.missed}}</ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px" no-padding>
+          <ion-col style="font-size: 14px;color:#797979" no-padding>
+            <b>Overlength :</b>
+          </ion-col>
+          <ion-col style="font-size: 14px;color:#797979;margin-left: 5px" no-padding>{{monitoringReport?.overlength}}</ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 5px" no-padding>
+          <ion-col style="font-size: 14px;color:#797979" no-padding>
+            <b>Underlength :</b>
+          </ion-col> 
+          <ion-col style="font-size: 14px;color:#797979;margin-left: 5px" no-padding>{{monitoringReport?.underlength}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+ 
+    
+  <div *ngIf="isReportEmpty" class="flex-col" style="height: 100%;" text-center>
+    No reports found
+  </div>
+</ion-content>

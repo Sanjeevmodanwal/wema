@@ -1,0 +1,213 @@
+<ion-header>
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Family and Friends</ion-title>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top class="tab-toolbar"> 
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="kittens" class="border-right">
+              <h6>User(s) whose profile I manage</h6>
+      </ion-segment-button>
+      <ion-segment-button value="puppies">
+              <h6>User(s) who manage my profile</h6> 
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <div [ngSwitch]="pet">
+       
+
+        <ion-list *ngSwitchCase="'kittens'">
+                <span *ngFor ="let friends of FriendsAndFamily">
+            <ion-item *ngIf="friends.switch==1">
+
+        <div class="profile-box-one">
+                <div  class="padding-all">
+                  <div class="top-box-text">
+                      <h6>{{friends.relationship}}</h6>
+                      <p>{{friends.switch == '1' ? 'Added by me' : 'They added me'}}</p>
+                  </div> 
+                  <div class="images-box-text">
+                      <img  *ngIf="friends.avatar==null"src="assets/imgs/wemalife-slider-img.png" alt="{{friends.firstname}} {{friends.lastname}}" />
+                      <img  *ngIf="friends.avatar!=null"src="{{friends.avatar}}" alt="{{friends.firstname}} {{friends.lastname}}"/>
+
+                      
+                  </div>
+                  <div class="icon-box-text">
+                      <ion-icon name="md-person" [style.color] = "friends.pendingstatus == '1' ? 'green' : ''" ></ion-icon>
+                  </div>
+                  <div class="text-box-text">
+                     <h4>{{friends.firstname}} {{friends.lastname}}</h4>
+                     <h6>{{friends.emailid}}</h6>
+                     <a *ngIf="friends.formvalues.mobilenumber !=''" href="mailto:{{friends.formvalues.mobilenumber}}">
+                        {{friends.formvalues.mobilenumber}}</a>
+                     <p>You manage {{friends.firstname}}’s profile <ion-icon *ngIf="friends.switch == '1'" (click)="Allow(friends)"  style="float: right;"name="md-create"></ion-icon>  </p>
+                  </div>
+                </div>
+                  <div class="bottom-box-text">
+
+                       
+                               
+                        <ion-icon [name]="friends.primarycontact=='0' ? 'ios-square-outline' : 'md-checkbox-outline'" (click)="checkbox(friends)"></ion-icon>
+
+                        <a *ngIf="friends.switch == '1'"  (click)="Allow(friends)">View Profile</a>
+                        
+                        <ion-icon (click)="deleteMemberList(friends)" name="md-trash" class="icon-trash" float-right></ion-icon>        
+                       
+                   </div>
+              </div>
+             
+
+<!--                 
+                <div class="profile-box-one">
+                    <div  class="padding-all">
+                      <div class="top-box-text">
+                          <h6>Friend</h6>
+                          <p>Added by me</p>
+                      </div> 
+                      <div class="images-box-text">
+                          <img src="assets/imgs/wemalife-slider-img.png" />
+                      </div>
+                      <div class="icon-box-text">
+                          <ion-icon name="md-person"></ion-icon>
+                      </div>
+                      <div class="text-box-text">
+                         <h4>Josh Gordon</h4>
+                         <h6>josh.gordon@example.com</h6>
+                         <a>+44 XXXX XXX XXX</a>
+                         <p>You manage Josh’s profile</p>
+                      </div>
+                    </div>
+                      <div class="bottom-box-text">
+                          <a>View Profile</a>
+                       </div>
+                  </div>
+               
+                  
+                  <div class="profile-box-one">
+                      <div  class="padding-all">
+                        <div class="top-box-text">
+                            <h6>Friend</h6>
+                            <p>Added by me</p>
+                        </div> 
+                        <div class="images-box-text">
+                            <img src="assets/imgs/wemalife-slider-img.png" />
+                        </div>
+                        <div class="icon-box-text">
+                            <ion-icon name="md-person"></ion-icon>
+                        </div>
+                        <div class="text-box-text">
+                           <h4>Josh Gordon</h4>
+                           <h6>josh.gordon@example.com</h6>
+                           <a>+44 XXXX XXX XXX</a>
+                           <p>You manage Josh’s profile</p>
+                        </div>
+                      </div>
+                        <div class="bottom-box-text">
+                            <a>View Profile</a>
+                         </div>
+                    </div>
+               
+                    <div class="profile-box-one">
+                        <div  class="padding-all">
+                          <div class="top-box-text">
+                              <h6>Friend</h6>
+                              <p>Added by me</p>
+                          </div> 
+                          <div class="images-box-text">
+                              <img src="assets/imgs/wemalife-slider-img.png" />
+                          </div>
+                          <div class="icon-box-text">
+                              <ion-icon name="md-person"></ion-icon>
+                          </div>
+                          <div class="text-box-text">
+                             <h4>Josh Gordon</h4>
+                             <h6>josh.gordon@example.com</h6>
+                             <a>+44 XXXX XXX XXX</a>
+                             <p>You manage Josh’s profile</p>
+                          </div>
+                        </div>
+                          <div class="bottom-box-text">
+                              <a>View Profile</a>
+                           </div>
+                      </div> -->
+                     
+            </ion-item>
+           
+        </span>
+        </ion-list>
+
+
+        <ion-list *ngSwitchCase="'puppies'">
+            <span   *ngFor ="let friends of FriendsAndFamily ; let i = index"  >
+                <ion-item   *ngIf="friends.switch!=1">
+           
+
+                    <div class="profile-box-one">
+                            <div  class="padding-all">
+                              <div class="top-box-text">
+                                  <!--<h6>{{friends.relationship}}</h6>-->
+                                  <p>{{friends.switch == '1' ? 'Added by me' : 'They added me'}}</p>
+                              </div> 
+                              <div class="images-box-text">
+                                    <img  *ngIf="friends.avatar==null"src="assets/imgs/wemalife-slider-img.png" alt="{{friends.firstname}} {{friends.lastname}}" />
+                                    <img  *ngIf="friends.avatar!=null"src="{{friends.avatar}}" alt="{{friends.firstname}} {{friends.lastname}}"/>
+                              </div>
+                              <div class="icon-box-text">
+                                  <ion-icon name="md-person"  [style.color] = "friends.pendingstatus == '1' ? 'green' : ''"  ></ion-icon>
+                              </div>
+                              <div class="text-box-text">
+                                 <h4>{{friends.firstname}} {{friends.lastname}}</h4>
+                                 <h6>{{friends.emailid}}</h6>
+                                 <a *ngIf="friends.formvalues.mobilenumber !=''" href ="tel:{{friends.formvalues.mobilenumber}}">{{friends.formvalues.mobilenumber}}</a>
+                                 <p><!--You manage Josh’s profile--></p>
+                              </div>
+                            </div>
+                              <div class="bottom-box-text">
+                                   
+                             
+                                    <a *ngIf="friends.switch == '1'"  (click)="Allow(friends)">View Profile</a>
+                                    <ion-icon [name]="friends.primarycontact=='0' ? 'ios-square-outline' : 'md-checkbox-outline'" (click)="checkbox(friends)"></ion-icon>
+                                    <ion-icon (click)="deleteMemberList(friends)" name="md-trash" class="icon-trash" float-right></ion-icon>    
+                               </div>
+                          </div>
+
+                         
+         
+            
+           
+ 
+           
+    
+            </ion-item>  
+           
+         </span>
+          </ion-list>
+
+
+
+    </div> 
+    
+
+    <!-- <div class="botton-icon">
+        <ion-icon (click)="addnewMembers()" name="md-add"></ion-icon>
+    </div> -->
+
+   
+    <ion-fab bottom right>
+        <button (click)="registerFriends()" ion-fab fab-fixed class="botton-icon" style="margin: 0px 0px 0px 0px">
+        <ion-icon  name="md-add" ></ion-icon>
+      </button>
+
+       
+    </ion-fab>
+
+</ion-content>

@@ -1,0 +1,992 @@
+<!-- Generated template for the AppointmentsPage page. See http://ionicframework.com/docs/components/#navigation for more info
+on Ionic pages and navigation. -->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{monthHeader}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- <div style="background: #08a79d;">
+    <scroll-tabs id="appointment_tab" #scrollTab [tabs]="tabs" (onSelectedTab)="tabChange($event)"></scroll-tabs>
+  </div>
+  <div [ngSwitch]="selectedTab">
+    <div *ngFor="let tab of tabs; let i = index">
+      <div class="content-wrapper" *ngSwitchCase="tabs[i]"> -->
+  <!-- Day Tab
+        <div style="background-color: #ededed;width: 100%" [ngStyle]="i==0 ? {'display': 'inline-block'} : {'display': 'none'}">
+          <ion-row style="padding: 3px">
+            <ion-col col-3 class="flex-col" (click)="goToPrevDay()">
+              <ion-icon name="ios-arrow-back-outline" style="float: right;zoom: 1.5"></ion-icon>
+            </ion-col>
+            <ion-col col-6 class="flex-col">{{currentNavigatedDateDay | date:"fullDate"}}</ion-col>
+            <ion-col col-3 class="flex-col" (click)="goToNextDay()">
+              <ion-icon name="ios-arrow-forward-outline" style="float: left;zoom: 1.5"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <div style="background-color: #fefefe">
+            <ion-grid class="custom-grid">
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>6:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App60" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App630" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>7:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App70" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App730" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>8:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App80" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App830" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>9:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App90" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App930" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>10:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App10" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App1030" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>11:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App110" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App1130" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>12:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App120" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App1230" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>1:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App130" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App1330" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>2:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App140" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App1430" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>3:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App150" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App1530" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>4:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App160" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App1630" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>5:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App170" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App1730" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>6:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App180" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App1830" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>7:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App190" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App1930" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>8:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App200" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App2030" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid gray;border-bottom: 1px solid #ededed" no-padding>9:00</ion-col>
+                <ion-col col-10 no-padding style="height: 60px">
+                  <div id="App210" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                  <div id="App2130" class="dayDiv" style="height: 30px;border-bottom: 1px solid #ededed"></div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+        <!--Week Tab-->
+  <!-- <div style="background-color: #ededed;width: 100%" [ngStyle]="i==1 ? {'display': 'inline-block'} : {'display': 'none'}">
+          <ion-row style="padding: 3px">
+            <ion-col col-3 class="flex-col" (click)="goToPrevWeek()">
+              <ion-icon name="ios-arrow-back-outline" style="float: right;zoom: 1.5"></ion-icon>
+            </ion-col>
+            <ion-col col-6 class="flex-col">{{weekHeader}}</ion-col>
+            <ion-col col-3 class="flex-col" (click)="goToNextWeek()">
+              <ion-icon name="ios-arrow-forward-outline" style="float: left;zoom: 1.5"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <div style="background-color: #fefefe">
+            <ion-grid class="custom-grid1">
+              <ion-row>
+                <ion-col class="flex-col" col-2 style="border-right: 1px solid #ededed;" no-padding></ion-col>
+                <ion-col style="border-right: 1px solid#ededed;color: #3B6476;" no-padding>Mon
+                  <br/>
+                  <p style="color: #696969">{{weekDates?weekDates['0']:''}}</p>
+                </ion-col>
+                <ion-col style="border-right: 1px solid #ededed;color: #3B6476;" no-padding>Tue
+                  <br/>
+                  <p style="color: #696969">{{weekDates?weekDates['1']:''}}</p>
+                </ion-col>
+                <ion-col style="border-right: 1px solid #ededed; color: #3B6476" no-padding>Wed
+                  <br/>
+                  <p style="color: #696969">{{weekDates?weekDates['2']:''}}</p>
+                </ion-col>
+                <ion-col style="border-right: 1px solid #ededed;color: #3B6476" no-padding>Thu
+                  <br/>
+                  <p style="color: #696969">{{weekDates?weekDates['3']:''}}</p>
+                </ion-col>
+                <ion-col style="border-right: 1px solid #ededed; color: #3B6476" no-padding>Fri
+                  <br/>
+                  <p style="color: #696969">{{weekDates?weekDates['4']:''}}</p>
+                </ion-col>
+                <ion-col style="border-right: 1px solid #ededed; color: #3B6476;" no-padding>Sat
+                  <br/>
+                  <p style="color: #696969">{{weekDates?weekDates['5']:''}}</p>
+                </ion-col>
+                <ion-col style="border-right: 1px solid #ededed; color: #3B6476" no-padding>Sun
+                  <br/>
+                  <p style="color: #696969">{{weekDates?weekDates['6']:''}}</p>
+                </ion-col>
+              </ion-row>
+              <div style="border-bottom: 1px solid #ededed"></div>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>6.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App601" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App6301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App602" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App6302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App603" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App6303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App604" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App6304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App605" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App6305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App606" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App6306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App600" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App6300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>7.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App701" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App7301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App702" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App7302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App703" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App7303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App704" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App7304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App705" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App7305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App706" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App7306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App700" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App7300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>8.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App801" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App8301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App802" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App8302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App803" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App8303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App804" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App8304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App805" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App8305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App806" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App8306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App800" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App8300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>9.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App901" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App9301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App902" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App9302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App903" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App9303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App904" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App9304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App905" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App9305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App906" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App9306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed" (click)="Appointment('9_30')"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App900" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App9300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>10.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1001" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App10301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1002" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App10302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1003" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App10303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1004" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App10304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1005" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App10305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1006" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App10306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1000" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App10300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>11.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;border-bottom: 1px  solid #ededed" no-padding>
+                  <div id="App1101" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App11301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1102" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App11302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1103" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App11303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1104" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App11304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1105" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App11305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1106" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App11306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1100" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App11300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>12.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1201" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App12301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1202" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App12302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1203" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App12303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1204" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App12304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1205" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App12305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1206" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App12306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1200" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App12300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>1.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;border-bottom: 1px  solid #ededed" no-padding>
+                  <div id="App1301" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App13301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App13302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App13303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App13304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App13305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App13306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App13300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>2.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1401" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App14301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1402" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App14302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1403" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App14303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1404" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App14304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1405" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App14305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1406" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App14306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1400" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App14300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>3.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1501" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App15301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1502" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App15302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1503" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App15303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1504" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App15304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1505" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App15305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1506" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App15306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1500" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App15300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>4.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1601" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App16301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1602" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App16302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1603" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App16303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1604" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App16304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1605" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App16305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1606" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App16306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1600" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App16300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>5.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1701" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App17301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1702" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App17302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1703" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App17303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1704" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App17304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1705" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App17305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1706" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App17306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1700" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App17300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>6.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1801" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App18301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1802" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App18302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1803" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App18303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1804" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App18304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1805" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App18305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1806" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App18306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;border-bottom: 1px  solid #ededed" no-padding>
+                  <div id="App1800" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App18300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>7.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1901" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App19301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1902" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App19302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1903" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App19303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1904" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App19304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1905" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App19305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1906" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App19306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App1900" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App19300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>8.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2001" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App20301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2002" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App20302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2003" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App20303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2004" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App20304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2005" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App20305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2006" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App20306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2000" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App20300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-2 style="border-right: 1px solid  #ededed;border-bottom:1px solid  #ededed" no-padding>9.00</ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2101" class="weekDiv" style="height: 30px;border-bottom: 1px  solid #ededed"></div>
+                  <div id="App21301" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2102" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App21302" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2103" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App21303" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2104" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App21304" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2105" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App21305" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2106" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App21306" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+                <ion-col style="border-right: 1px solid  #ededed;" no-padding>
+                  <div id="App2100" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                  <div id="App21300" class="weekDiv" style="height: 30px;border-bottom: 1px solid  #ededed"></div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div> -->
+  <!--Month Tab-->
+  <div id="monthView" style="background-color: #ededed;width: 100%">
+    <!-- <ion-row style="padding: 3px;">
+            <ion-col col-3 class="flex-col" (click)="goToPrevMonth()">
+              <ion-icon name="ios-arrow-back-outline" style="float: right;zoom: 1.5"></ion-icon>
+            </ion-col>
+            <ion-col col-6 class="flex-col">{{monthHeader}}</ion-col>
+            <ion-col col-3 class="flex-col" (click)="goToNextMonth()">
+              <ion-icon name="ios-arrow-forward-outline" style="float: left;zoom: 1.5"></ion-icon>
+            </ion-col>
+          </ion-row> -->
+    <div style="background-color: #fefefe;height: 100%">
+      <ion-grid class="custom-grid">
+        <ion-row>
+          <ion-col
+            class="flex-col"
+            style=" color: #3B6476;height: 30px;"
+            no-padding
+          >
+            S
+          </ion-col>
+          <ion-col
+            class="flex-col"
+            style="color: #3B6476;height: 30px;"
+            no-padding
+          >
+            M
+          </ion-col>
+          <ion-col
+            class="flex-col"
+            style="color: #3B6476;height: 30px;"
+            no-padding
+          >
+            T
+          </ion-col>
+          <ion-col
+            class="flex-col"
+            style=" color: #3B6476;height: 30px;"
+            no-padding
+          >
+            W
+          </ion-col>
+          <ion-col
+            class="flex-col"
+            style="color: #3B6476;height: 30px;"
+            no-padding
+          >
+            T
+          </ion-col>
+          <ion-col
+            class="flex-col"
+            style=" color: #3B6476;height: 30px;"
+            no-padding
+          >
+            F
+          </ion-col>
+          <ion-col
+            class="flex-col"
+            style="color: #3B6476;height: 30px;"
+            no-padding
+          >
+            S
+          </ion-col>
+        </ion-row>
+        <div style="background-color: #fefefe">
+          <ion-row>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App01" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App02" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App03" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App04" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App05" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App06" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App07" class="monthDiv"></div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App11" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App12" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App13" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App14" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App15" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App16" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App17" class="monthDiv"></div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App21" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App22" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App23" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App24" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App25" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App26" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App27" class="monthDiv"></div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App31" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App32" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App33" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App34" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App35" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App36" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App37" class="monthDiv"></div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App41" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App42" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App43" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App44" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App45" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App46" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App47" class="monthDiv"></div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App51" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App52" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App53" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App54" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App55" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App56" class="monthDiv"></div>
+            </ion-col>
+            <ion-col style="min-height: 60px;width: 14.28%" no-padding>
+              <div id="App57" class="monthDiv"></div>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-grid>
+    </div>
+    <!-- </div>
+      </div>
+    </div> -->
+  </div>
+  <ion-grid class="appintments-date" *ngIf="!isUpcominAppointmentsEmpty">
+    <ion-row>
+      <ion-col col-12 class="appintments-heading">
+        <!-- <h2>Appointment</h2>-->
+        <p>Upcoming Appointments</p>
+      </ion-col>
+    </ion-row>
+    <span *ngFor="let deatail of monthAppointments">
+      <ion-row
+        *ngIf="deatail.missed !=true && deatail.status==1 "
+        class="appintments-box"
+      >
+        <ion-col col-3 class="col-3-text">
+          <span>
+            <h2>{{deatail.start | date:' d '}}</h2>
+            <p>{{monthHeader}}</p>
+          </span>
+        </ion-col>
+        <ion-col col-9 class="col-9-text">
+          <h3 *ngIf="appstate.UserCred.usertype!='Provider' ">
+            {{deatail.providerdetails.firstname}}
+          </h3>
+          <h3 *ngIf="appstate.UserCred.usertype=='Provider'">
+            {{deatail.memberdetails.firstname}}
+            {{deatail.memberdetails.lastname}}
+          </h3>
+          <h5 *ngIf="appstate.UserCred.usertype=='Provider' ">
+            <ion-icon name="md-time"></ion-icon> {{deatail.start | date : 'h:mm
+            a'}}
+          </h5>
+          <p>
+            <ion-icon name="ios-pin"></ion-icon>
+            {{deatail.providerdetails.city}}
+          </p>
+          <!-- <button  *ngIf="deatail.status==1" (click)="checkIn(deatail)" class="box" >check in </button> -->
+        </ion-col>
+      </ion-row>
+    </span>
+  </ion-grid>
+  <!-- <ion-grid class="appintments-date">
+        <ion-row>
+            <ion-col col-12 class="appintments-heading"> 
+               <h2>Appointment</h2>
+               <p>Today Appointment</p>
+            </ion-col>
+        </ion-row>
+        <ion-row  *ngFor ="let deatail of Appointments" class="appintments-box">
+            <ion-col col-3 class="col-3-text"> 
+              <span>
+                <h2>{{deatail.start | date:'d  '}}</h2>
+                <p>{{deatail.start | date:'  MMMM  '}}</p>
+               </span>
+            </ion-col>
+            <ion-col  (click)="checkIn(deatail)" col-9 class="col-9-text"> 
+                <h3>{{deatail.membername}} for {{deatail.service}}</h3>
+                <h5> <ion-icon name="md-time"></ion-icon> {{deatail.formattedStart}}</h5>
+                <p><ion-icon name="ios-pin"></ion-icon> {{deatail.categoryname}}</p>
+                <button   class="box" >{{deatail.checkInText}}</button>
+             </ion-col>
+        </ion-row>
+      </ion-grid> -->
+  <ion-grid class="appintments-date" *ngIf="!isDoneAppointmentsEmpty">
+    <ion-row>
+      <ion-col col-12 class="appintments-heading">
+        <p>Appointments Done</p>
+      </ion-col>
+    </ion-row>
+    <span *ngFor="let deatail of monthAppointments">
+      <ion-row *ngIf="deatail.status==5" class="appintments-box">
+        <ion-col col-3 class="col-3-text">
+          <span>
+            <h2>{{deatail.start | date:' d '}}</h2>
+            <p>{{monthHeader}}</p>
+          </span>
+        </ion-col>
+        <ion-col col-9 class="col-9-text1 class_1578388491313">
+          <h3 *ngIf="appstate.UserCred.usertype!='Provider' ">
+            {{deatail.providerdetails.firstname}}
+          </h3>
+          <h3 *ngIf="appstate.UserCred.usertype=='Provider'">
+            {{deatail.memberdetails.firstname}}
+            {{deatail.memberdetails.lastname}}
+          </h3>
+          <h5 *ngIf="appstate.UserCred.usertype=='Provider' ">
+            <ion-icon name="md-time"></ion-icon> {{deatail.start | date : 'h:mm
+            a'}}
+          </h5>
+          <p>
+            <ion-icon name="ios-pin"></ion-icon>
+            {{deatail.providerdetails.city}}
+          </p>
+        </ion-col>
+      </ion-row>
+    </span>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-header >
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Compose Email</ion-title>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+     <ion-col col-12>
+       
+            <ion-col no-padding style="display:none;">
+              <ion-input disabled="true" [(ngModel)]="data.sender" no-padding style="border-bottom: 1px solid #ededed"></ion-input>
+            </ion-col>
+           <!-- <div class="cc-bcc">
+                <span>CC</span>
+                <span>BCC</span>
+            </div>-->
+            <ion-item>
+              <ion-label block>To</ion-label>
+              <ion-input placeholder="John.gates@example.com" (input)="searchEmail()" [(ngModel)]="data.receiver"></ion-input>
+            </ion-item>
+            <ion-row>
+              <ion-col col-12>
+                <div *ngIf="isVisible">
+                  <div *ngFor="let item of emails" (click)="onSelectedItem(item)" style="background: #ededed;padding: 5px">{{item.emailid}}</div>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-item>
+              <ion-label block>Subject</ion-label>
+              <ion-input placeholder="Enter Subject" [(ngModel)]="data.subject" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label block>Compose Email</ion-label>
+              <ion-textarea placeholder="Compose Email" [(ngModel)]="data.message"></ion-textarea>
+            </ion-item>
+      
+    </ion-col>
+
+    <ion-col col-12 class="button-box-send">
+        <button class="button-send" (click)="sendEmail()">Send</button>
+        <button class="button-reset" (click)="composeEmail()">Reset</button>
+    </ion-col>
+</ion-grid>
+</ion-content>

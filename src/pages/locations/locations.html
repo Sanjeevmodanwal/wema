@@ -1,0 +1,52 @@
+<ion-header no-border>
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Locations</ion-title>
+      <span>{{LocationInfo.companyname}}, Kidderminster</span>
+    </ion-navbar>
+
+
+    <ion-toolbar no-border-top class="tab-toolbar"> 
+        <ion-segment  (ionChange)="onSegmentChange()" [(ngModel)]="pet">
+          <ion-segment-button  (click)=" list_page()" value="puppies">
+                  <p><ion-icon name="ios-list-outline"></ion-icon></p>
+                  <h6>List View</h6> 
+          </ion-segment-button>
+          <ion-segment-button  (click)="in_Map()" value="kittens" class="border-right">
+            <p><ion-icon name="ios-map-outline"></ion-icon></p>
+            <h6>Map View</h6>
+    </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+
+  </ion-header>
+<br/>
+
+ <ion-content>
+      <div [ngSwitch]="pet">
+        <ion-list *ngSwitchCase="'puppies'">
+          <ion-item>
+              <ion-row class="care-row">
+                  <ion-col col-7 class="text-white-space">
+                      <h3>{{LocationInfo.companyname}}</h3>
+                      <p>{{LocationInfo.address}},{{LocationInfo.address2}},{{LocationInfo.postalcode}}</p>
+                  </ion-col>
+                  <ion-col col-5 text-right>
+                      <span (click)="getDir()">
+                          <ion-icon name="ios-send"></ion-icon> Get Directions
+                      </span>
+                  </ion-col>
+              </ion-row>
+          </ion-item>
+
+        </ion-list>
+    
+        <ion-list *ngSwitchCase="'kittens'">
+          <ion-item >
+                <div #map id="map"></div> 
+          </ion-item>
+        </ion-list>
+      </div>
+</ion-content>

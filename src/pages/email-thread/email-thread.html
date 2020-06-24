@@ -1,0 +1,69 @@
+<!--
+  Generated template for the EmailThreadPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Email</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <div *ngFor="let item of items">
+    <button detail-none (click)="expandItem(item)" ion-item no-lines no-padding>
+        <div style="border-left: 3px solid #6bc9f2;margin-top:10px;padding-left: 5px;padding-right:5px ">
+            <ion-grid class="custom-grid" no-padding>
+              <ion-row no-padding>
+                <ion-col style="padding-left: 5px">
+                  <ion-row style="margin-top:2px">
+                    <ion-col no-padding>
+                      <label style="color:gray">
+                        <b>{{item.sender}}</b>
+                      </label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="margin-top:2px">
+                    <ion-col no-padding>
+                      <label style="color:#13a89e">
+                          {{item.subject}}
+                      </label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="margin-top:2px">
+                    <ion-col  col-6 no-padding>
+                      <label class="one-line-label" style="color:gray;"  text-wrap>
+                          {{item.message}}
+                      </label>
+                    </ion-col>
+                    <ion-col col-6 align="right" no-padding>
+                      <label class="date-reply">
+                          {{item.datetime}}
+                      </label>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+          <hr>
+    <!--<expandable [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
+      <div style="margin-left:20px">{{item.message}}</div>
+    </expandable>-->
+  </button>
+  </div>
+  </ion-list>
+  <ion-item no-lines>
+    <ion-icon name="ios-undo"></ion-icon>
+    <b>Reply</b>
+  </ion-item>
+  <div style="margin-left:5px;margin-right:5px">
+      <textarea [(ngModel)]="message" placeholder="Compose Email" class="form-control form-rounded" rows="5"></textarea>
+  </div>
+  <button ion-button (click)="reply()" class="custom-button" style="margin-left:5px;">Send</button>
+</ion-content>

@@ -1,0 +1,107 @@
+page-member-checkin-scuccess {
+    .dawn-bar span {
+        padding: 0px 12px;
+        display: block;
+        font-family: 'Muli', sans-serif;
+        color: #878787;
+    }
+    .dawn-bar span b{
+        color: #3d3d3d;
+    }
+    .scroll-content {
+        background: #f7f8f9;
+    }
+    .toolbar-background {
+        border-color: #ffffff;
+        background: #ffffff;
+    }
+    ion-grid.grid {
+        padding: 14px 10px;
+        background: #fff;
+        border-top: 1px solid #e2e2e3;
+        border-bottom: 1px solid #e2e2e3;
+        margin-top: 10px;
+    }
+    ion-row.success-box.row p{
+        font-family: 'Muli', sans-serif;
+        color: #000;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0px;
+    }
+    ion-row.success-box.row{
+        text-align: center;
+    }
+    ion-row.success-box.row ion-icon{
+        color: #13a89e;
+        font-size: 100px;
+    }
+    ion-row.barcode-box.row p{
+        font-family: 'Muli', sans-serif;
+        color: #000;
+        font-weight: 400;
+        font-size: 16px;
+        margin: 0px;
+        margin-top: 8px;
+    }
+    ion-row.barcode-box.row {
+        text-align: center;
+    }
+    ion-row.barcode-box.row img{
+       width: 250px;
+    }
+    ion-row.detail-box.row h3{
+        font-family: 'Muli', sans-serif;
+        color: #000;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0px;
+        width: 130px;
+        display: inline-block;
+    }
+    ion-row.detail-box.row p{
+        font-family: 'Muli', sans-serif;
+        color: #8f8f8f;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0px;
+        width: 50%;
+        display: inline-block;
+    }
+    .text-box{
+        margin-bottom: 14px;
+    }
+    ion-row.service-started-box.row h3{
+        font-family: 'Muli', sans-serif;
+        color: #000;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0px;
+        width: 130px;
+        display: inline-block;
+    }
+    ion-row.service-started-box.row p{
+        font-family: 'Muli', sans-serif;
+        color: #8f8f8f;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0px;
+        width: 50%;
+        display: inline-block;
+    }
+    button.done-button {
+        width: 100%;
+        padding: 12px;
+        font-family: 'Muli', sans-serif;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 16px;
+        background: #faa615;
+    }
+    ion-row.detail-box.row .text-box:last-child {
+        margin-bottom: 0px;
+    }
+    ion-row.service-started-box.row .text-box:last-child {
+        margin-bottom: 0px;
+    }
+}

@@ -1,0 +1,59 @@
+<!--
+  Generated template for the DistanceReportPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar class="dawn-bar">
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Distance Travelled</ion-title>
+      </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+
+    <ion-grid class="period" >
+        <ion-row> 
+            <ion-col col-8>
+                <p>Total distance travelled for the period</p>
+                <h6> {{datePeriod}} </h6>
+            </ion-col>
+            <ion-col col-4>
+               <button (click)="showFilterPopup()">Change</button>
+            </ion-col>
+
+            
+        </ion-row>
+    </ion-grid>
+
+
+  <div *ngIf="!isReportEmpty">
+    
+    <ion-card style="background-color: #f5f5f5">
+      <ion-row>
+        <ion-col col-6 class="flex-col" style="font-weight: bolder;font-size: 11px; color: #08a79d;">Date</ion-col>
+        <ion-col col-6 class="flex-col" style="font-weight: bolder;font-size: 11px;color: #08a79d;">Total Mileage</ion-col>
+      </ion-row>
+    </ion-card>
+
+    <div *ngFor="let item of distanceReports" style="margin-top: 5px">
+      <ion-grid class="custom-grid">
+        <ion-row no-padding>
+          <ion-col col-6 class="flex-col" style="font-size: 10px;color:#727271" no-padding>{{item.date}}</ion-col>
+          <ion-col col-6 class="flex-col" style="font-size: 10px;color:#727271" no-padding>{{item.mileage}}</ion-col>
+        </ion-row>
+      </ion-grid>
+      <hr>
+    </div>
+  </div>
+ 
+  <ion-grid *ngIf="isReportEmpty">
+      <ion-row  >
+          No reports found
+         </ion-row >
+      </ion-grid>
+</ion-content>

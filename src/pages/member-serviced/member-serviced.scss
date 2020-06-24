@@ -1,0 +1,150 @@
+page-member-serviced {
+    .scroll-content{
+        background: #eeeeee;
+    }
+    ion-grid.period.grid {
+        background: #31b3aa;
+        margin: 10px 0px;
+        padding: 14px 0px;
+    }
+    ion-grid.period.grid p{
+       margin: 0px;
+       color: #ffffff;
+       font-size: 14px;
+       font-weight: 400;
+       font-family: 'Muli', sans-serif;
+       padding-bottom: 3px;
+    }
+    ion-grid.period.grid h6{
+        margin: 0px;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 700;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-grid.period.grid h6 span{
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-grid.period.grid button{
+        background: transparent;
+        border: 1px solid #fff;
+        padding: 10px 14px;
+        color: #ffffff;
+        font-family: 'Muli', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        position: absolute;
+        top: 50%;
+        right: 0%;
+        transform: translate(-20%, -50%);
+    }
+    ion-grid.date-box-deta.grid {
+        background: #fff;
+        padding: 4px 0px 0px;
+        width: 100%;
+        overflow-x: scroll;
+    }
+    ion-row.overflow.row {
+        overflow: hidden;
+        width: 200% !important;
+    }
+    ion-grid.date-box-deta.grid h3{
+        margin: 0px;
+        color: #000000;
+        font-size: 14px;
+        font-weight: 700;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-grid.date-box-deta.grid p{
+        margin: 0px;
+        color: #000000;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-grid.date-box-deta.grid h4{
+        margin: 0px;
+        color: #000000;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-grid.date-box-deta.grid > .row > .row{
+       border-bottom: 1px solid #ededed;
+       padding: 10px 0px;
+       width: 100%;
+    }
+   
+    
+    
+    ion-grid.total-earning.grid {
+        background: #fff;
+        padding: 20px 5px 10px;
+    }
+    ion-row.total-earning-up.row p{
+        font-size: 14px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+        padding: 5px 0px 10px;
+        color: #282828;
+        opacity: 0.8;
+        margin: 0px;
+    }
+    ion-row.total-earning-up.row h3{
+        font-size: 16px;
+        font-family: 'Muli', sans-serif;
+        font-weight: bold;
+        color: #282828;
+        margin: 0px;
+    }
+
+    ion-row.total-amunt.row p{
+        font-size: 14px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+        color: #000000;
+        margin: 0px;
+    }
+    ion-row.total-amunt.row h6{
+        font-size: 20px;
+        font-family: 'Muli', sans-serif;
+        font-weight: bold;
+        color: #13a89e;
+        margin: 0px;
+    }
+    ion-row.total-amunt.row h6 span{
+        font-size: 12px;
+    }
+
+    .ion-md-download, .ion-ios-download{
+        color: #13a89e;
+    }
+    .ion-md-checkmark, .ion-ios-checkmark{
+        color: #13a89e;
+    }
+    .ion-ios-more{
+        color: #fcb913;
+    }
+    .not-pay button{
+        background: #31b3aa;
+        padding: 14px 24px;
+        font-family: 'Muli', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #fff;
+        margin: 14px 0px 50px;
+    } 
+    .deta-row { padding: 10px 0px;}
+
+    @media screen and (max-width: 100000px) and (min-width: 480px){
+        h4.add{
+            padding-top: 10px !important;
+        }
+        ion-row.overflow.row {
+            overflow: hidden;
+            width: 150% !important;
+        }
+    }
+}

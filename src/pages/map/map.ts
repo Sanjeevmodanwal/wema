@@ -1,0 +1,251 @@
+import { Component, ElementRef, ViewChild } from "@angular/core";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  LoadingController
+} from "ionic-angular";
+//import { AppState } from '../../AppStates';
+declare var google;
+import { ApiProvider } from "../../providers/api/api";
+import { AppConst } from "../../AppConst";
+import { AppState } from "../../AppStates";
+import { DatePipe } from "@angular/common";
+/**
+ * Generated class for the MapPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+@IonicPage()
+@Component({
+  selector: "page-map",
+  templateUrl: "map.html"
+})
+export class MapPage {
+  @ViewChild("map") mapElement: ElementRef;
+  map: any;
+  companies: any;
+  filteredCompanies: any;
+  ServicesId: any;
+  Servicesname: any;
+  companyimage: any;
+  marker = [];
+  Lat: any;
+  Lng: any;
+  Date: any;
+  date = new Date().toISOString();
+  Time: any;
+  Postcode: any;
+  Sortedby: any;
+  avaliability: any;
+  loading: any;
+  selecteddate: any;
+  todayDate: any;
+  providertype: any;
+  constructor(
+    public navCtrl: NavController,
+    private loadingCtrl: LoadingController,
+    private datePipe: DatePipe,
+    private apiProvider: ApiProvider,
+    public navParams: NavParams
+  ) {
+    // console.log("in navparms", navParams.data);
+    if (navParams.data.rutValue.serviceid == undefined) {
+      // console.log("in undifined");
+      this.ServicesId = navParams.data.rutValue["Services"].serviceid;
+      this.Servicesname = navParams.data.rutValue["Services"].servicename;
+      this.Lat = navParams.data.rutValue["location"].lat;
+      this.Lng = navParams.data.rutValue["location"].lng;
+      if (navParams.data.rutValue["Time"] != undefined) {
+        this.Date = navParams.data.rutValue["Time"].Date;
+        this.Time = navParams.data.rutValue["Time"].Time;
+      }
+      this.Postcode = navParams.data.rutValue["location"].postcode;
+      // this.ServicesId=navParams.data['Services'].serviceid
+      //  console.log(this.ServicesId)
+    } else {
+      this.Servicesname = navParams.data.rutValue.servicename;
+      this.Lat = navParams.data.rutValue.lat;
+      this.providertype = navParams.data.rutValue.providertype;
+      this.Lng = navParams.data.rutValue.lng;
+      this.avaliability = navParams.data.avaliability;
+      this.avaliability = navParams.data.avaliability;
+      if (this.avaliability == "All") {
+        this.avaliability = "";
+      } else if (this.avaliability == "In Home") {
+        this.avaliability = "0";
+      } else if (this.avaliability == "In Clinic") {
+        this.avaliability = "1";
+      } else {
+        this.avaliability = "";
+      }
+      this.selecteddate = navParams.data.rutValue.days;
+      this.ServicesId = navParams.data.rutValue.serviceid;
+      this.Sortedby = navParams.data.rutValue.Sort;
+    }
+  }
+  ionViewDidLoad() {
+    this.loadMap();
+    //this.addMarker(this.);
+    //this.addMarker2()
+    this.getCompanies();
+    //this.GetMarkerData()
+    // console.log("ionViewDidLoad map");
+  }
+  loadMap() {
+    let latLng = new google.maps.LatLng(
+      AppState.Location.latitude,
+      AppState.Location.longitude
+    );
+    let mapOptions = {
+      center: latLng,
+      zoom: 7,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  }
+  addMarker(lat: any, lng: any, companyinfo: any, Servicesname: any) {
+    var prev_infowindow = false;
+    this.marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: new google.maps.LatLng(lat, lng)
+    });
+    if (companyinfo.complogo == null && companyinfo.complogo == "") {
+      this.companyimage = AppConst.WEMA_DEV_ROOT + "images/company.jpg";
+      // console.log("in fi condition", this.companyimage);
+    } else if (companyinfo.complogo != null && companyinfo.complogo != "") {
+      this.companyimage = companyinfo.complogo;
+    }
+    let content =
+      '<div (click)="Infopage()" class="box-mapview-listing"><img   style="width:80px;height: 61.75px;" src=' +
+      this.companyimage +
+      "><h6>" +
+      companyinfo.filtername +
+      '</h6><p><i class="fa fa-map-marker" aria-hidden="true"></i> ' +
+      companyinfo.city +
+      "</p>" +
+      Servicesname +
+      "</div>";
+    //let content=companyinfo.filtername  "http://wema-3.eu-west-2.elasticbeanstalk.com/images/company.jpg"
+    this.addInfoWindow(this.marker, content);
+    return this.marker;
+  }
+  addInfoWindow(marker, content) {
+    var infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
+    var prev_infowindow = false;
+    google.maps.event.addListener(marker, "click", function() {
+      infoWindow.open(content, marker);
+      if (prev_infowindow) {
+      }
+      // this.closemarker()
+    });
+    // google.maps.event.addListener(marker, 'click', () => {
+    //  // infoWindow.open(this.map, marker);
+    //    if( prev_infowindow ) {
+    //        prev_infowindow.close();
+    //     }
+    //     prev_infowindow = infoWindow;
+    //     infoWindow.open(this.map, marker);
+    // });
+  }
+  async getCompanies() {
+    this.todayDate = this.datePipe.transform(new Date(), "yyyy-MM-dd");
+    let filters = [];
+    filters.push({
+      fieldname: "serviceid",
+      fieldvalue: this.ServicesId,
+      operators: "Equal"
+    });
+    filters.push({
+      fieldname: "date",
+      fieldvalue: this.date,
+      operators: "Equal"
+    });
+    filters.push({ fieldname: "time", fieldvalue: "", operators: "Equal" });
+    filters.push({ fieldname: "duration", fieldvalue: "", operators: "Equal" });
+    filters.push({ fieldname: "postcode", fieldvalue: "", operators: "Equal" });
+    filters.push({
+      fieldname: "country",
+      fieldvalue: AppState.CountryCode,
+      operators: "Equal"
+    });
+    filters.push({
+      fieldname: "companytype",
+      fieldvalue: this.providertype,
+      operators: "Equal"
+    });
+    filters.push({
+      fieldname: "companyid",
+      fieldvalue: "",
+      operators: "Equal"
+    });
+    filters.push({ fieldname: "idtype", fieldvalue: "", operators: "Equal" });
+    filters.push({
+      fieldname: "home_clinic",
+      fieldvalue: this.avaliability,
+      operators: "Equal"
+    });
+    filters.push({ fieldname: "ratings", fieldvalue: "", operators: "Equal" });
+    filters.push({ fieldname: "city", fieldvalue: "", operators: "Equal" });
+    filters.push({
+      fieldname: "post_code",
+      fieldvalue: "",
+      operators: "Equal"
+    });
+    filters.push({
+      fieldname: "latitude",
+      fieldvalue: this.Lat,
+      operators: "Equal"
+    });
+    filters.push({
+      fieldname: "longitude",
+      fieldvalue: this.Lng,
+      operators: "Equal"
+    });
+    var request = {
+      auth: false,
+      filter: filters,
+      filterproperty: {
+        dir: "DESC",
+        offset: 0,
+        orderby: this.Sortedby,
+        recordlimit: 0
+      },
+      //  MemberId: AppState.UserCred.userid
+      selectdatebutton: this.selecteddate
+    };
+    let response = await this.apiProvider
+      .Post(AppConst.GET_WEMALIFE_COMPANIES, request)
+      .toPromise();
+    let newCompany = [];
+    if (response != null) {
+      this.companies = response["records"];
+      // console.log(this.companies);
+      this.filteredCompanies = this.companies;
+      this.GetMarkerData();
+    }
+  }
+  GetMarkerData() {
+    for (let i in this.filteredCompanies) {
+      //  console.log(this.filteredCompanies[i])
+      // console.log(this.filteredCompanies[i].longitude)
+      this.addMarker(
+        this.filteredCompanies[i].latitude,
+        this.filteredCompanies[i].longitude,
+        this.filteredCompanies[i],
+        this.Servicesname
+      );
+    }
+    // this.loading = this.loadingCtrl.create({
+    //   dismissOnPageChange: true,
+    // });
+    // this.loading.present();
+  }
+  Infopage(companyinfo) {
+    // console.log(companyinfo);
+  }
+}

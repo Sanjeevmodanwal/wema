@@ -1,0 +1,239 @@
+<!--
+  Generated template for the ProviderDashboardPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img src="assets/imgs/WemaLife.png"/></ion-title>
+    <ion-buttons end>
+      <button
+        (click)="Notification()"
+        ion-button
+        end
+        icon-only
+        class="notifications"
+      >
+        <p>{{Notifications.length}}</p>
+        <ion-icon name="ios-notifications-outline"></ion-icon>
+      </button>
+      <button (click)="myprofilePage()" ion-button end icon-only>
+        <img src="{{ProfilePic}}" />
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)" class="refresher">
+                <ion-refresher-content  class="refresher"
+                  refreshingSpinner="crescent"
+                  refreshingText="">
+                </ion-refresher-content>
+              </ion-refresher>-->
+  <ion-grid class="appintments">
+    <ion-row>
+      <ion-col col-4 (click)="providerAppointment()">
+        <h2><!--{{upAppointment}} -->{{upAppointmentCounter}}</h2>
+        <p>Upcoming</p>
+        <p>Appointments</p>
+      </ion-col>
+      <ion-col (click)="PastAppointments()" col-4>
+        <h2>{{pastAppointments}}</h2>
+        <p>Past</p>
+        <p>Appointments</p>
+      </ion-col>
+      <ion-col col-4 (click)="moneyEarnedPage()">
+        <h2><span>{{Currency}} </span> {{moneyEarned}}</h2>
+        <p>Money</p>
+        <p>Earned</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="appintments-date">
+    <ion-row>
+      <ion-col col-12 class="appintments-heading">
+        <h2>Upcoming Appointments</h2>
+        <!-- <p>Upcoming Appointments</p>-->
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let deatail of Appointments" class="appintments-box">
+      <ion-col col-3 class="col-3-text">
+        <span>
+          <h2>{{deatail.start | date:'d '}}</h2>
+          <p>{{deatail.start | date:' MMMM '}}</p>
+        </span>
+      </ion-col>
+      <ion-col (click)="providercheckin(deatail)" col-9 class="col-9-text">
+        <h3>{{deatail.membername}} for {{deatail.service}}</h3>
+        <h5><ion-icon name="md-time"></ion-icon> {{deatail.formattedStart}}</h5>
+        <p *ngIf="deatail.providerdetails.city !=''">
+          <ion-icon name="ios-pin"></ion-icon> {{deatail.providerdetails.city}}
+        </p>
+        <button *ngIf="deatail.status==5" class="box">
+          {{deatail.checkInText}}
+        </button>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row class="appintments-box">
+          <ion-col col-3 class="col-3-text"> 
+            <span>
+              <h2>15</h2>
+              <p>November</p>
+             </span>
+          </ion-col>
+          <ion-col col-9 class="col-9-text"> 
+              <h3>Aaron Hank for personal care</h3>
+              <h5> <ion-icon name="md-time"></ion-icon> 1:00 PM</h5>
+              <p><ion-icon name="ios-pin"></ion-icon> Kidderminster</p>
+           </ion-col>
+      </ion-row>
+      <ion-row class="appintments-box">
+          <ion-col col-3 class="col-3-text"> 
+            <span>
+              <h2>15</h2>
+              <p>November</p>
+             </span>
+          </ion-col>
+          <ion-col col-9 class="col-9-text"> 
+              <h3>Aaron Hank for personal care</h3>
+              <h5> <ion-icon name="md-time"></ion-icon> 1:00 PM</h5>
+              <p><ion-icon name="ios-pin"></ion-icon> Kidderminster</p>
+           </ion-col>
+      </ion-row>
+      <ion-row class="appintments-box">
+          <ion-col col-3 class="col-3-text"> 
+            <span>
+              <h2>15</h2>
+              <p>November</p>
+             </span>
+          </ion-col>
+          <ion-col col-9 class="col-9-text"> 
+              <h3>Aaron Hank for personal care</h3>
+              <h5> <ion-icon name="md-time"></ion-icon> 1:00 PM</h5>
+              <p><ion-icon name="ios-pin"></ion-icon> Kidderminster</p>
+           </ion-col>
+      </ion-row> -->
+    <ion-row class="view-all" *ngIf="!isAppointmentsEmpty">
+      <ion-col col-12>
+        <a (click)="providerAppointment()">VIEW ALL</a>
+      </ion-col>
+    </ion-row>
+    <div
+      *ngIf="isAppointmentsEmpty"
+      text-center
+      style="background: #ededed;padding: 10px;margin: 10px; color: darkGreen"
+    >
+      No Appointments
+    </div>
+  </ion-grid>
+  <ion-grid class="visit-reports">
+    <ion-row>
+      <ion-col col-12 class="visit-reports">
+        <h2>Visit Reports (Pending)</h2>
+      </ion-col>
+    </ion-row>
+    <span *ngFor="let visit of pastVisits;let i=index">
+      <ion-row *ngIf="visit.visitpendingstatus == 'true'" class="visit-reports">
+        <ion-col col-12 (click)="viewVisitReport(visit)">
+          <h5>{{visit.membername}} <span>for</span> {{visit.servicename}}</h5>
+          <p>{{visit.showstartdatetimeformat | date:'dd-MM-yyyy hh:mm a' }}</p>
+        </ion-col>
+      </ion-row>
+    </span>
+    <ion-row class="view-all" *ngIf="!isVisitreportEmpty">
+      <ion-col col-12>
+        <a (click)="pendingvisits()">VIEW ALL</a>
+      </ion-col>
+    </ion-row>
+    <div
+      *ngIf="isVisitreportEmpty"
+      text-center
+      style="background: #ededed;padding: 10px;margin: 10px; color: darkGreen"
+    >
+      No visit report
+    </div>
+  </ion-grid>
+  <!--<ion-grid class="logout-button">
+    <ion-row>
+    <a (click)="myprofilePage()" >My Profile <ion-icon name="md-play" float-right></ion-icon></a>
+    </ion-row>
+    </ion-grid>-->
+  <ion-grid class="logout-button">
+    <ion-row>
+      <a (click)="visitHistoryPage()"
+        >visit history <ion-icon name="md-play" float-right></ion-icon
+      ></a>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="logout-button">
+    <ion-row>
+      <a (click)="emailPage()"
+        >Email <ion-icon name="md-play" float-right></ion-icon
+      ></a>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="logout-button">
+    <ion-row>
+      <a (click)="providerReportPage()"
+        >Reports <ion-icon name="md-play" float-right></ion-icon
+      ></a>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="logout-button">
+    <ion-row>
+      <a (click)="RouteMap()"
+        >Route Map <ion-icon name="md-play" float-right></ion-icon
+      ></a>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="logout-button">
+    <ion-row>
+      <a (click)="UpdateAvailibility()"
+        >update availability <ion-icon name="md-play" float-right></ion-icon
+      ></a>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="logout-button">
+    <ion-row>
+      <a (click)="Emergency()"
+        >Emergency alarm <ion-icon name="md-play" float-right></ion-icon
+      ></a>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="logout-button">
+    <ion-row>
+      <a (click)="expenseReportsPage()"
+        >expense <ion-icon name="md-play" float-right></ion-icon
+      ></a>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-grid class="logout-button">
+    <ion-row>
+      <a (click)="chat()"
+        >chat <ion-icon name="md-play" float-right></ion-icon
+      ></a>
+    </ion-row>
+  </ion-grid> -->
+  <!-- <ion-grid class="logout-button">
+      <ion-row>
+          <a (click)="Mileage()">Show Mileage <ion-icon name="md-play" float-right></ion-icon></a>
+      </ion-row>
+  </ion-grid> -->
+  <ion-grid class="logout-button">
+    <ion-row>
+      <a (click)="addCompanyPage()"
+        >Add company <ion-icon name="md-play" float-right></ion-icon
+      ></a>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="logout-button">
+    <ion-row>
+      <a (click)="forceLogout()"
+        >logout <ion-icon name="md-power" float-right></ion-icon
+      ></a>
+    </ion-row>
+  </ion-grid>
+</ion-content>

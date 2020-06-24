@@ -1,0 +1,51 @@
+page-nine {
+    .dawn-bar .toolbar-title {
+        color: #13a89e;
+    }
+    .scroll-content {
+        background: #eeeeee;
+        padding-bottom: 0px !important;
+    }
+    .item-block .item-inner {
+        padding-right: 0px !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+    }
+    .item{
+        padding-left: 0px;
+        padding-right: 0;
+    }
+    ion-grid.search-box.grid {
+        border-bottom: 1px solid #ededed !important;
+        background: #fff;
+        margin-top: 7px;
+        border-top: 1px solid #cdcdcd;
+    }
+    ion-grid.list-search.grid{
+        background: #fff;
+    }
+    ion-grid.list-search.grid ul{
+        padding: 0px;
+    }
+    ion-grid.list-search.grid ul li{
+        color: #000;
+        padding: 15px 0px;
+        border-bottom: 1px solid #ededed;
+        list-style: none;
+        font-family: 'Muli', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+    }
+    ion-grid.list-search.grid ul li:first-child{
+        padding-top: 0px;
+    }
+    ion-grid.list-search.grid ul li:last-child{
+        border-bottom: none;
+    }
+    ion-grid.search-box.grid {
+        color: #3d3d3d;
+        font-family: 'Muli', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+    }
+}

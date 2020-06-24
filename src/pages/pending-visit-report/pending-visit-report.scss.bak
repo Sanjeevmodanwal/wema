@@ -1,0 +1,199 @@
+page-pending-visit-report {
+    .scroll-content{
+        background: #eeeeee;
+    }
+    .button-box {
+        text-align: center;
+    }
+    .button-box p{
+        text-align: center;
+        color: #8c8c8c;
+        font-size: 11px;
+        font-weight: 400;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+    }
+    .button-box p a{
+        color: #3d3d3d;
+        font-size: 13px;
+        font-weight: 700;
+        font-family: 'Muli', sans-serif;
+    }
+    .button-box h5{
+        color: #9c9c9c;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: 'Muli', sans-serif;
+        margin-bottom: 15px;
+    }
+    .button-box button{
+      background:#17a9a0;
+      color: #fff;
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Muli', sans-serif;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.2;
+    }
+
+    .scroll-content {
+        padding: 0px !important;
+    }
+    ion-grid.view-report.grid h2{
+        margin: 0px;
+        display: block;
+        width: 100%;
+        color: #5f5f5f;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+        margin-bottom: 0px;
+        padding: 16px 0px 0px;
+    }
+    ion-grid.view-report.grid h2 span{
+        color: #282828;
+    }
+    ion-grid.view-report.grid p{
+        margin: 0px;
+        color: #282828;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-grid.view-report.grid h3{
+        margin: 0px;
+        color: #282828;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-grid.view-report.grid h3 span{
+        font-weight: 400;
+    }
+    ion-grid.view-report.grid .text-box p{
+        font-size: 13px;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+        color: #000;
+        width: auto;
+        display: inline-block;
+        margin: 6px 0px;
+        margin-right: 12px;
+    }
+    ion-grid.view-report.grid button{
+        background: transparent;
+        border: 1px solid #17a9a0;
+        color: #17a9a0;
+        font-family: 'Muli', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        padding: 10px;
+        margin: 10px 0px;
+        text-transform: uppercase;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0,0.3)
+    }
+    ion-grid.view-report.grid ion-icon{
+        color: #17a9a0;
+    }
+    ion-grid.view-report.grid:first-child {
+        padding: 0px 0px;
+        border-top: none;
+    }
+    ion-grid.view-report.grid {
+        padding: 15px 0px;
+        border-top: 1px solid #ededed;
+        background: #fff;
+    }
+    .mine-box {
+        margin-bottom: 20px;
+    }
+    .mine-box:last-child  {
+        margin-bottom: 0px;
+    }
+    .heding-text h5{
+        font-size: 16px;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+        color: #000;
+    }
+    p.errer{
+        color: #ef5252 !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        font-family: 'Muli', sans-serif !important;
+        position: absolute;
+        top: -7px;
+    }
+    .filter-members p{
+        color: #878787 !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        font-family: 'Muli', sans-serif !important;
+        margin: 0px !important;
+    }
+    .filter-members-box{
+        background: #fff;
+        border-top: 1px solid #ededed;
+        text-align: center;
+    }
+    .toolbar-background{
+        border-color: #ffffff;
+        background: #ffffff;
+    }
+    .button-box-two {
+        position: relative;
+    }
+    @media screen and (max-width: 100000px) and (min-width: 480px){
+        .box-two {
+            width: 49%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .box-one {
+            width: 49%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .text-box {
+            width: 60%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .button-box-two{
+            width: 38%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        ion-grid.view-report.grid button {
+            margin: 4px 0px;
+        }
+        .mine-box {
+            margin-bottom: 30px;
+        }
+        .mine-box:last-child  {
+            margin-bottom: 0px;
+        }
+        ion-grid.view-report.grid .text-box p {
+            font-size: 13px;
+            font-weight: 400;
+            font-family: 'Muli', sans-serif;
+            color: #000;
+            width: auto;
+            display: inline-block;
+            margin: 6px 0px;
+            margin-right: 12px;
+    }
+    ion-grid.view-report.grid {
+        padding: 25px 0px 15px;
+    }
+    p.errer {
+        color: #ef5252 !important;
+        position: absolute;
+        top: -15px;
+    }
+    }
+}

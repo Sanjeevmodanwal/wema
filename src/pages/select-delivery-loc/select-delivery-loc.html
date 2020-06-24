@@ -1,0 +1,113 @@
+<!--
+  Generated template for the SelectDeliveryLocPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-boredr>
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Select a delivery address</ion-title>
+    <!-- <ion-buttons end>
+        <button ion-button end icon-only (click)="seachbar()">
+            <ion-icon name="search"></ion-icon>
+        </button>
+     </ion-buttons>-->
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid *ngFor="let del of DeliveryData">
+    <ion-row>
+      <ion-col (click)="selectLocation(del)" col-2>
+        <div class="container">
+          <ul (ionChange)="onChange(del)">
+            <li>
+              <input type="radio" id="del.addressid" name="selector" />
+              <label for="del.addressid">Cats</label>
+              <ion-radio
+                value="del.addressid"
+                [checked]="del.addressid == selectedaddress"
+              ></ion-radio>
+              <!-- <div  [ngClass]="{'check' : del.addressid == selectedaddress }" ></div> -->
+            </li>
+          </ul>
+        </div>
+      </ion-col>
+      <ion-col col-8>
+        <h5>{{del.name}}</h5>
+        <p>{{del.address}} {{del.address}}</p>
+        <p>{{del.city}}</p>
+        <p>{{del.county}}</p>
+        <p>{{del.postcode}}</p>
+      </ion-col>
+      <ion-col col-2>
+        <ion-icon
+          (click)="EditAddress(del)"
+          name="md-create"
+          class="icon-create"
+          float-left
+        ></ion-icon>
+        <ion-icon
+          name="md-trash"
+          class="icon-trash"
+          (click)="DeleteAddress(del)"
+          float-right
+        ></ion-icon>
+      </ion-col>
+      <ion-col col-12 *ngIf="deliverToThisAddress">
+        <button
+          class="deliver-button"
+          *ngIf="del.addressid == selectedaddress"
+          (click)="itemReview(del)"
+        >
+          deliver to this address
+        </button>
+        <button class="deliver-button" *ngIf="del.addressid != selectedaddress">
+          deliver to this address
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--
+  <ion-grid>
+      <ion-row>
+          <ion-col col-2>
+              <div class="container">
+                  <ul>
+                      <li>
+                        <input type="radio" id="s-option" name="selector">
+                        <label for="s-option">Cats</label>
+                        <div class="check"><div class="inside"></div></div>
+                      </li>
+                </ul>
+                </div>
+          </ion-col>
+          <ion-col col-8>
+              <h5>Mr. Vivek Patni</h5>
+              <p>7 Broadgates Avenue</p>
+              <p>Barnet</p>
+              <p>United Kingdom</p>
+              <p>ENG 0NU</p>
+          </ion-col>
+          <ion-col col-2>
+              <ion-icon name="md-create" class="icon-create" float-left></ion-icon>
+              <ion-icon name="md-trash" class="icon-trash" float-right></ion-icon>         
+          </ion-col>
+          <ion-col col-12>
+              <button class="deliver-button">deliver to this address</button>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+-->
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-icon name="md-create" class="icon-create" float-left></ion-icon>
+        <span class="add-address" (click)="AddAddress()"
+          >Add a new address</span
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,394 @@
+page-appointments {
+  #appointment_tab .scroll-tabs .scroll-container .section {
+    min-width: 33% !important;
+    display: inline-block;
+    white-space: nowrap;
+    overflow-y: scroll;
+    overflow-y: hidden;
+    padding-bottom: 0;
+  }
+  #appointment_tab .scroll-tabs .scroll-container .section .tab9-button.three {
+    width: 100% !important;
+    font-weight: bold !important;
+  }
+  #appointment_tab .scroll-tabs .scroll-container {
+    height: 6vh;
+    overflow: scroll;
+    white-space: nowrap;
+    //  border-bottom: 1px solid #f4f4f4;
+  }
+  #appointment_tab
+    .scroll-tabs
+    .scroll-container
+    .section
+    .tab9-button.selected {
+    color: #fff;
+    // border-bottom: 3px solid #b1ca80;
+    font-weight: bold !important;
+  }
+  #appointment_tab .scroll-tabs .scroll-container .section .tab9-button {
+    color: #f5f5f5;
+    font-weight: bold !important;
+  }
+  .custom-grid1 {
+    height: auto;
+    padding: 0px !important;
+  }
+  .custom-grid1 ion-row {
+    height: 60px !important;
+    text-align: center;
+    border-bottom: 0px;
+  }
+  .custom-grid1 .ion-row .ion-col div {
+    height: 30px !important;
+    text-align: left;
+  }
+  .custom-grid2 {
+    height: auto;
+    padding: 0px !important;
+  }
+  .custom-grid2 ion-row {
+    text-align: center;
+    border-bottom: 0px;
+  }
+  .custom-grid2 .ion-row .ion-col div {
+    height: 30px !important;
+  }
+  #message {
+    border-radius: 3px;
+    background: red;
+    padding: 0px;
+    height: 30px;
+    text-align: left;
+    color: #f5f5f5;
+    margin-top: 2px;
+  }
+  #care {
+    border-radius: 3px;
+    background: orange;
+    padding: 0px;
+    height: 40px;
+    text-align: left;
+    color: #f5f5f5;
+    margin-top: 2px;
+  }
+  .appt-confirm-div {
+    background: #16a3a4;
+    height: 100%;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 16%;
+    display: inline-block;
+    white-space: pre !important;
+    margin: 2px 4px;
+    padding: 3px !important;
+  }
+  .box {
+    background: #fff;
+    color: #17a9a0;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Muli", sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .appt-miss-div {
+    background: #dfc470;
+    height: 100%;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 16%;
+    display: inline-block;
+    white-space: pre !important;
+    margin: 2px 4px;
+    padding: 3px !important;
+  }
+  .appt-cancel-div {
+    background: #ffa200;
+    height: 100%;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    white-space: pre !important;
+    margin: 2px 4px;
+    padding: 3px !important;
+  }
+  .monthDiv {
+    text-align: center;
+    overflow-x: scroll !important;
+  }
+  .appt-p {
+    vertical-align: middle;
+    color: white;
+  }
+  span.button-inner {
+    width: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  span.button-inner img {
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .notifications span.button-inner p {
+    width: 20px;
+    height: 20px;
+    max-width: 100%;
+    position: absolute;
+    top: -12%;
+    left: 71%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 4px;
+    color: #ffffff;
+    background: #fdb915;
+    border-radius: 100%;
+  }
+  .notifications span.button-inner {
+    width: 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-content {
+    background: #eeeeee;
+  }
+  ion-grid.grid {
+    padding: 0px;
+  }
+  .appintments {
+    text-align: center;
+    padding: 0px !important;
+  }
+  .appintments h2 {
+    margin: 0px;
+    color: #13a89e;
+    font-family: "Muli", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .toolbar-background {
+    border-color: #ffffff;
+    background: #ffffff;
+  }
+  .appintments h2 span {
+    font-size: 14px;
+  }
+  .appintments p {
+    margin: 0px;
+    font-family: "Muli", sans-serif;
+    font-weight: 400;
+    color: #000000;
+    font-size: 13px;
+  }
+  .appintments .col {
+    border-right: 1px solid #ededed;
+    padding: 14px 8px;
+  }
+  .appintments .col:last-child {
+    border-right: none;
+  }
+  .appintments-heading h2 {
+    margin: 0px;
+    font-family: "Muli", sans-serif;
+    font-weight: 700;
+    color: #000000;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  .appintments-heading p {
+    margin: 0px;
+    font-family: "Muli", sans-serif;
+    font-weight: bold;
+    color: #3d3d3d;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .appintments-box {
+    background: #ffffff;
+    padding: 10px 0px;
+  }
+  ion-row.appintments-box.row h2 {
+    margin: 0px;
+  }
+  ion-row.appintments-box.row h3 {
+    margin: 0px;
+  }
+  ion-row.appintments-box.row h5 {
+    margin: 0px;
+  }
+  ion-row.appintments-box.row {
+    padding: 5px 8px;
+  }
+  ion-row.appintments-box.row p {
+    margin: 0px;
+  }
+  ion-col.col-3-text.col {
+    text-align: center;
+    padding-left: 0px;
+  }
+  ion-col.col-3-text.col h2 {
+    color: #000000;
+    font-family: "Muli", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  ion-col.col-3-text.col p {
+    color: #000000;
+    font-family: "Muli", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  //   ion-col.col-3-text1.col p{
+  //     color: #000000;
+  //     font-family: 'Muli', sans-serif;
+  //     font-weight: 400;
+  //     font-size: 14px;
+  // }
+  ion-col.col-9-text.col {
+    background: #fdb915;
+    padding: 10px;
+  }
+  ion-col.col-9-text1.col {
+    background: #16a3a4;
+    padding: 10px;
+  }
+  ion-col.col-9-text.col h3 {
+    color: #ffffff;
+    font-family: "Muli", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    display: inline-block;
+    width: 65%;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  ion-col.col-9-text1.col h3 {
+    color: #ffffff;
+    font-family: "Muli", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    display: inline-block;
+    width: 65%;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  ion-col.col-9-text.col h5 {
+    color: #ffffff;
+    font-family: "Muli", sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    display: inline-block;
+    width: 33%;
+    vertical-align: top;
+    padding-top: 3px;
+    text-align: right;
+  }
+  ion-col.col-9-text1.col h5 {
+    color: #ffffff;
+    font-family: "Muli", sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    display: inline-block;
+    width: 33%;
+    vertical-align: top;
+    padding-top: 3px;
+    text-align: right;
+  }
+  ion-col.col-9-text.col p {
+    color: #ffffff;
+    font-family: "Muli", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  ion-col.col-9-text1.col p {
+    color: #ffffff;
+    font-family: "Muli", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .col-3-text.col span {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  ion-row.view-all.row {
+    text-align: right;
+    padding: 10px 0px;
+  }
+  ion-row.view-all.row a {
+    color: #000000;
+    font-family: "Muli", sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    text-decoration: none;
+  }
+  ion-row.visit-reports.row h5 {
+    margin: 0px;
+    color: #000000;
+    font-family: "Muli", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  ion-row.visit-reports.row h5 span {
+    color: #000000;
+    font-family: "Muli", sans-serif;
+    font-weight: 400;
+  }
+  ion-row.visit-reports.row p {
+    margin: 0px;
+    color: #ef5252;
+    font-family: "Muli", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  ion-row.visit-reports.row {
+    padding: 16px 0px;
+    border-top: 1px solid #ededed;
+  }
+  ion-col.visit-reports.col h2 {
+    margin: 0px;
+    font-family: "Muli", sans-serif;
+    font-weight: 700;
+    color: #000000;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding-bottom: 14px;
+  }
+  ion-grid.logout-button.grid a {
+    display: block;
+    width: 100%;
+    padding: 0px 10px;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Muli", sans-serif;
+  }
+  div#monthView {
+    padding: 14px 10px 0px;
+    background: #fff !important;
+  }
+  ion-grid.custom-grid.grid {
+    text-align: center;
+  }
+  .class_1578388491313{
+    background: #13a89e !important;
+  }
+}

@@ -1,0 +1,153 @@
+<ion-header >
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Customer Reviews </ion-title>
+    <span><b *ngIf="companyname!=''">{{companyname}}</b>, {{loction}}</span>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+<ion-grid>
+    <ion-row class="customer-reviews two">
+        <ion-col col-5>
+            <p class="date-and-time two">
+               
+            <label  *ngIf="ratings==0" >
+                 <span class="textStyle"> Not rated {{ratings}} out of 5 star</span> 
+            </label>
+            <label *ngIf="ratings==1" >
+                <ion-icon  style=" color: #fdb915;" name="ios-star"></ion-icon>  
+            </label>
+            <label  *ngIf="ratings==2" >
+                <ion-icon   style=" color: #fdb915;" *ngFor="let i of [1,2]" name="ios-star"></ion-icon>  
+            </label>
+            <label *ngIf="ratings==3" >
+                <ion-icon   style=" color: #fdb915;"*ngFor="let i of [1,2,3]" name="ios-star"></ion-icon>  
+                  
+            </label>
+            <label *ngIf="ratings==4" >
+                <ion-icon  style=" color: #fdb915;" *ngFor="let i of [1,2,3,4]" name="ios-star"></ion-icon>  
+            </label>
+            <label *ngIf="ratings==5" >
+             <ion-icon  style=" color: #fdb915;" *ngFor="let i of [1,2,3,4,5]" name="ios-star"></ion-icon> 
+            </label>
+
+
+            
+            <label *ngIf="ratings && (5- ratings)==1" >
+                <ion-icon  style=" color: grey;" name="ios-star"></ion-icon>  
+            </label>
+            <label  *ngIf="ratings && (5- ratings)==2" >
+                <ion-icon   style=" color: grey;" *ngFor="let i of [1,2]" name="ios-star"></ion-icon>  
+            </label>
+            <label *ngIf="ratings && (5- ratings)==3" >
+                <ion-icon   style=" color: grey;"*ngFor="let i of [1,2,3]" name="ios-star"></ion-icon>  
+                  
+            </label>
+            <label *ngIf="ratings && (5- ratings)==4" >
+                <ion-icon  style=" color: grey;" *ngFor="let i of [1,2,3,4]" name="ios-star"></ion-icon>  
+            </label>
+            <label *ngIf="ratings && (5- ratings)==5" >
+             <ion-icon  style=" color: grey;" *ngFor="let i of [1,2,3,4,5]" name="ios-star"></ion-icon> 
+            </label>
+
+
+             <span> {{ratings}} out of 5 star </span>
+
+
+
+            </p>
+        </ion-col>
+        <ion-col col-7>
+
+
+
+          <div class="star-reting-view"  *ngFor="let item of ratingArray; let i = index " >
+              <p class="stars-reting">{{item.rating}} stars</p>
+              <p class="progress">
+                    <span class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" [style.width]="item.percentage ? item.percentage : '0%'" >
+                    </span>
+                </p>
+              <p class="parsentige" >{{item.percentage}}</p>
+             
+          </div>
+
+          
+        </ion-col>
+    </ion-row>
+</ion-grid>
+
+
+<ion-grid *ngIf="data.length >0">
+  <ion-row class="customer-reviews" *ngFor="let review of data; let i = index " >
+    <ion-col col-7>
+         <p class="text-coustomer-reviews">{{review.comments}} </p>
+         <span class="user-name-view">
+             <ion-icon name="ios-checkmark-circle"></ion-icon> Verified User
+         </span>
+    </ion-col>
+    <ion-col col-5>
+       
+           <p class="date-and-time">
+            <label *ngIf="review.rating==0" >
+
+                <ion-icon style=" color: grey;" name="ios-star-outline"></ion-icon>
+                 <ion-icon   style=" color: grey;"  name="ios-star-outline"></ion-icon>
+                 <ion-icon  style=" color: grey;"  name="ios-star-outline"></ion-icon>
+                 <ion-icon  style=" color: grey;"  name="ios-star-outline"></ion-icon>
+                 <ion-icon  style=" color: grey;"  name="ios-star-outline"></ion-icon>
+               </label>
+
+
+               <label *ngIf="review.rating==1" >
+                  <ion-icon name="ios-star"  style=" color: #fdb915;"></ion-icon> 
+               </label>
+               <label *ngIf="review.rating==2" >
+                 <ion-icon *ngFor="let i of [1,2]"  style=" color: #fdb915;" name="ios-star"></ion-icon>
+               </label>
+               <label *ngIf="review.rating==3" >
+               <ion-icon *ngFor="let i of [1,2,3]" style=" color: #fdb915;" name="ios-star"></ion-icon> 
+               </label>
+               <label *ngIf="review.rating==4" >
+                <ion-icon *ngFor="let i of [1,2,3,4]" style=" color: #fdb915;"  name="ios-star"></ion-icon> 
+               </label>
+               <label *ngIf="review.rating==5" >
+               <ion-icon *ngFor="let i of [1,2,3,4,5]"  style=" color: #fdb915;" name="ios-star"></ion-icon>
+               </label>
+
+
+
+
+               <label *ngIf="review.rating !=0 && (5- review.rating)==1" >
+                <ion-icon name="ios-star"  style=" color: grey;"></ion-icon> 
+             </label>
+             <label *ngIf="review.rating!=0 && (5- review.rating)==2" >
+               <ion-icon *ngFor="let i of [1,2]"  style=" color: grey;" name="ios-star"></ion-icon>
+             </label>
+             <label *ngIf="review.rating!=0 &&  (5- review.rating)==3" >
+             <ion-icon *ngFor="let i of [1,2,3]" style=" color: grey;" name="ios-star"></ion-icon> 
+             </label>
+             <label *ngIf="review.rating!=0 &&  (5- review.rating)==4" >
+              <ion-icon *ngFor="let i of [1,2,3,4]" style=" color: grey;"  name="ios-star"></ion-icon> 
+             </label>
+             <label *ngIf="review.rating!=0 &&  (5- review.rating)==5" >
+             <ion-icon *ngFor="let i of [1,2,3,4,5]"  style=" color: grey;" name="ios-star"></ion-icon>
+             </label>
+
+               
+               <span>{{review.starttime | date:' d  MMM, y' }}  </span>
+           </p>
+      
+    </ion-col>
+</ion-row>
+
+
+</ion-grid>
+
+<ion-grid *ngIf="data.length ==0">No review</ion-grid>
+
+</ion-content>

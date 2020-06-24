@@ -1,0 +1,46 @@
+<!--
+  Generated template for the ProviderAppointmentsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>providerAppointments</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <mbsc-eventcalendar [data]="events" [options]="eventSettings" id='calendermbsc'>
+
+    <div data-step="1" role="button"   (click) ="nextdate()" tabindex="0" aria-label="Next Month" class="mbsc-ic mbsc-ic-arrow-right5 mbsc-cal-next mbsc-cal-next-m mbsc-cal-btn mbsc-fr-btn mbsc-fr-btn-e" data-touch="1"> 
+    
+    </div>
+  </mbsc-eventcalendar>
+
+<button class=" "> click me  </button>
+  <ion-grid class="appintments-date">
+    <ion-row>
+        <ion-col col-12 class="appintments-heading"> 
+           <h2>Appointment</h2>
+           <p>Upcoming Appointment</p>
+        </ion-col>
+    </ion-row>
+    <ion-row  *ngFor ="let deatail of Appointmentdetails"class="appintments-box">
+        <ion-col col-3 class="col-3-text"> 
+          <span>
+            <h2>{{deatail.date}}</h2>
+            <p>{{ monthHeader}}</p>
+           </span>
+        </ion-col>
+        <ion-col col-9 class="col-9-text"> 
+            <h3>{{deatail.member.membername}} for {{deatail.servicename}}</h3>
+            <h5> <ion-icon name="md-time"></ion-icon> {{deatail.starttime}}</h5>
+            <p><ion-icon name="ios-pin"></ion-icon> {{deatail.categoryname}}</p>
+         </ion-col>
+    </ion-row>
+    </ion-grid>
+</ion-content>

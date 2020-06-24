@@ -1,0 +1,35 @@
+<ion-header >
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Add Company</ion-title>
+    </ion-navbar> 
+  </ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-col col-12>
+          
+               <ion-item>
+                 <ion-label block>Company Number</ion-label>
+                 <ion-input placeholder="Enter company number"  [(ngModel)]="CompanyDetail.CompanyNumber" (focusout)="onFocusOut()" ></ion-input>
+               </ion-item>
+               <ion-item>
+                 <ion-label block>Company Name</ion-label>
+                 <ion-input placeholder="Enter company name" [(ngModel)]="CompanyDetail.CompanyName"></ion-input>
+               </ion-item>
+               <ion-item>
+                  <ion-label block>Unique Code</ion-label>
+                  <ion-input placeholder="Enter unique code"  [(ngModel)]="CompanyDetail.UniqueNumber"></ion-input>
+                </ion-item>
+          
+       </ion-col>
+   
+       <ion-col col-12 class="button-box-send">
+           <button class="button-company" (click)="addCompany()">Add Company</button>
+           <button class="button-clear" (click)="reset()">Clear</button>
+       </ion-col>
+   </ion-grid>
+
+</ion-content>

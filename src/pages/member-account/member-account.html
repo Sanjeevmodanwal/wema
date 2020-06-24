@@ -1,0 +1,164 @@
+<!--
+  Generated template for the MemberAccountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header >
+              <ion-navbar  class="dawn-bar">
+                    <ion-title>MEMBER ACCOUNT</ion-title>
+                  </ion-navbar>        
+</ion-header> -->
+<ion-content  >
+  <ion-grid class="appintments">
+    <ion-row class="top-row-box">
+        <ion-col col-12>
+                <ion-icon name="arrow-round-back" (click)="Goback()" style="font-size: 31px;
+                position: absolute;
+                left: 15px;
+                color: #fff;"></ion-icon>
+            <div class="images-box-header">
+                <img *ngIf="appstate.UserCred.avatar !=''||appstate.UserCred.avatar !=null" src={{appstate.UserCred.avatar}} />
+                <img *ngIf="appstate.UserCred.avatar =='' ||appstate.UserCred.avatar ==null " src="assets/imgs/userred.png" />
+            </div>
+            <h3>{{appstate.UserCred.firstname}} {{appstate.UserCred.lastname}}</h3>
+        </ion-col>
+       
+
+    </ion-row>
+   
+
+    <!-- <ion-grid class="logout-button">
+        <ion-row>
+            <a (click)="changeCountry()">MY COUNTRY {{Country}}
+                <ion-icon name="settings"></ion-icon>
+            </a>
+            <ion-select  [ngClass]="{'active' : changeCountry1==true }"  class="changeCountry-box"  *ngIf="changeCountry1==true "   (ionChange)="changeCountry()" [(ngModel)]="Country"  >
+                <ion-option    *ngFor="let item of country " [value]="item"  >{{item}}</ion-option>
+              </ion-select>
+        </ion-row>
+    </ion-grid> -->
+      <ion-row>
+          <ion-col (click)="Upcomming()" col-4> 
+              <h2>{{UpcommingAppointments.length}}</h2>
+              <p>Upcoming</p>
+              <p>Appointments</p>
+          </ion-col>
+          <ion-col (click)="AppointmentsHistory()" col-4> 
+              <h2>{{DoneAppointments.length}}</h2>
+              <p>Appointments</p>
+              <p>Done</p>
+          </ion-col>
+          <ion-col col-4 (click)="AppointmentsHistory1()"> 
+              <h2><span></span>{{MissedApppointments.length}}</h2>
+              <p>Appointments </p>
+              <p>Missed</p>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+
+
+  <ion-grid class="appintments-date">
+      <ion-row>
+          <ion-col col-12 class="appintments-heading"> 
+             <h2>Appointments</h2>
+             <p>Upcoming Appointments</p>
+          </ion-col>
+      </ion-row>
+  <span   *ngFor=" let appoint of UpcommingAppointments; let i=index" >
+    <ion-row  *ngIf="i<2" class="appintments-box">
+         
+        <ion-col col-3 class="col-3-text"> 
+            <span>
+              <h2>{{appoint.start | date: 'd'}}</h2>
+              <p>{{monthHeader}}</p>
+             </span>
+          </ion-col>
+          <ion-col col-9 class="col-9-text"> 
+              <h3>{{appoint.companyname}}</h3>
+              <p><ion-icon name="ios-pin"></ion-icon> {{appoint.providerdetails.city}}</p>
+           </ion-col>
+      </ion-row>
+  </span>
+      <!-- <ion-row class="appintments-box">
+          <ion-col col-3 class="col-3-text"> 
+            <span>
+              <h2>15</h2>
+              <p>November</p>
+             </span>
+          </ion-col>
+          <ion-col col-9 class="col-9-text"> 
+              <h3>Westminster Homecare</h3>
+              <p><ion-icon name="ios-pin"></ion-icon> Kidderminster</p>
+           </ion-col>
+      </ion-row> -->
+      <ion-row class="view-all" *ngIf="!isAppointmentsEmpty">
+          <ion-col col-12>
+              <a (click)="ViewAll()">VIEW ALL</a>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+  <div *ngIf="isAppointmentsEmpty" text-center style="background: #ededed;padding: 10px;margin: 10px; color: darkGreen">
+    No Appointments
+  </div>
+
+
+  <!-- <ion-grid class="logout-button">
+    <ion-row>
+        <a (click)="Home()">Home
+            <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+        </a>
+    </ion-row>
+</ion-grid> -->
+
+
+  <ion-grid class="logout-button">
+      <ion-row>
+          <a (click)="Friends()">Friends/Family
+              <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+          </a>
+      </ion-row>
+  </ion-grid>
+  <ion-grid class="logout-button">
+      <ion-row>
+          <a (click)="Myreview()">My Reviews
+              <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+          </a>
+      </ion-row>
+  </ion-grid>
+  <ion-grid class="logout-button">
+      <ion-row>
+          <a (click)="Notification()">Notification <span>{{Notifications.length}}</span>
+              <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+          </a>
+      </ion-row>
+  </ion-grid>
+  <ion-grid class="logout-button">
+        <ion-row>
+        <a (click)="Subscriptionplan()">Subscription Plan
+        <ion-icon name="ios-arrow-forward" float-right></ion-icon></a>
+        </ion-row>
+        </ion-grid>
+  <ion-grid class="logout-button">
+      <ion-row>
+          <a (click)="MYProfile()">Profile 
+              <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+          </a>
+      </ion-row>
+  </ion-grid>
+  <!-- <ion-grid class="logout-button">
+    <ion-row>
+        <a (click)="Chat()">CHAT 
+            <ion-icon name="ios-arrow-forward" float-right></ion-icon>
+        </a>
+    </ion-row>
+    </ion-grid> -->
+  <ion-grid class="logout-button">
+      <ion-row>
+          <a (click)="openPage() ">logout 
+              <ion-icon name="md-power" float-right></ion-icon>
+          </a>
+      </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,219 @@
+page-familyfriends {
+    .toolbar-content h6 {
+        font-family: 'Muli', sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        color: #878787;
+        margin: 0px;
+        text-transform: capitalize;
+        white-space: inherit;
+    }
+    .scroll-content {
+        background: #eeeeee;
+    }
+    .segment-button.segment-activated h6 {
+        color: #13a89e !important;
+    }
+    .segment-button.segment-activated {
+        border-bottom: 2px solid #13a89e !important;
+        opacity: 1;
+    }
+    .toolbar-background {
+        border-color: #ffffff;
+        background: #ffffff;
+    }
+    .segment-button {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: inherit;
+    }
+    .toolbar {
+        border-top: 1px solid #ededed;
+        padding: 0px 0px;
+    }
+    .border-right{
+        border-right: 1px solid #ededed !important;
+    }
+    .segment .segment-button {
+        height: auto;
+        font-size: 0;
+        font-weight: 500;
+        line-height: 0;
+        padding: 19px 6px;
+    }
+    .item {
+        padding-left: 0px !important;
+        padding-right: 0;
+        background: transparent !important;
+    }
+    .item.item-block .item-inner {
+        padding-right: 0px !important;
+    }
+    .label {
+        margin: 0px 0px 0px 0 !important;
+    }
+    .profile-box-one {
+        background: #fff;
+        margin: 20px;
+        border: 1px solid #dddddd;
+        border-radius: 2px;
+    }
+    .padding-all {
+        padding: 14px;
+    }
+    .top-box-text h6 {
+        display: inline-block;
+        margin: 0px;
+        color: #c69563;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+        background: #f9ece0;
+        border-radius: 3px;
+        padding: 4px 16px;
+    }
+    .top-box-text p {
+        display: inline-block;
+        margin: 0px;
+        color: #878787;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+       
+        padding: 4px 0px;
+    }
+    .images-box-text {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        margin-top: 20px;
+        border-radius: 100%;
+        overflow: hidden;
+    }
+    .images-box-text img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .icon-box-text{
+        text-align: center;
+        margin-top: -21px;
+        position: relative;  
+    }
+    .icon-box-text ion-icon {
+        background: #dddddd;
+        border: 2px solid #fff;
+        width: 38px;
+        height: 38px;
+        padding: 7px 11px;
+        border-radius: 100%;
+        overflow: hidden;
+        color: #878787;
+        text-align: center;
+    }
+    .text-box-text{
+        text-align: center;
+    }
+    .text-box-text h4{
+        color: #3d3d3d;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+        padding: 4px;
+    }
+    .text-box-text h6{
+        color: #3d3d3d;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+    }
+    .text-box-text a{
+        color: #3d3d3d;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+        padding: 4px;
+        display: block;
+        text-decoration: none;
+    }
+    .text-box-text p{
+        color: #3d3d3d;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+        padding: 10px 4px 10px 4px;
+    }
+    .bottom-box-text {
+        border-top: 1px solid #ededed;
+        padding: 12px;
+    }   
+    .bottom-box-text a{
+        color: #3d3d3d;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+        width: 88%;
+    }
+    .botton-icon {
+        background: #13a89e;
+        width:30px;
+        height: 30px;
+        border-radius: 100%;
+        padding: 9px 14px;
+        font-size: 28px;
+        color: #fff;
+        float: right;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0,0.3);
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+
+
+    @media screen and (max-width: 100000px) and (min-width: 480px){
+        .label {
+            margin: 0px 0px 0px 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            white-space: initial;
+        }
+        .profile-box-one {
+            width: 45.2%;
+            display: inline-block;
+            margin: 10px;
+        }
+    }
+
+   
+
+    .no-data-found {
+        text-align: center;
+        color: #878787;
+    }
+
+    .alertCustomCss {
+
+        min-width: 100% !important;
+        bottom: 0px !important;
+        position: fixed !important;
+      
+    
+  
+      }
+      .top-box-text p {
+        display: inline-block;
+        margin: 0px;
+        color: #878787;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+        float: right;
+        padding: 4px 0px;
+     }
+
+}

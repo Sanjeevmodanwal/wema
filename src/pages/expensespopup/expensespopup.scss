@@ -1,0 +1,186 @@
+page-expensespopup {
+    ion-grid.view-report.grid {
+        padding: 15px 0px;
+        border-bottom: 1px solid #ededed;
+    }
+    ion-grid.view-report.grid h2 {
+        margin: 0px;
+        display: block;
+        width: 100%;
+        color: #5f5f5f;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+        margin-bottom: 0px;
+        padding: 16px 0px 0px;
+    }
+    ion-grid.view-report.grid h2 span {
+        color: #282828;
+    }    
+    ion-grid.popup-check-out.grid{
+        padding: 15px 0px;
+        border-bottom: 1px solid #ededed;
+    }
+    ion-grid.popup-check-out.grid h2{
+        color: #c4c4c4;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+        margin: 0px;
+        text-transform: uppercase;
+        padding: 10px 0px;
+    }
+    ion-grid.popup-check-out.grid button{
+        color: #c4c4c4;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+        margin: 0px;
+        text-transform: uppercase;
+        background: transparent;
+        border: none;
+        margin: 0px !important;
+        padding: 10px;
+    }
+    ion-grid.popup-check-out.grid .submit{
+        background: #13a89e;
+        color: #fff;
+    }
+    ion-grid.popup-check-text.grid{
+        padding: 0px 10px;
+    }
+    ion-grid.popup-check-text.grid h2{
+        margin: 0px;
+        display: block;
+        width: 100%;
+        color: #282828;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+        margin: 0px;
+    }
+    ion-grid.popup-check-text.grid h2 span{
+        color: #bcbcbc;
+    }
+    
+    .text-input {
+        margin: 0px 0px;
+    }
+    .text-input::placeholder {
+        margin: 0px;
+        display: block;
+        width: 100%;
+        color: #bcbcbc;
+        font-size: 14px;
+        font-weight: 400;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+        margin: 0px;
+    }
+    .item {
+        padding-left: 0px;
+    }
+    .item-inner {
+        padding-right: 0px !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+    }
+    .select {
+        padding: 0px 8px 0px 0px;
+        width: 100%;
+        max-width: 100%;
+    }
+    ion-grid.popup-check-text.grid .col {
+        padding: 15px 10px 5px;
+        border-bottom: 1px solid #ededed;
+    }
+    ion-grid.popup-check-text.grid .col.border-none {
+        border-bottom: none;
+    }
+    .upload-documents {
+        border: 1px dotted #bbbbbb;
+        padding: 10px;
+        position: relative;
+    }
+    .upload-documents ion-icon{
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        transform: translate(0%,-50%);
+        color: #17a9a0;
+        font-size: 24px;
+    }
+    .upload-documents > div {
+        width: 200px;
+        margin: 0 auto;
+        position: relative;
+        padding-left: 30px;
+    }
+    .upload-documents > div h6{
+        margin: 0px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+        color: #17a9a0;
+    }
+
+    .upload-documents > div p{
+        margin: 0px;
+        font-size: 10px;
+        font-weight: 400;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+        color: #000;
+        opacity: 0.7;
+    }
+    .absolute-box{
+        position: absolute;
+        opacity: 0;
+        z-index: 99999;
+    }
+    
+    .padding-check{
+        padding: 15px 0px 5px !important;
+        border-bottom: none !important;
+    }
+    .padding-check h2{
+        padding: 0px 0px 15px !important;
+    }
+    .padding-check form > p{
+        margin: 0px;
+        font-size: 12px;
+        font-weight: 400;
+        text-decoration: none;
+        font-family: 'Muli', sans-serif;
+        color: #000;
+        opacity: 0.7;
+        margin: 10px 0px;
+    }
+    .select .select-placeholder::placeholder{
+        
+        color: #282828 !important;
+    }
+    .select-placeholder {
+        color: #282828 !important;
+        font-family: 'Muli', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .text-color .select-placeholder {
+        color: #bcbcbc !important;
+        font-family: 'Muli', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .none-e .select-icon .select-icon-inner{
+        display: none !important;
+    }
+    .datetime-md {
+        padding: 13px 8px 13px 0px !important;
+    }
+}

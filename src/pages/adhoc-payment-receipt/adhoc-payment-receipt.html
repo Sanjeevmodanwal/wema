@@ -1,0 +1,307 @@
+<!--
+  Generated template for the AppointmentConfirmedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar hideBackButton="{{!hasBackButton}}">
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <div style="padding: 10px">
+    <div *ngIf="!isPayLater">
+      <ion-label style="font-size: medium; color: baseColor">
+        <b>Payment Success</b>
+      </ion-label>
+      <ion-label style="font-size: 14px;color: #5B5B5B">
+        <b>Transaction ID: {{receipt?.transactionid}}</b>
+      </ion-label>
+    </div>
+
+    <div *ngIf="isPayLater">
+      <p class="baseColorText" style="font-size:16px;">
+        <b>Payment Mode : {{paymentMode}}</b>
+      </p>
+      <p style="color:gray;font-size: 12px;">To be paid provider after the services are completed</p>
+    </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-7>
+          <img *ngIf="isShowCompany" src="{{companyData?.logo}}" style="width: 40px;height: 40px" />
+        </ion-col>
+        <ion-col col-5></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-7>
+          <ion-label *ngIf="isShowCompany" class="baseColorText" style="font-size: medium;">
+            <b>{{companyData?.companyname}}</b>
+          </ion-label>
+        </ion-col>
+        <ion-col col-5>
+          <ion-label class="baseColorText" style="font-size:medium">
+            <b>Order Number:</b>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-7>
+          <ion-label *ngIf="isShowCompany" style="font-size: 14px;color:#5B5B5B">{{companyData?.displayaddress1}}</ion-label>
+        </ion-col>
+        <ion-col col-5>
+          <ion-label style="font-size: medium;color:#2B2A29">
+            <b>{{receipt?.id}}</b>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-7>
+          <ion-label class="baseColorText" *ngIf="isShowCompany" style="font-size: 14px;">{{companyData?.displayaddress}}</ion-label>
+        </ion-col>
+        <ion-col col-5>
+          <ion-label style="color: #5B5B5B;font-size: 14px">{{receipt?.paymentstartdate}}</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-7>
+          <ion-label class="baseColorText" *ngIf="isShowCompany" style="font-size: 14px">{{companyData?.regpostalcode}}</ion-label>
+        </ion-col>
+        <ion-col col-5></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <div style="background: silver;height: 1px;width: 100%"></div>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-label class="baseColorText" style="font-size: 14px;"><b>Service Name</b></ion-label>
+        </ion-col>
+        <ion-col col-3>
+          <ion-label class="baseColorText" style="font-size: 14px;">
+            <b>Duration</b>
+          </ion-label>
+        </ion-col>
+        <ion-col col-3>
+          <ion-label class="baseColorText" style="font-size: 14px;">
+            <b>Amount</b>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <div style="background: silver;height: 1px;width: 100%"></div>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="custom-grid" *ngFor="let item of services">
+      <ion-row>
+        <ion-col col-6>
+          <ion-label style="font-size: 13px;color: #5B5B5B">
+            <b>{{item.servicename}}</b>
+          </ion-label>
+        </ion-col>
+        <ion-col col-3>
+          <ion-label style="font-size: 13px;color: #5B5B5B">
+            {{item.hours}} min
+          </ion-label>
+        </ion-col>
+        <ion-col col-3>
+          <ion-label style="font-size: 14px;color: #5B5B5B">
+            {{receipt?.currency}}{{item.amount}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-label style="font-size: 10px;color: #5B5B5B">
+            {{item.datetime}}
+          </ion-label>
+        </ion-col>
+        <ion-col col-3></ion-col>
+        <ion-col col-3></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-label style="font-size: 13px;color: #5B5B5B">
+            {{item.providername}}
+          </ion-label>
+        </ion-col>
+        <ion-col col-3></ion-col>
+        <ion-col col-3></ion-col>
+      </ion-row>
+      <ion-row *ngIf="isShowCompany">
+        <ion-col col-6>
+          <ion-label style="font-size: 13px;color: #5B5B5B">
+            {{item.company.companyname}}
+          </ion-label>
+        </ion-col>
+        <ion-col col-3></ion-col>
+        <ion-col col-3></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div style="background: silver;height: 1px;width: 100%"></div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-5></ion-col>
+        <ion-col col-4></ion-col>
+        <ion-col col-3>
+          <ion-label style="font-size: 15px;color: #5B5B5B">
+            <b>{{totalPrice}}</b>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-row>
+    <button  (click)= "homePage()"class="done-button">Back to Home Page</button>
+</ion-row>
+</ion-content>
+
+
+<!-- <ion-item>
+      <div style="float: right;">
+        <p style="color:green;font-size:16px">
+          <b>
+            Order Number:</b>
+        </p>
+        <p style="font-size:16px;;">
+          <b>{{orderid}}</b>
+        </p>
+        <br />
+
+        <p style="font-size:12px">
+          {{date}}
+        </p>
+      </div>
+    </ion-item>
+  </div>
+  <hr>
+  <ion-row>
+    <ion-col col-5 style="color: green;">
+      <b>Service</b>
+    </ion-col>
+    <ion-col col-4 class="flex-col" style="color: green;  ">
+      <b>Duration</b>
+    </ion-col>
+    <ion-col col-3 class="flex-col" style="color: green ;">
+      <b>Price</b>
+    </ion-col>
+  </ion-row>
+  <hr>
+  <ion-list>
+
+    <ion-row *ngFor="let item of services">
+
+      <ion-col col-5>
+
+        <b style="font-size:12px;color: gray;">{{item.servicename}}</b>
+        <br/>
+        <p style="color:gray;font-size:12px;"> {{item.datetime}}</p>
+        <p style="color:gray;font-size:12px;">{{item.providername}}</p>
+        <p style="color:gray;font-size:12px;">{{item.company.companyname}}</p>
+      </ion-col>
+      <ion-col col-4 text-center>
+        {{item.hours}}
+      </ion-col>
+      <ion-col col-3 text-center>
+        {{currency}}{{item.amount}}
+      </ion-col>
+
+    </ion-row>
+    <hr>
+
+    <ion-row>
+
+      <ion-col col-5>
+
+      </ion-col>
+      <ion-col col-4>
+
+      </ion-col>
+      <ion-col col-3 text-center>
+        <b style="color: gray;">{{displayTotalPrice}}</b>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-list>-->
+
+
+<!-- 
+      <img src="assets/imgs/wema.png" width="60" height="60" /> 
+      <p style="color:green;font-size:16px;">
+        <b>Payment Mode : Post-Payment</b>
+
+      </p>
+      <p style="color:gray;font-size: 12px;">To be paid provider after the services
+        <br/> are completed</p>
+
+
+      <div style="float: right;">
+        <p style="color:green;font-size:16px">
+          <b>
+            order Number</b>
+        </p>
+        <br/>
+        <p style="font-size:16px;;">
+          <b>161</b>
+        </p>
+        <br />
+
+        <p style="font-size:12px">
+          {{myDate | date: 'dd-mm-yyyy HH:mm a '}}
+        </p>
+      </div>
+    </ion-item>
+
+    <ion-row>
+
+      <ion-col col-2 style="color: green;">
+        <b>Service Name</b>
+      </ion-col>
+      <ion-col col-6 style="color: green;">
+        <b>Duration</b>
+      </ion-col>
+      <ion-col col-4 style="color: green ;">
+        <b>Amount</b>
+
+      </ion-col>
+    </ion-row>
+    <ion-list *ngFor="let item of items">
+      <ion-row>
+        <ion-item>
+
+          <ion-col col-4>
+            <b style="font-size:12px;">Care at home</b>
+            <p style="color:gray;font-size:12px;">Louis Lift</p>
+            jhjkjk
+          </ion-col>
+          <ion-col col-4>
+            <label>2</label>
+          </ion-col>
+          <ion-col col-4>
+            <label>&#36;102</label>
+          </ion-col>
+        </ion-item>
+      </ion-row>
+    </ion-list>
+  <p style="color:gray;font-size:14px;">
+        <b>Care at home</b>
+        <span style="margin-left: 70px;">2</span>
+      </p>
+      <br/>
+      <p style="font-size:10px; ">
+        {{myDate | date: 'dd-mm-yyyy HH:mm a '}}
+      </p>
+      <br/>
+      <p style="color:gray;font-size:14px;">Louis Lift</p>
+      <br/>
+      <p style="color:gray;font-size:14px">Mike Healtcare</p>
+      <br/> 
+    -->

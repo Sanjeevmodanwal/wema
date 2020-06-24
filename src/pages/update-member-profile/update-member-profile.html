@@ -1,0 +1,226 @@
+<!--
+  Generated template for the UpdateMemberProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Update Profile</ion-title>
+     
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-slides>
+
+    <!--  <ion-slide>
+        <ion-grid class="background-f">
+          <ion-row>
+            <ion-col col-12>
+                <h1>Company Information</h1>
+            </ion-col>
+              <ion-col col-12>
+                  <h2>Company Number<span>*</span></h2>
+                  <p>#9854785</p>
+                  <h2>Company Name<span>*</span></h2>
+                  <p>HCL Technologies Pvt. Ltd.</p>
+                  <h2>Unique Code<span>*</span></h2>
+                  <p>65485</p>
+              </ion-col>
+              <ion-col col-12 class="button-col">
+                  <button class="edit">Edit</button>
+                  <button>Delete</button>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+      <ion-grid class="background-f">
+          <ion-row>
+              <ion-col col-12>
+                  <h2>Company Number<span>*</span></h2>
+                  <p>#9854578</p>
+                  <h2>Company Name<span>*</span></h2>
+                  <p>Uber Pvt. Ltd.</p>
+                  <h2>Unique Code<span>*</span></h2>
+                  <p>65578</p>
+              </ion-col>
+              <ion-col col-12 class="button-col">
+                  <button class="edit">Edit</button>
+                  <button>Delete</button>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+      <ion-grid class="background-f">
+          <ion-row>
+              <ion-col col-12>
+                  <h1>Add New Company Information</h1>
+              </ion-col>
+              <ion-col col-12>
+                <form>
+                    <ion-item>
+                      <ion-label block>Company Number<span>*</span></ion-label>
+                      <ion-input placeholder="Enter company number"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label block>Company Name<span>*</span></ion-label>
+                      <ion-input placeholder="Enter company name"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label block>Unique Code<span>*</span></ion-label>
+                      <ion-input placeholder="Enter unique code"></ion-input>
+                    </ion-item>
+                </form>
+              </ion-col>
+              <ion-col col-12 class="button-col">
+                  <button class="edit"  (click)='next()'>Next</button>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+       
+      </ion-slide>
+    -->
+      <ion-slide>
+        
+          <ion-grid  class="background-f three">
+              <ion-row>
+                  <ion-col col-12>
+                      <h1>Personal Information</h1>
+                  </ion-col>
+                <ion-col col-12 *ngFor="let field of formFields" >
+                     
+                             <!-- <div *ngIf="field.type === 'select' && field.multiple===true && field.name==='providertypes'">
+                                <ion-item no-lines no-padding>
+                                  <ion-label style="color:black">{{field.label}}
+                                    <span *ngIf="field.required" danger>*</span> 
+                                  </ion-label>
+                                </ion-item>
+                                <ion-grid class="custom-grid">
+                                  <ion-row wrap>
+                                    <ion-col col-6 *ngFor="let pType of providerTypes">
+                                      <ion-item no-lines no-padding>
+                                        <ion-label style="white-space: normal;">{{pType.categoryname}}</ion-label>
+                                        <ion-checkbox (ionChange)="getServices()" [(ngModel)]="pType.selected" style="margin: 8px">
+                                        </ion-checkbox>
+                                      </ion-item>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
+                              </div>-->
+
+                              <div *ngIf="services!=null && services.length>0 && field.type === 'select' && field.multiple===true && field.name==='services'">
+                                <ion-item no-lines no-padding>
+                                  <ion-label style="color:black">{{field.label}}
+                                    <span *ngIf="field.required" danger>*</span>  
+                                  </ion-label>
+                                </ion-item>
+                                <ion-grid class="custom-grid">
+                                  <ion-row wrap>
+                                    <ion-col col-6 *ngFor="let service of services">
+                                      <ion-item no-lines no-padding>
+                                        <ion-label style="white-space: normal;">{{service.servicename}}</ion-label>
+                                        <ion-checkbox style="margin: 8px" [(ngModel)]="service.selected">
+                                        </ion-checkbox>
+                                      </ion-item>
+                                    </ion-col>
+                                  </ion-row>
+                                </ion-grid>
+                              </div>
+                              <div *ngIf="field.name!='qedetails'&&field.name!='experience'&&field.name!='eqdetails' && field.name!='skills' && field.name!='otherskills' && field.name!='interests' && field.name!='otherinterest'">
+                                <ion-item *ngIf="(field.type === 'select' || field.type ==='radio-group') && field.name != 'country' && field.name != 'providertypes' && field.name != 'services'"
+                                  style="margine-top:20px;" no-padding>
+                                 <!-- <ion-label style="color:black">{{field.label}}
+                                    <span *ngIf="field.required" danger>*</span>
+                                  </ion-label>-->  
+                                  <ion-select [(ngModel)]="values[field.name]" placeholder="{{field.label}}" class="full-width-select">
+                                    <ion-option *ngFor="let value of field.values">{{value.label}}</ion-option>
+                                  </ion-select>
+                                </ion-item>
+                                <ion-item *ngIf="field.type === 'select' && field.name === 'country'" no-padding>
+                                  <ion-label block style="color:black">{{field.label}}
+                                    <span *ngIf="field.required" danger>*</span> 
+                                  </ion-label>
+                                  <ion-select *ngIf="field.required" [(ngModel)]="values[field.name]" placeholder="{{field.label}}*" class="full-width-select">
+                                    <ion-option [value]="1">United Kingdom</ion-option>
+                                    <ion-option [value]="2">India</ion-option>
+                                  </ion-select>
+                                  <ion-select *ngIf="!field.required" [(ngModel)]="values[field.name]" placeholder="{{field.label}}" class="full-width-select">
+                                    <ion-option [value]="1">United Kingdom</ion-option>
+                                    <ion-option [value]="2">India</ion-option>
+                                  </ion-select>
+                                </ion-item>
+                                <ion-item *ngIf="field.type === 'paragraph'">
+                                  <ion-label>{{field.label}}</ion-label>
+                                </ion-item>
+                                <div *ngIf="field.type === 'text' && (field.name!='companynumber' && field.name!='company' && field.name!='uniquenumber' && field.name!='emailid')">
+                                  <ion-item *ngIf="field.subtype == 'tel'" no-padding>
+                                    <ion-label block>{{field.label}}
+                                      <span *ngIf="field.required" danger>*</span> 
+                                    </ion-label>
+                                    <ion-input type="tel" [maxlength]="field.maxlength" ng-attr-required="field.required" [(ngModel)]="values[field.name]"></ion-input>
+                                  </ion-item>
+                                  <ion-item *ngIf="field.subtype == 'text' && field.name=='postcode'" no-padding>
+                                    <ion-label block>{{field.label}}
+                                      <span *ngIf="field.required" danger>*</span>
+                                    </ion-label>
+                                    <ion-input type="text" maxlength="8" ng-attr-required="field.required" [(ngModel)]="values[field.name]"></ion-input>
+                                  </ion-item>
+                                  <ion-item *ngIf="field.subtype == 'text'&& field.name!='postcode'" no-padding>
+                                   <ion-label block *ngIf="(field.name == 'addressline' || field.name == 'addressline1' || field.name == 'city' || field.name == 'county' || field.name == 'landmark')" >{{field.label}}
+                                      <span *ngIf="field.required" danger>*</span> 
+                                    </ion-label>
+                                    <ion-input type="text" ng-attr-required="field.required" [(ngModel)]="values[field.name]" placeholder="{{field.label}}{{ field.required ?'*' : '' }}" ></ion-input>
+                                  </ion-item>
+                                </div>
+                               
+
+                                    <ion-item *ngIf="field.type === 'password' && field.name == 'password'" no-padding>
+                                        <ion-label block>{{field.label}}
+                                          <span *ngIf="field.required" danger>*</span>
+                                        </ion-label>
+                                        <ion-input required [(ngModel)]="values[field.name]" type="password"></ion-input>
+                                      </ion-item>
+                                      <ion-item *ngIf="field.type === 'password' && field.name == 'confirmpassword'" no-padding>
+                                          <ion-label block>{{field.label}}
+                                            <span *ngIf="field.required" danger>*</span>
+                                          </ion-label>
+                                          <ion-input required [(ngModel)]="values[field.name]" type="password"></ion-input>
+                                        </ion-item>
+
+                                                         
+                                         <ion-item *ngIf="field.type === 'textarea'" no-padding>
+                                  <ion-label block>{{field.label}}
+                                    <span *ngIf="field.required" danger>*</span> 
+                                  </ion-label>
+                                  <ion-textarea [(ngModel)]="values[field.name]"></ion-textarea>
+                                </ion-item>
+                                <ion-item *ngIf="field.type === 'date'" no-padding>
+                                  <ion-label style="color:black">{{field.label}}
+                                    <span *ngIf="field.required" danger>*</span>
+                                  </ion-label>
+                                  <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="dob"></ion-datetime>
+                                </ion-item>
+                              </div>
+                             
+                              
+                           
+               </ion-col> 
+<!--              
+               <ion-col  *ngIf="currentUser['usertype']!='Member'" col-12 class="button-box-send">
+                    <button class="button-company two"  (click)='prev()'>previous</button>
+                    <button class="button-company"  (click)='next()'>Next</button>
+                </ion-col> -->
+
+                 <ion-col    col-12 class="button-box-send">
+                    <button class="button-company" (click)='save()'>Update</button>
+                    <button class="button-company" (click)='reset()'>Reset</button>
+                </ion-col>
+               </ion-row>
+              
+           </ion-grid>
+       
+      </ion-slide>
+    </ion-slides>
+  </ion-content>

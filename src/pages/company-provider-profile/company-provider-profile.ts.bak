@@ -1,0 +1,193 @@
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController, App, Events } from 'ionic-angular';
+import { IScrollTab, ScrollTabsComponent } from '../../../ionic2-scrolltabs/src/components/scrolltabs';
+import { ApiProvider } from '../../providers/api/api';
+import { DatePipe } from '@angular/common';
+import { AppConst } from '../../AppConst';
+import { AddBasketPopupPage } from '../add-basket-popup/add-basket-popup';
+import { AddSuccessPopupPage } from '../add-success-popup/add-success-popup';
+import { AdhocCheckoutPage } from '../adhoc-checkout/adhoc-checkout';
+import { dateValueRange } from 'ionic-angular/util/datetime-util';
+//import { duration } from 'moment';
+import { AppState } from '../../AppStates';
+
+/**
+ * Generated class for the CompanyProviderProfilePage page
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-company-provider-profile',
+  templateUrl: 'company-provider-profile.html',
+})
+export class CompanyProviderProfilePage {
+
+  tabs: IScrollTab[] = [
+    {
+      name: 'OVERVIEW',
+    },
+    {
+      name: 'AVAILABILITY'
+    },
+  ];
+  selectedTab: IScrollTab;
+  searchData: any;
+  provider: any;
+  company: any;
+  firstDay: any;
+  secondDay: any;
+  thirdDay: any;
+  slotTimes1: Array<{ date: any, time: string, price: string }>;
+  slotTimes2: Array<{ date: any, time: string, price: string }>;
+  slotTimes3: Array<{ date: any, time: string, price: string }>;
+  @ViewChild('scrollTab') scrollTab: ScrollTabsComponent;
+  public appState = AppState;
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams, private apiProvider: ApiProvider, private datePipe: DatePipe, private modalCtrl: ModalController, private toastCtrl: ToastController,private events:Events) {
+    this.searchData = navParams.get('searchData');
+    this.provider = navParams.get('provider');
+    this.company = navParams.get('company');
+  }
+
+  /**
+   * Call on page enter
+   */
+  ionViewDidEnter() {
+    this.scrollTab.go2Tab(0);
+    this.getAvailableSlots();
+  }
+
+/**
+   * Cart click handler
+   */
+  viewCart() {
+    this.navCtrl.push(AdhocCheckoutPage);
+  }
+
+  /**
+   * Handler for tab changes
+   */
+  tabChange(data: any) {
+    this.selectedTab = data.selectedTab;
+  }
+
+  /**
+   * Get available slots of provider
+   */
+  async getAvailableSlots() {
+    var request =
+      {
+        CompanyId: this.company.companyid,
+        Date: this.datePipe.transform(this.searchData.date, 'yyyy-MM-dd'),
+        Duration: this.searchData.duration.slice(' ')['0'],
+        ProviderId: this.provider.details.providerid,
+        ServiceId: this.searchData.service.serviceid,
+        Time: this.searchData.time + ':00',
+        Type: "days",
+        Allslot: 1,
+        //UniqueId = AppState.UniqId
+      };
+    var response = await this.apiProvider.Post(AppConst.GET_ADHOC_PROVIDER_AVAILABILITY, request).toPromise();
+    if (response != null && response.hasOwnProperty('records') && response['records'].length > 0) {
+      this.firstDay = this.datePipe.transform(this.searchData.date, 'dd-MMM-yy');
+      this.secondDay = this.datePipe.transform(new Date(this.firstDay).getTime() + 24 * 60 * 60 * 1000, 'dd-MMM-yy');
+      this.thirdDay = this.datePipe.transform(new Date(this.firstDay).getTime() + 48 * 60 * 60 * 1000, 'dd-MMM-yy');
+      let available = response['records']['0']['available'];
+      let i: number = 0;
+      for (var key in available) {
+        if (i == 0 && available.hasOwnProperty(key) && available[key] != null) {
+          var slots = available[key].time;
+          var rates = available[key].rate;
+          this.slotTimes1 = [];
+          let j: number = 0;
+          for (let s in slots) {
+            this.slotTimes1.push({ date: key, time: slots[s], price: rates[slots[s]] });
+            j++;
+          }
+        }
+        else if (i == 1 && available.hasOwnProperty(key) && available[key] != null) {
+          var slots = available[key].time;
+          var rates = available[key].rate;
+          this.slotTimes2 = [];
+          let j: number = 0;
+          for (let s in slots) {
+            this.slotTimes2.push({ date: key, time: slots[s], price: rates[slots[s]] });
+            j++;
+          }
+        }
+        else if (i == 2 && available.hasOwnProperty(key) && available[key] != null) {
+          var slots = available[key].time;
+          var rates = available[key].rate;
+          this.slotTimes3 = [];
+          let j: number = 0;
+          for (let s in slots) {
+            this.slotTimes3.push({ date: key, time: slots[s], price: rates[slots[s]] });
+            j++;
+          }
+        }
+        i++;
+      }
+    }
+  }
+
+  /**
+   * Open add to cart popup 
+   */
+  addToCart(bookTime: any) {
+    var canBooktime = new Date(new Date().getTime() + (30 * 60 * 1000));
+    var hm = bookTime.time.split(':');
+    var hours = parseInt(hm[0]);
+    var minute = parseInt(hm[1]);
+    if (canBooktime.getDate() == new Date(bookTime.date).getDate()) {
+      var totalMinutes = canBooktime.getHours() * 60 + canBooktime.getMinutes();
+      var totalBookedMinutes = hours * 60 + minute;
+      if (totalBookedMinutes < totalMinutes) {
+        this.toastCtrl.create({
+          message: 'You can book the appointment only for upcoming time',
+          duration: 2000
+        }).present();
+        return;
+      }
+    }
+
+    var addBasketPopup = this.modalCtrl.create(AddBasketPopupPage, { bookTime: bookTime, searchData: this.searchData, service: this.searchData.service, provider: this.provider, company: this.company });
+    addBasketPopup.onDidDismiss((data) => {
+      if (data!=null&& data.flag == 'addtocart') {
+        var successPopup = this.modalCtrl.create(AddSuccessPopupPage);
+        successPopup.onDidDismiss((data) => {
+          if (data!=null&& data.flag == 'viewcart') {
+            this.navCtrl.push(AdhocCheckoutPage);
+          }
+          else {
+            this.getAvailableSlots();
+          }
+        });
+        successPopup.present();
+      }
+    });
+    addBasketPopup.present();
+  }
+
+  /**
+   * Get previous days slots
+   */
+  previous() {
+    let date = new Date(Date.parse(this.firstDay));
+    if (date.getDate() != new Date().getDate()) {
+      this.searchData.date = this.datePipe.transform(date.getTime() - (3 * 24 * 60 * 60 * 100), 'dd-MMM-yyyy');
+      this.getAvailableSlots();
+    }
+  }
+
+  /**
+   * Get next days slots
+   */
+  next() {
+    let date = new Date(Date.parse(this.thirdDay));
+    this.searchData.date = this.datePipe.transform(date.getTime() + (24 * 60 * 60 * 100), 'dd-MMM-yyyy');
+    this.getAvailableSlots();
+  }
+}

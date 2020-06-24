@@ -1,0 +1,36 @@
+<!--
+  Generated template for the MemberVisitReportPopupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content padding="true"> 
+  <ion-label style="color: #009846">Service Name:</ion-label>
+  <ion-card>
+    <ion-item no-padding no-lines>
+      <ion-input type="text" placeholder="Type service name" (focus)="searchService()" (input)="searchService()" [(ngModel)]="serviceKeyword"
+        style="border-bottom: 1px solid #ededed"></ion-input>
+    </ion-item>
+  </ion-card>
+  <div *ngIf="isServiceVisible">
+    <ion-card style="height:150px;overflow-y: scroll">
+      <div *ngFor="let item of filteredServices" (click)="serviceSelectedItem(item)" style="padding: 5px">{{item.servicename}}
+        <hr>
+      </div>
+    </ion-card>
+  </div>
+  <ion-label style="color: #009846;margin-top: 10px">Start Date:</ion-label>
+  <ion-card>
+    <ion-item no-lines>
+      <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="startDate"></ion-datetime>
+    </ion-item>
+  </ion-card>
+  <ion-label style="color: #009846;margin-top: 10px">End Date:</ion-label>
+  <ion-card>
+    <ion-item no-lines>
+      <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="endDate"></ion-datetime>
+    </ion-item>
+  </ion-card>
+  <button class="custom-button" full ion-button style="color: white;margin-top: 10px" (click)="submit()">Submit</button>
+</ion-content>

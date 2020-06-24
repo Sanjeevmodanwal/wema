@@ -1,0 +1,85 @@
+<ion-header>
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Money Earned</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid class="period">
+      <ion-row> 
+          <ion-col col-8>
+              <p>Period</p>
+              <h6> {{datePeriod}} </h6>
+          </ion-col>
+          <ion-col col-4>
+             <button (click)="showFilterPopup()">Change</button>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  <ion-grid class="date-box-deta" *ngIf="!isReportEmpty">
+       
+        <ion-row class="heding-row">
+            <ion-col col-6>
+                <h3>Date</h3>
+            </ion-col>
+           <!-- <ion-col col-6>
+                <h3>Description</h3>
+            </ion-col>-->
+            <ion-col col-6 text-right>
+                    <h3>Payment</h3>
+                </ion-col>
+        </ion-row>
+  
+        <ion-row class="deta-row" *ngFor="let item of moneyEarnedReports">
+            <ion-col col-6>
+                <p>{{item.date}}</p>
+            </ion-col>
+           <!-- <ion-col col-6>
+                <p>David Balley for personal care</p>
+            </ion-col>-->
+            <ion-col col-6 text-right>
+                    <h4>{{item.total}}</h4>
+                </ion-col>
+        </ion-row>
+     
+</ion-grid>
+
+
+  <ion-grid *ngIf="isReportEmpty">
+        <ion-row  >
+            No reports found
+           </ion-row >
+        </ion-grid>
+<!--<ion-grid>
+  <ion-row>
+      <ion-col col-12 class="not-pay">
+          <p>*We will not pay the expenses, if the visit report not submited.</p>
+      </ion-col>
+  </ion-row>
+</ion-grid>-->
+
+<ion-grid class="total-earning">
+    <ion-row class="total-earning-up">
+        <ion-col col-12>
+        <!--  <h3>Total Earning</h3>-->
+          <p>{{datePeriod}} </p>
+        </ion-col>
+    </ion-row>
+    <ion-row class="total-amunt">
+        <ion-col col-8>
+         <!-- <h5>Amount deduction</h5>-->
+          <p>Total Earning amount</p>
+        </ion-col>
+        <ion-col col-4 text-right>
+         <!-- <h5>£15</h5>-->
+          <h6>{{totalEarned}}</h6>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

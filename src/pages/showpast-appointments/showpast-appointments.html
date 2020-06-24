@@ -1,0 +1,97 @@
+<!--
+  Generated template for the ShowpastAppointmentsPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Past Appointments</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-row class="filter-members-box">
+    <ion-col col-12 class="filter-members">
+      <span (click)="showfilter =true">
+        <p><ion-icon name="md-person"></ion-icon></p>
+        <p>Filter by Members</p>
+      </span>
+      <ion-item *ngIf="showfilter">
+        <ion-label>Filter by Members* </ion-label>
+        <ion-select
+          placeholder="Select Member "
+          [(ngModel)]="selectedmember"
+          name="selectedmember"
+          (ionChange)="logRange($event)"
+        >
+          <ion-option value="">Select All</ion-option>
+          <div *ngFor="let field of members">
+            <ion-option value="{{field.membername}}"
+              >{{field.membername}}
+            </ion-option>
+          </div>
+        </ion-select>
+        <button (click)="showfilter =false">Cancel</button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <!-- <ion-row>
+    <ion-col col-12 class="heding-text">
+        <h5>{{pastVisits[0].}}’ 2018</h5>
+    </ion-col>
+</ion-row> -->
+  <span *ngFor="let past of pastVisits">
+    <ion-grid *ngIf="past.doneforthismember" class="view-report">
+      <ion-row>
+        <ion-col col-3>
+          <p>{{past.appdate | date :'d MMM, y'}}</p>
+        </ion-col>
+        <ion-col col-9>
+          <div class="mine-box">
+            <div class="text-box">
+              <h3>
+                {{past.membername}}<span> for </span> {{past.servicename}}
+              </h3>
+              <p>
+                <ion-icon name="md-time"></ion-icon> {{past.starttime |
+                date:'hh:mm a'}}
+              </p>
+              <p>
+                <!--<ion-icon name="ios-pin"></ion-icon> Kidderminster-->&nbsp;
+              </p>
+            </div>
+            <div class="button-box-two">
+              <p class="errer" *ngIf="past.providerreport=='' ">
+                Not yet Shared
+              </p>
+              <button
+                (click)="viewVisitReport(past)"
+                *ngIf=" past.providerreport==''  "
+              >
+                SUBMIT NOW
+              </button>
+              <button
+                (click)="viewVisitReport(past)"
+                *ngIf=" past.providerreport!=''"
+              >
+                View report
+              </button>
+            </div>
+          </div>
+          <!-- <div class="mine-box">
+              <div class="text-box">
+                    <h3>Aaron Hank <span>for</span> personal care</h3>
+                    <p><ion-icon name="md-time"></ion-icon> 11:00 AM</p>
+                    <p><ion-icon name="ios-pin"></ion-icon> Kidderminster</p>
+                </div>
+                <div class="button-box-two">
+                    <button (click)="openModal()">View report</button>
+                </div>
+              </div> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </span>
+</ion-content>

@@ -1,0 +1,25 @@
+page-update-availibility {
+   .col {
+        margin: 0px !important;
+        padding: -1px 8px !important;
+    }
+    .month
+    {
+        position: relative;
+        left: 243px;
+    }
+    ion-col.flex-col.col {
+        font-size: 18px !important;
+        text-align: center;
+    }
+    ion-col.flex-col.col span {
+      font-size: 14px !important;
+  }
+  ion-grid.custom-grid.grid ion-col.col {
+      font-size: 9px;
+} 
+.col {
+    margin: 0px;
+    padding: 0px 0px;
+}
+}

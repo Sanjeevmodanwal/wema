@@ -1,0 +1,119 @@
+<ion-header>
+    <ion-navbar class="dawn-bar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Appointment</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid class="appointment-box">
+      <ion-row>
+          <ion-col col-12>
+              <h2>Aaron Hank</h2>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col col-12>
+              <div class="box-one">
+                <p>Date</p>
+                <h3>15 Nov 2018, 11:00 AM</h3>
+                <p>Service</p>
+                <h3>Personal Care</h3>
+                <p>Postal Code</p>
+                <h3>E1 FG8</h3>
+              </div>
+              <div class="box-two">
+                  <p>Area</p>
+                  <h3>Kidderminster</h3>
+                  <p>Service For</p>
+                  <h3>Self</h3>
+                  <p style="opacity: 0;">Demo</p>
+                  <h4><a>View Route Map <ion-icon name="md-play" float-right></ion-icon></a></h4>
+              </div>
+              <div class="button-box">
+                  <h5>15 mins left for check out</h5>
+                  <button>Check out</button>
+                  <p>If you want early check out?  <a >Click here</a></p>
+              </div>
+          </ion-col>
+      </ion-row>
+</ion-grid>
+
+<ion-grid  class="view-report">
+    <ion-col col-12>
+        <h2>Past appointment done for <span>Aaron Hank</span></h2>
+    </ion-col>
+</ion-grid>
+
+<ion-grid class="view-report">
+    <ion-row>
+        <ion-col col-3>
+            <p>15 Aug</p>
+            <p>2018</p>
+        </ion-col>
+        <ion-col col-9>
+          <div class="mine-box">
+            <div class="text-box">
+                  <h3>Aaron Hank <span>for</span> personal care</h3>
+                  <p><ion-icon name="md-time"></ion-icon> 11:00 AM</p>
+                  <p><ion-icon name="ios-pin"></ion-icon> Kidderminster</p>
+              </div>
+              <div class="button-box-two">
+                  <button (click)="openModal()">View report</button>
+              </div>
+            </div>
+            <div class="mine-box">
+                <div class="text-box">
+                      <h3>Aaron Hank <span>for</span> personal care</h3>
+                      <p><ion-icon name="md-time"></ion-icon> 11:00 AM</p>
+                      <p><ion-icon name="ios-pin"></ion-icon> Kidderminster</p>
+                  </div>
+                  <div class="button-box-two">
+                      <button (click)="openModal()">View report</button>
+                  </div>
+                </div>
+        </ion-col>
+        
+        
+    </ion-row>
+</ion-grid>
+
+
+<ion-grid class="view-report">
+    <ion-row>
+     
+        <ion-col col-3>
+            <p>15 Aug</p>
+            <p>2018</p>
+        </ion-col>
+        <ion-col col-9>
+          <div class="mine-box">
+            <div class="text-box">
+                  <h3>Aaron Hank <span>for</span> personal care</h3>
+                  <p><ion-icon name="md-time"></ion-icon> 11:00 AM</p>
+                  <p><ion-icon name="ios-pin"></ion-icon> Kidderminster</p>
+              </div>
+              <div class="button-box-two">
+                  <button>View report</button>
+              </div>
+            </div>
+            <div class="mine-box">
+                <div class="text-box">
+                      <h3>Aaron Hank <span>for</span> personal care</h3>
+                      <p><ion-icon name="md-time"></ion-icon> 11:00 AM</p>
+                      <p><ion-icon name="ios-pin"></ion-icon> Kidderminster</p>
+                  </div>
+                  <div class="button-box-two">
+                      <button>View report</button>
+                  </div>
+                </div>
+        </ion-col>
+        
+        
+    </ion-row>
+</ion-grid>
+
+</ion-content>

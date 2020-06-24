@@ -1,0 +1,138 @@
+page-select-delivery-loc {
+    .scroll-content{
+        background: #eeeeee;
+    }
+    ion-grid.grid{
+        background: #fff;
+        padding: 15px 0px;
+        margin-top: 7px;
+    }
+    h5, p{
+        margin: 0px;
+    }
+    .container{
+        display: block;
+        position: relative;
+        height: auto;
+        width: 100%;
+      }
+      .container ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+          overflow: auto;
+      }
+      
+      ul li{
+        color: #e3e3e3;
+        display: block;
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 50px;
+      }
+      
+      ul li input[type=radio]{
+        position: absolute;
+        visibility: hidden;
+      }
+      
+      ul li label{
+        display: block;
+        position: relative;
+        font-weight: 300;
+        font-size: 1.35em;
+        padding: 0px 5px 0px 5px;
+        margin: 0px auto;
+        height: 10px;
+        z-index: 9;
+        cursor: pointer;
+        -webkit-transition: all 0.25s linear;
+        opacity: 0;
+      }
+      
+      ul li .check{
+        display: block;
+        position: absolute;
+        border: 2px solid #e3e3e3;
+        border-radius: 100%;
+        height: 18px;
+        width: 18px;
+        top: 0px;
+        left: 13px;
+        z-index: 5;
+        transition: border .25s linear;
+        -webkit-transition: border .25s linear;
+      }
+      
+      ul li:hover .check {
+        border: 2px solid #e3e3e3;
+      }
+      
+      ul li .check::before {
+        display: block;
+        position: absolute;
+        content: '';
+        border-radius: 100%;
+        height: 6px;
+        width: 6px;
+        top: 4px;
+        left: 4px;
+        margin: auto;
+        transition: background 0.25s linear;
+        -webkit-transition: background 0.25s linear;
+      }
+      
+      input[type=radio]:checked ~ .check {
+        border: 2px solid #13a89e;
+      }
+      
+      input[type=radio]:checked ~ .check::before{
+        background: #13a89e;
+      }
+      ion-icon.icon-create{
+          color: #3d3d3d;
+      }
+      ion-icon.icon-trash{
+        color: #de6c70;
+    }
+    h5{
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+        font-family: 'Muli', sans-serif;
+        padding-bottom: 6px;
+    }
+    p{
+        font-size: 13px;
+        font-weight: 400;
+        color: #050505;
+        font-family: 'Muli', sans-serif;
+    }
+   
+    ion-grid.grid:hover button.deliver-button {
+        background: #fdb913;
+    }
+    span.add-address{
+        padding-left: 16px;
+        font-size: 15px;
+        color: #000000;
+        font-weight: 600;
+        font-family: 'Muli', sans-serif;
+    }
+    .dawn-bar .toolbar-title {
+        color: #13a89e;
+    }
+    button.deliver-button {
+        width: 100%;
+        background: #c8c8c8;
+        padding: 10px;
+        margin-top: 15px;
+        color: #fff;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-family: 'Muli', sans-serif;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    }
+}

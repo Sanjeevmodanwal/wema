@@ -1,0 +1,32 @@
+<ion-header >
+  <ion-navbar class="dawn-bar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Subscription Plan</ion-title>
+  </ion-navbar> 
+</ion-header>
+
+
+<ion-content>
+<ion-grid class="background-color">
+    <ion-row>
+      <ion-item>
+          <ion-label>Company </ion-label>
+            <ion-select placeholder="Select Company " [(ngModel)]="selectedcompnay_id"   name="selectedcompnay_id">
+                <div *ngFor="let field of company">
+                    <ion-option value="{{field.id}}">{{field.companyname}}
+                    </ion-option>
+                  </div>
+            </ion-select>
+      </ion-item> 
+    </ion-row>
+        <div *ngIf="subscriptions?.length == 0" class="ion-text-center">
+          <p style="color: red; text-align: center;">No subscription plan</p>
+        </div>
+</ion-grid>
+
+<ion-grid class="background-color-box">
+</ion-grid>
+
+</ion-content>

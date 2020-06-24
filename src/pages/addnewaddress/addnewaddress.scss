@@ -1,0 +1,96 @@
+page-addnewaddress {
+    .scroll-content {
+        background: #eeeeee;
+    }
+    ion-grid.location-button.grid {
+        background: #fff;
+        margin-top: 10px;
+        padding: 20px;
+        border-bottom: 1px solid #ededed;
+    }
+
+    ion-grid.location-button.grid button{
+        background: #fff;
+        padding: 14px;
+        text-align: center;
+        box-shadow: 0px 0px 10px rgba($color: #000000, $alpha: 0.2);
+        width: 100%;
+        margin: 0px;
+        font-size: 16px;
+        color: #3d3d3d;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+    }
+    .grid {
+        padding: 0px;
+        background: #fff;
+    }
+    ion-grid.location-button.grid button ion-icon{ 
+        color: #00a59d;
+        font-size: 21px;
+        position: relative;
+        top: 2px;
+        line-height: 0px;
+    }
+    .border-none .item-inner {
+        padding-right: 0px !important;
+        border-bottom: none !important;
+    }
+    .border-none{
+        padding: 0px 16px !important;
+    }
+    .item{
+        padding: 0px 16px !important;
+    }
+    .border-none .item{
+        padding: 0px 16px !important;
+    }
+    .text-input {
+        margin: 13px 0px !important;
+    }
+    ion-label{
+        font-size: 14px;
+        color: #3d3d3d;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+        margin-bottom: 0px !important;
+    }
+    ion-label span{
+        color: #f00;
+    }
+    .item-inner input::placeholder{
+        color: #3d3d3d;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+    }
+    .item-inner {
+        padding-right: 0px !important;
+    }
+    .label {
+        margin: 26px 8px 0px 0 !important;
+    }
+    .location-from{
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+    }
+    .mobile-number span{
+        color: #878787;
+        font-size: 13px;
+        font-weight: 400;
+        font-family: 'Muli', sans-serif;
+    }
+    ion-col.button-save.col {
+        padding: 40px 0px 0px;
+    }
+    ion-col.button-save.col button{
+        padding: 14px;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: 'Muli', sans-serif;
+        text-transform: uppercase;
+        background: #faa615;
+        color: #fff;
+        width: 100%;
+    }
+}

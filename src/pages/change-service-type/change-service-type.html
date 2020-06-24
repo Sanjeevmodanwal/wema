@@ -1,0 +1,30 @@
+<!--
+  Generated template for the ChangeServiceTypePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Services</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-item no-padding no-lines>
+      <ion-input type="text" placeholder="Seach Service" (focus)="searchService()" (input)="searchService()"
+        [(ngModel)]="serviceKeyword"></ion-input>
+    </ion-item>
+  </ion-card>
+  <div *ngIf="isServiceVisible">
+    <ion-card style="height:150px;overflow-y: scroll">
+      <div *ngFor="let item of filteredServices" (click)="dismissPopup(item)" style="padding: 5px">{{item.servicename}}
+        <hr>
+      </div>
+    </ion-card>
+    </div>
+</ion-content>

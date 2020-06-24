@@ -1,0 +1,22 @@
+
+<ion-content>
+ 
+
+    <ion-grid class="popup-check-out">
+        <ion-col col-12>
+            <h2>Raise Alarm</h2>
+            <button (click)="dismiss(cancel)">cancel</button>
+            <button  (click)="dismiss(ok)"class="submit">Submit</button>
+        </ion-col>
+    </ion-grid>
+    <ion-grid class="popup-check-text">
+        <ion-col col-12>
+            <h2>Reason for raising alarm<span>*</span></h2>
+         
+                <ion-item>
+                  <ion-input   [(ngModel)]="reason"  type="text" placeholder="Give reason for raising alarm"></ion-input>
+                </ion-item>
+             
+        </ion-col>
+    </ion-grid>
+</ion-content>
