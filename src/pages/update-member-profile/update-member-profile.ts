@@ -33,6 +33,7 @@ import { Camera } from "../../../node_modules/@ionic-native/camera";
 import { HttpHeaders } from "../../../node_modules/@angular/common/http";
 import { Base64 } from "@ionic-native/base64";
 import { timeoutWith } from "rxjs/operator/timeoutWith";
+import { ExistFriendsAndFamilyPage } from "../exist-friends-and-family/exist-friends-and-family";
 /**
  * Generated class for the UpdateMemberProfilePage page.
  *
@@ -88,7 +89,7 @@ export class UpdateMemberProfilePage {
     this.currentUser = AppState.UserCred;
     console.log(this.currentUser);
     this.userInfo = this.currentUser.formvalues;
-    console.log(this.userInfo);
+    console.log("userinfo",this.userInfo);
     this.companyId = this.currentUser.currentCompany.companyid;
     //this.dob = new Date().toISOString();
     this.dob = this.userInfo.dateofbirth;
@@ -147,6 +148,7 @@ export class UpdateMemberProfilePage {
       response["records"].length > 0
     ) {
       var allFields = response["records"][0]["formfields"];
+      console.log("mddf",allFields);
       this.formFields = allFields.filter(
         x =>
           x.name != "membertype" &&

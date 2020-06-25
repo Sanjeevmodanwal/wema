@@ -134,7 +134,7 @@ export class ProfilePage {
       : "";
     this.AddressLine2 =
       (AppState.UserCred["formvalues"]["addressline1"] != "undefined" &&
-      AppState.UserCred["formvalues"]["addressline1"] != null
+        AppState.UserCred["formvalues"]["addressline1"] != null
         ? AppState.UserCred["formvalues"]["addressline1"]
         : "" + ",") + AppState.UserCred["formvalues"]["city"];
     this.Mobile = AppState.IsMember ? usermobilenumber : userphonenumber;
@@ -233,7 +233,7 @@ export class ProfilePage {
     console.log('inside editProfile()');
     console.log(JSON.stringify(AppState.UserCred['usertype']));
 
-    if(AppState.UserCred['usertype'] == 'Provider'){
+    if (AppState.UserCred['usertype'] == 'Provider') {
       this.navCtrl.push('UpdateprofilePage');
     } else {
       this.navCtrl.push('UpdateMemberProfilePage');
@@ -427,11 +427,11 @@ export class ProfilePage {
       };
     let response = AppState.IsMember
       ? await this.apiProvider
-          .Post(AppConst.GET_USER_PROFILE, request)
-          .toPromise()
+        .Post(AppConst.GET_USER_PROFILE, request)
+        .toPromise()
       : await this.apiProvider
-          .Post(AppConst.GET_PROVIDER_PROFILE, request)
-          .toPromise();
+        .Post(AppConst.GET_PROVIDER_PROFILE, request)
+        .toPromise();
     if (
       response != null &&
       response.hasOwnProperty("records") &&
