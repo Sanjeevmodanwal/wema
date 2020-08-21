@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,AlertController ,ViewController, ToastController} from 'ionic-angular';
-import { ResetpasswordPage } from '../resetpassword/resetpassword';
+//import { ResetpasswordPage } from '../resetpassword/resetpassword';
 import { AppConst } from '../../AppConst';
 import { ApiProvider } from '../../providers/api/api';
-import { RetrieveVerificationPage } from '../retrieve-verification/retrieve-verification';
+//import { RetrieveVerificationPage } from '../retrieve-verification/retrieve-verification';
 //import { RestProvider } from '../../providers/rest/rest';
-import { Firebase } from '@ionic-native/firebase/ngx';
+//import { Firebase } from '@ionic-native/firebase/ngx';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { AppState } from '../../AppStates';
 /**
  * Generated class for the PasswordPage page.
@@ -24,8 +25,8 @@ export class PasswordPage {
   email: string;
   userservice:any;
   responseData: any;
-  number=9999401224;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,private viewCtrl: ViewController ,private apiProvider :ApiProvider,private taostCtrl :ToastController) {
+  number=9616499322;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,private viewCtrl: ViewController ,private apiProvider :ApiProvider,private taostCtrl :ToastController,private firebaseX: FirebaseX) {
   }
 
   ionViewDidLoad() {
@@ -51,8 +52,13 @@ reset()
 
       };
       var response = await this.apiProvider.Post(AppConst.FORGOT_PASSWORD, request).toPromise();
+      var RepDate=JSON.stringify(response);
+      var myobj=JSON.parse(RepDate);
+      console.log("responce",myobj);
+      //this.number=myobj.mobilenumber;
       if (response != null && response.hasOwnProperty('status') && response['status'] == true) {
         this.responseData=true
+      //  this.number=response.['mobilenumber'];
        this.varifynumber();
 
       //  var credential = firebase.auth.PhoneAuthProvider.credential(verificationId, SMS_code);
@@ -113,6 +119,7 @@ reset()
 
                console.log(number);
                (<any>window).FirebasePlugin.verifyPhoneNumber(number, 60, (credential) => {
+                 console.log("credential",credential);
                   console.log(credential.verificationId);
                    var verificationId = credential.verificationId
                    if(i == 2)

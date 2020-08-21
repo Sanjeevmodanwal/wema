@@ -87,7 +87,7 @@ export class MyApp {
       this.SetPushNotification();
       this.subscribeEvents();
      // firebase.initializeApp(config);
-      // this.firebase.setConfigSettings(config)
+     // this.firebase.setConfigSettings(config)
     });
   }
   hideSplashScreen() {

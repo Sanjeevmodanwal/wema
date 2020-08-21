@@ -134,20 +134,7 @@
         "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
       },
       "cordova-plugin-filepath": {},
-      "cordova-plugin-firebasex": {
-        "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
-        "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
-        "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true",
-        "ANDROID_ICON_ACCENT": "#FF00FFFF",
-        "ANDROID_PLAY_SERVICES_TAGMANAGER_VERSION": "17.0.0",
-        "ANDROID_FIREBASE_ANALYTICS_VERSION": "17.2.1",
-        "ANDROID_FIREBASE_MESSAGING_VERSION": "20.0.0",
-        "ANDROID_FIREBASE_CONFIG_VERSION": "19.0.3",
-        "ANDROID_FIREBASE_PERF_VERSION": "19.0.1",
-        "ANDROID_FIREBASE_AUTH_VERSION": "19.1.0",
-        "ANDROID_CRASHLYTICS_VERSION": "2.10.1",
-        "ANDROID_CRASHLYTICS_NDK_VERSION": "2.1.1"
-      },
+      "cordova-plugin-firebasex": {},
       "cordova-sumup-plugin": {
         "SUMUP_API_KEY": "bdb42c49-ed7d-4e10-a79b-d24d38d3aab1"
       }
