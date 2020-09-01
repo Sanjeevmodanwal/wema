@@ -80,7 +80,7 @@ export class CarePage {
       .toPromise();
     console.log(response);
     this.Data.push(response);
-    console.log(this.Data);
+    console.log("data anshu ",this.Data);
     this.Care = this.Data[0].data;
   }
   // toggleSearch() {

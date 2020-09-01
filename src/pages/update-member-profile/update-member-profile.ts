@@ -93,7 +93,10 @@ export class UpdateMemberProfilePage {
     this.companyId = this.currentUser.currentCompany.companyid;
     //this.dob = new Date().toISOString();
     this.dob = this.userInfo.dateofbirth;
-    if (this.userInfo.dateofbirth != "") {
+    console.log("dob",this.dob);
+    //if (this.userInfo.dateofbirth != "") {
+      if (this.userInfo.dateofbirth !==undefined) {
+      console.log("enter");
       let dateArray = this.userInfo.dateofbirth.split("-");
       if (dateArray[0].length < 4) {
         this.dob = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0];

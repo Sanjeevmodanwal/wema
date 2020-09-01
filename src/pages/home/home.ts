@@ -63,6 +63,10 @@ export class HomePage {
     console.log('inside HomePage constructor');
     console.log(JSON.stringify(navParams.data));
     
+    // this.storage.get('UserCred').then(val=>{
+    //   console.log("UserCred",val);
+    // });
+    
     try{
       if(navParams.data != undefined || navParams.data != '' || navParams.data != null ){
         this.fromCheckedPage = navParams.data.data;
@@ -79,13 +83,14 @@ export class HomePage {
     }
     
     
-
-
+    console.log("this",AppState.UserCred);
+    console.log("country",AppState.UserCred.country);
+    this.Country=AppState.UserCred.country;
     this.currentNavigatedDateDay = this.currentDate;
-    if (AppState.UserCred != undefined) {
-      AppState.PaymentGatewayId =
-        AppState.UserCred.formvalues["country"] == "2" ? "4" : "3";
-    }
+    // if (AppState.UserCred != undefined) {
+    //   AppState.PaymentGatewayId =
+    //     AppState.UserCred.formvalues["country"] == "2" ? "4" : "3";
+    // }
   }
   @ViewChild("slide") slide: Slides;
   @ViewChild("slides") slides: Slides;
@@ -221,17 +226,17 @@ export class HomePage {
     this.navCtrl.push("ProviderListPage");
   }
   async getProviders() {
-    var countryid = "";
-    if (AppState.UserCred != undefined) {
-      if (AppState.UserCred.formvalues.hasOwnProperty("country")) {
-        if (
-          AppState.UserCred.formvalues["country"] == "1" ||
-          AppState.UserCred.formvalues["country"] == "2"
-        ) {
-          countryid = AppState.UserCred.formvalues["country"];
-        }
-      }
-    }
+    var countryid = AppState.UserCred.Country;
+    // if (AppState.UserCred != undefined) {
+    //   if (AppState.UserCred.formvalues.hasOwnProperty("country")) {
+    //     if (
+    //       AppState.UserCred.formvalues["country"] == "1" ||
+    //       AppState.UserCred.formvalues["country"] == "2"
+    //     ) {
+    //       countryid = AppState.UserCred.formvalues["country"];
+    //     }
+    //   }
+    // }
     var request = {
       auth: true,
       //set":0,"recordlimit":5,"orderby":"categoryorder","dir":"DESC"},auth:true}

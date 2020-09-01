@@ -52,7 +52,7 @@
         <div id="map" #map></div>
       </div>
 <ion-grid *ngFor="let item of Care;  let i = index; "  class="care-page"  >
-  <ion-row   *ngIf="item.category=='45'"  (click)="page_info (item,i)" class="care-row"  >
+  <ion-row     (click)="page_info (item,i)" class="care-row"  >
       <ion-col col-9>
           <h3>{{item.servicename}}</h3>
           <div  *ngIf="item.description!=null" >

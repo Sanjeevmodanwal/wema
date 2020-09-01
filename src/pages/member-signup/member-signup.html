@@ -19,24 +19,24 @@
         <ion-grid> 
             <ion-row>
                
-                <ion-item>
+                <!--<ion-item>
                     <ion-label>Title<span>*</span></ion-label>
                       <ion-select [ngModelOptions]="{standalone: true}" [(ngModel)]="data.Title"  >
                         <ion-option  *ngFor="let item of Title " [value]="item"  >{{item}} </ion-option>
                       </ion-select>
                   </ion-item>
-                  <div *ngIf="data.Title==null && isSubmitted" style="color: red"> Title is required.</div>
+                  <div *ngIf="data.Title==null && isSubmitted" style="color: red"> Title is required.</div> -->
               <ion-item>
-                  <ion-label>First Name</ion-label>
+                  <ion-label>User Name</ion-label>
                   <ion-input required  formControlName='firstname'></ion-input>
                 </ion-item>
                 <div *ngIf="firstname.invalid && isSubmitted" style="color: red; "> First Name is required.</div>
 
-                <ion-item>
+                <!--<ion-item>
                     <ion-label>Last Name</ion-label>
                     <ion-input required  formControlName='lastname' ></ion-input>
                   </ion-item>
-                  <div *ngIf="lastname.invalid && isSubmitted" style="color: red; "> Last Name is required.</div>
+                  <div *ngIf="lastname.invalid && isSubmitted" style="color: red; "> Last Name is required.</div> -->
                
                
                 <ion-item>
@@ -69,12 +69,12 @@
 
 
                 
-                <ion-item class="width">
+               <!--- <ion-item class="width">
                   <ion-label>Confirm Password<span>*</span></ion-label>
                   <ion-input   type="password"  [ngModelOptions]="{standalone: true}"  [(ngModel)]="confirmPassword" (change)="passwordChange()"  ></ion-input>
                 </ion-item>
 
-                <div class="custom-label"   style="color:#f53d3d; ">{{confirmpassworderrormsg}}</div> 
+                <div class="custom-label"   style="color:#f53d3d; ">{{confirmpassworderrormsg}}</div>  -->
 
 
               <!-- <div class="custom-label"  *ngIf="confirmPassword!=undefined"  style="color:#f53d3d; ">{{confirmpassworderrormsg}}Confirm password is required</div> 

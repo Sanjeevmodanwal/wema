@@ -15,7 +15,7 @@
         LoGIN  <ion-icon name="ios-arrow-forward"></ion-icon>
     </button>
    </ion-buttons>
-   <!-- <button ion-button icon-only (click)='toggleSearch()'>
+    <button ion-button icon-only (click)='toggleSearch()'>
       <ion-icon name="search"></ion-icon>
     </button>
   </ion-navbar>
@@ -35,7 +35,7 @@
           <span class="span1" ><img class="slider-one" src="assets/imgs/Household_help.png" /></span>
         </label>
       </ion-item>
-     <!-- <ion-row>
+      <ion-row>
         <ion-col>
           <button class="custom-button" ion-button style="float: right" (click)='openCompanyDetail(item)'>
             Book Now
@@ -108,11 +108,7 @@
                         <div id="map" #map></div>
                       </div>-->
   <ion-grid *ngFor="let item of Care  " class="care-page">
-    <ion-row
-      *ngIf="item.category=='44'"
-      (click)="page_info (item,i)"
-      class="care-row"
-    >
+    <ion-row (click)="page_info (item,i)" class="care-row" >
       <ion-col col-9>
         <h3>{{item.servicename}}</h3>
         <p>

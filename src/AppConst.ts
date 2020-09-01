@@ -12,7 +12,7 @@ export class AppConst {
   // public static readonly WEMA_DEV = "http://wema4-dev.eu-west-2.elasticbeanstalk.com/data";
   // public static readonly WEMA_DEV_ROOT = "http://wema4-dev.eu-west-2.elasticbeanstalk.com/";
   public static readonly WEMA_DEV = "http://wema4-demo.eu-west-2.elasticbeanstalk.com/data";
-   public static readonly WEMA_DEV_ROOT = "http://wema4-demo.eu-west-2.elasticbeanstalk.com/";
+  public static readonly WEMA_DEV_ROOT = "http://wema4-demo.eu-west-2.elasticbeanstalk.com/";
   // public static readonly WEMA_DEV = "http://localhost/data";
   // public static readonly WEMA_DEV_ROOT = "http://localhost/";
   // public static readonly WEMA_DEV = "http://134.209.33.213:32965/data";
@@ -24,9 +24,11 @@ export class AppConst {
   public static readonly DELETE_ADDRESS_BOOK = "/api/registration/removeaddressbook";
   public static readonly FORM_BUILDER = "/api/formbuilder";
   public static readonly REGISTER = "/api/registration/cud";
+  public static readonly CREATACCOUNT = "/api/registration/addMember";
   public static readonly PROVIDER_REGISTER = "/api/providers/cud";
   public static readonly PROVIDER_REGISTER_WEMALIFE = "/api/life/savereginterestform";
   public static readonly LOGIN = "/secureapi/login/applogin";
+  public static readonly SIGNIN = "/secureapi/login";
   public static readonly SEARCH_COMPANIES = "/api/companies/cud";
   public static readonly SERVICE_CATEGORIES = "/api/servicecategories";
   public static readonly VERIFY_CODE = "/api/registration/verifycode";

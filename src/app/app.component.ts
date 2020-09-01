@@ -480,6 +480,7 @@ export class MyApp {
    * Subscribe the app events
    */
   subscribeEvents() {
+
     this.events.subscribe("memberloggedin", async () => {
       this.ProfileName =
         AppState.UserCred["firstname"] + " " + AppState.UserCred["lastname"];
@@ -496,7 +497,7 @@ export class MyApp {
         if (AppState.IsMember && AppState.UserCred["usertypeid"] == "4") {
           this.pages.push({
             title: "Home ",
-            component: HomePage,
+            component: HomePage, 
             icon: "assets/icon/master_dashboard.png"
           });
           this.pages.push({

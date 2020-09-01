@@ -48,6 +48,7 @@ export class MemberSignupPage {
   City:FormControl;
   Address:FormControl;
   Address1:any;
+  code:any;
   checklists :any;
   message:FormControl;
   TermsChecked :boolean = true;
@@ -200,9 +201,9 @@ export class MemberSignupPage {
     //  this.data.contact1=this.myForm.value.contact1,
       this.data.emailid=this.myForm.value.emailid,
       this.data.firstname=this.myForm.value.firstname,
-      this.data.lastname=this.myForm.value.lastname,
-     // this.data.postcode=this.myForm.value.postcode,
-      this.data.country=this.myForm.value.Country,
+    //  this.data.lastname=this.myForm.value.lastname,
+      this.data.postcode=this.myForm.value.postcode,
+      //this.data.country=this.myForm.value.Country,
       
       console.log(this.data)
     )
@@ -220,9 +221,9 @@ export class MemberSignupPage {
    
     
     this.passworderrormsg ='';
-    console.log("---------passwordFormatChange--------"+this.password);
-    console.log("---------confirm passwordFormatChange--------"+this.confirmPassword);
-    console.log("---------Title--------"+this.data.Title);
+    // console.log("---------passwordFormatChange--------"+this.password);
+    // console.log("---------confirm passwordFormatChange--------"+this.confirmPassword);
+    // console.log("---------Title--------"+this.data.Title);
     if ( this.password != '' && this.password != undefined) {
      
       var isPasswordFormatMatchedStstus = true;
@@ -238,18 +239,12 @@ export class MemberSignupPage {
       this.passworderrormsg ='Password is required.';
     }
 
-      this.confirmpassworderrormsg = '';
-     if(this.confirmPassword ==''){
-       this.confirmpassworderrormsg ='Confirm password is required.';
-     }else if(this.confirmPassword ==undefined){
-      this.confirmpassworderrormsg ='Confirm password is required.';
-     }else if(this.password!='' && this.confirmPassword!='' && !this.isMatched){
-      this.confirmpassworderrormsg ='Please ensure both passwords match.';
-     }
+      //this.confirmpassworderrormsg = '';
+    
     
     
    
-    if ( this.passworderrormsg == '' && this.confirmpassworderrormsg == '' && this.password!= undefined && this.confirmPassword!=undefined && this.data.Title!= null && this.firstname.valid&&this.emailid.valid&&this.contact.valid) {
+    if ( this.passworderrormsg == '' && this.password!= undefined && this.firstname.valid&&this.emailid.valid&&this.contact.valid) {
       console.log('matched');
       
       //  this.values['password'] = this.password;
@@ -267,60 +262,70 @@ export class MemberSignupPage {
         var mobileWithCode = this.myForm.value.contact;
         if(databaseCountry == '1'){
           mobileWithCode = "+44"+this.myForm.value.contact;
+          this.code="+44";
         }else  if(databaseCountry == '2'){
           mobileWithCode = "+91"+this.myForm.value.contact;
+          this.code="+91";
         }
     
     
-        var request = {
-          action: 'C',
-          createdby: '0',
-          companyid: '1',
-          firebase_id:AppState.DeviceToken,
-          formid: '1',
-         // userid: AppState.UserCred.userid,
+        // var request = {
+        //   action: 'C',
+        //   createdby: '0',
+        //   companyid: '1',
+        //   firebase_id:AppState.DeviceToken,
+        //   formid: '1',
+        //  // userid: AppState.UserCred.userid,
          
-         // membertype: 'someone',
-          //memberstatus: '1',
+        //  // membertype: 'someone',
+        //   //memberstatus: '1',
          
-          member:{
-            confirmpassword: this.confirmPassword,
-            county: databaseCountry,
-            emailid: this.myForm.value.emailid,
-            firstname: this.myForm.value.firstname,
-            lastname: this.myForm.value.lastname,
-            mobilenumber: mobileWithCode,
-            password: this.password,
-            title: this.data.Title,
-            dateofbirth: "27-12-1979",
-            gender: '1',
-            country: databaseCountry,
-            addressline: ' ',
-            addressline1: ' ',
-            city: ' ',
-          //  addressline:this.myForm.value.Address,
-           // addressline1: this.myForm.value.Address1,
-          //  city:this.myForm.value.City,
-          //  companyid: "1",
+        //   member:{
+        //     confirmpassword: this.confirmPassword,
+        //     county: databaseCountry,
+        //     emailid: this.myForm.value.emailid,
+        //     firstname: this.myForm.value.firstname,
+        //     lastname: this.myForm.value.lastname,
+        //     mobilenumber: mobileWithCode,
+        //     password: this.password,
+        //     title: this.data.Title,
+        //     dateofbirth: "27-12-1979",
+        //     gender: '1',
+        //     country: databaseCountry,
+        //     addressline: ' ',
+        //     addressline1: ' ',
+        //     city: ' ',
+        //   //  addressline:this.myForm.value.Address,
+        //    // addressline1: this.myForm.value.Address1,
+        //   //  city:this.myForm.value.City,
+        //   //  companyid: "1",
             
-           // country: "2",
+        //    // country: "2",
            
-           // dateofbirth: "27-12-1979",
+        //    // dateofbirth: "27-12-1979",
            
-           // gender: this.data['Gender'],
-          //  homenumber: this.myForm.value.contact1,
-          //  postcode: this.myForm.value.postcode,
-           // relationship: "Friend",
-          },
-          membertype: 'self',
-          usertypeid: '4'
-        };
+        //    // gender: this.data['Gender'],
+        //   //  homenumber: this.myForm.value.contact1,
+        //   //  postcode: this.myForm.value.postcode,
+        //    // relationship: "Friend",
+        //   },
+        //   membertype: 'self',
+        //   usertypeid: '4'
+        // };
+        var request={
+          emailid: this.myForm.value.emailid,
+          username: this.myForm.value.firstname,
+          mobile: mobileWithCode,
+          password: this.password,
+          code:this.code
+        }
         console.log("---------------------request--------------");
-        console.log(request);
+        console.log("request",request);
         console.log("---------------------request--------------");
-
   
-        var response = await this.apiProvider.Post(AppConst.REGISTER, request).toPromise();
+      
+       // var response = await this.apiProvider.Post(AppConst.REGISTER, request).toPromise();
+        var response = await this.apiProvider.Post(AppConst.CREATACCOUNT, request).toPromise();
         if (response != null && response['status']) {
           /*this.toastCtrl.create({
             message: "User added successfully",

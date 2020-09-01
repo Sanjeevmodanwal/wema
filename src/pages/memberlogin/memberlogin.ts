@@ -229,6 +229,7 @@ export class MemberloginPage {
         })
         .present();
     } else {
+     // alert("me");
       var userCred = await this.getUserCredential();
       if (userCred != null) {
         await this.getCurrentUserProfile(userCred);
@@ -294,6 +295,7 @@ export class MemberloginPage {
     var userCred = await this.apiProvider
       .Post(AppConst.LOGIN, request)
       .toPromise();
+      console.log("userCred",userCred);
     if (
       userCred != null &&
       userCred.hasOwnProperty("message") &&
@@ -391,6 +393,8 @@ export class MemberloginPage {
           AppState.UserCred['currentCompanyId'] = defaultCompany.companyid;
           console.log(AppState.UserCred);
         }*/
+
+        console.log("record and",userCred["records"]["0"]);
         return userCred["records"]["0"];
       }
     } else {

@@ -47,7 +47,7 @@ reset()
     if (re.test(this.email)) {
       var request = {
         emailid: this.email,
-        firebase_id:AppState.DeviceToken,
+       // firebase_id:AppState.DeviceToken,
         action: "Forgot"
 
       };
@@ -59,7 +59,7 @@ reset()
       if (response != null && response.hasOwnProperty('status') && response['status'] == true) {
         this.responseData=true
       //  this.number=response.['mobilenumber'];
-       this.varifynumber();
+      // this.varifynumber();
 
       //  var credential = firebase.auth.PhoneAuthProvider.credential(verificationId, SMS_code);
         this.taostCtrl.create(
