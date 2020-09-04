@@ -189,9 +189,7 @@ export class HomePage {
         recordlimit: 50
       }
     };
-    let response = await this.apiProvider
-      .Post(AppConst.GET_SERVICES, request)
-      .toPromise();
+    let response = await this.apiProvider.Post(AppConst.GET_SERVICES, request).toPromise();
     //console.log(response['records'])
     this.ServicesLogo = response["records"];
     //console.log(this.ServicesLogo)

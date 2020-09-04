@@ -88,9 +88,9 @@ export class UpdateMemberProfilePage {
     this.bottomPad = AppState.IsDashboard ? "55px" : "5px";
     this.currentUser = AppState.UserCred;
     console.log(this.currentUser);
-    this.userInfo = this.currentUser.formvalues;
+    this.userInfo = this.currentUser.profile[0].formvalues;
     console.log("userinfo",this.userInfo);
-    this.companyId = this.currentUser.currentCompany.companyid;
+    this.companyId = this.currentUser.companyid;
     //this.dob = new Date().toISOString();
     this.dob = this.userInfo.dateofbirth;
     console.log("dob",this.dob);
@@ -417,7 +417,7 @@ export class UpdateMemberProfilePage {
       //alert(this.dob);
       this.values["dateofbirth"] = this.dob;
       let request = {
-        companyid: this.currentUser.currentCompany.companyid,
+        companyid: this.currentUser.companyid,
         action: "U",
         usertypeid: "3",
         userid: this.currentUser.userid,
@@ -476,7 +476,7 @@ export class UpdateMemberProfilePage {
     if (!AppState.IsWemaLife)
       filters.push({
         fieldname: "companyid",
-        fieldvalue: AppState.UserCred.currentCompanyId,
+        fieldvalue: AppState.UserCred.companyid,
         operators: "Equal"
       });
     let request: any;

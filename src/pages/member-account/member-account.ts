@@ -72,9 +72,14 @@ export class MemberAccountPage {
     private toastCtrl: ToastController,
     private storage: Storage
   ) {
-    this.currentNavigatedDateMonth = this.currentDate;
-    AppState.PaymentGatewayId =
-      AppState.UserCred.formvalues["country"] == "2" ? "4" : "3";
+   // alert("me");
+
+   //this.Country=AppState.UserCred.country;
+   // this.currentNavigatedDateDay = this.currentDate;
+
+    // this.currentNavigatedDateMonth = this.currentDate;
+    // AppState.PaymentGatewayId =
+    //   AppState.UserCred.formvalues["country"] == "2" ? "4" : "3";
   }
   ionViewDidLoad() {
     //console.log('ionViewDidLoad MemberAccountPage');

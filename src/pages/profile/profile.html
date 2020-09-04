@@ -32,10 +32,10 @@
 <ion-grid class="background-f">
     <ion-row>
         <ion-col col-12>
-            <p  *ngIf = "user.currentCompany['companyno']!=''">Company Number</p>
-            <h2 *ngIf = "user.currentCompany['companyno']!=''">#{{user.currentCompany['companyno']}}</h2>
-            <p *ngIf = "user.currentCompany['companyname']!=''">Company Name</p>
-            <h2 *ngIf = "user.currentCompany['companyname']!=''">{{user.currentCompany['companyname']}}</h2>
+            <!-- <p  *ngIf = "user.currentCompany['companyno']!=''">Company Number</p>
+            <h2 *ngIf = "user.currentCompany['companyno']!=''">#{{user.currentCompany['companyno']}}</h2> -->
+            <p *ngIf = "user['companyname']!=''">Company Name</p>
+            <h2 *ngIf = "user['companyname']!=''">{{user['companyname']}}</h2> 
            <!-- <p *ngIf = "user['companyid']!=''">Unique Number</p>
             <h2 *ngIf = "user['companyid']!=''">{{user['companyid']}}</h2>-->
         </ion-col>

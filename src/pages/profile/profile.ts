@@ -72,7 +72,7 @@ export class ProfilePage {
     private transfer: FileTransfer
   ) {
     console.log(AppState.UserCred);
-    this.user = AppState.UserCred;
+    this.user = AppState.UserCred.profile[0];
     this.profile_completion_percentage.push(
       { company_information: 100 },
       { personal_information: 90 },
@@ -82,8 +82,8 @@ export class ProfilePage {
       AppState.UserCred["avatar"] == null || AppState.UserCred["avatar"] == ""
         ? "assets/imgs/userred.png"
         : AppState.UserCred["avatar"];
-    var usertitle = AppState.UserCred["formvalues"].hasOwnProperty("title")
-      ? AppState.UserCred["formvalues"]["title"]
+    var usertitle = AppState.UserCred.profile[0]["formvalues"].hasOwnProperty("title")
+      ? AppState.UserCred.profile[0]["formvalues"]["title"]
       : "";
     this.DisplayName =
       usertitle +
@@ -91,16 +91,16 @@ export class ProfilePage {
       AppState.UserCred["firstname"] +
       " " +
       AppState.UserCred["lastname"];
-    var gender = AppState.UserCred["formvalues"]["gender"];
+    var gender = AppState.UserCred.profile[0]["formvalues"]["gender"];
     if (gender != undefined) {
       this.Gender =
         gender.charAt(0).toUpperCase() + gender.slice(1, gender.length);
     }
     // this.Dob = AppState.UserCred['formvalues']['dateofbirth'];
-    var userdateofbirth = AppState.UserCred["formvalues"].hasOwnProperty(
+    var userdateofbirth = AppState.UserCred.profile[0]["formvalues"].hasOwnProperty(
       "dateofbirth"
     )
-      ? AppState.UserCred["formvalues"]["dateofbirth"]
+      ? AppState.UserCred.profile[0]["formvalues"]["dateofbirth"]
       : "";
     if (userdateofbirth != "") {
       let dateArray = userdateofbirth.split("-");
@@ -117,26 +117,26 @@ export class ProfilePage {
     // console.log("---------------------Date of birth----------------------");
     this.EmailId = AppState.UserCred["emailid"];
     //this.AddressLine1 = AppState.UserCred['formvalues']['addressline'];
-    this.AddressLine1 = AppState.UserCred["formvalues"].hasOwnProperty(
+    this.AddressLine1 = AppState.UserCred.profile[0]["formvalues"].hasOwnProperty(
       "addressline"
     )
-      ? AppState.UserCred["formvalues"]["addressline"]
+      ? AppState.UserCred.profile[0]["formvalues"]["addressline"]
       : "";
-    var usermobilenumber = AppState.UserCred["formvalues"].hasOwnProperty(
+    var usermobilenumber = AppState.UserCred.profile[0]["formvalues"].hasOwnProperty(
       "mobilenumber"
     )
-      ? AppState.UserCred["formvalues"]["mobilenumber"]
+      ? AppState.UserCred.profile[0]["formvalues"]["mobilenumber"]
       : "";
-    var userphonenumber = AppState.UserCred["formvalues"].hasOwnProperty(
+    var userphonenumber = AppState.UserCred.profile[0]["formvalues"].hasOwnProperty(
       "phonenumber"
     )
-      ? AppState.UserCred["formvalues"]["phonenumber"]
+      ? AppState.UserCred.profile[0]["formvalues"]["phonenumber"]
       : "";
     this.AddressLine2 =
-      (AppState.UserCred["formvalues"]["addressline1"] != "undefined" &&
-        AppState.UserCred["formvalues"]["addressline1"] != null
-        ? AppState.UserCred["formvalues"]["addressline1"]
-        : "" + ",") + AppState.UserCred["formvalues"]["city"];
+      (AppState.UserCred.profile[0]["formvalues"]["addressline1"] != "undefined" &&
+      AppState.UserCred.profile[0]["formvalues"]["addressline1"] != null
+        ? AppState.UserCred.profile[0]["formvalues"]["addressline1"]
+        : "" + ",") + AppState.UserCred.profile[0]["formvalues"]["city"];
     this.Mobile = AppState.IsMember ? usermobilenumber : userphonenumber;
     this.providerskills = AppState.UserCred["providerskills"];
   }
@@ -233,7 +233,7 @@ export class ProfilePage {
     console.log('inside editProfile()');
     console.log(JSON.stringify(AppState.UserCred['usertype']));
 
-    if (AppState.UserCred['usertype'] == 'Provider') {
+    if(AppState.UserCred['usertype'] == 'Provider'){
       this.navCtrl.push('UpdateprofilePage');
     } else {
       this.navCtrl.push('UpdateMemberProfilePage');
@@ -256,7 +256,7 @@ export class ProfilePage {
       if (!AppState.IsWemaLife)
         uploadRequest.append(
           "companyid",
-          AppState.UserCred.currentCompany.companyid
+          AppState.UserCred.companyid
         );
       uploadRequest.append("auth", "false");
       uploadRequest.append("filestatus", "1");
@@ -305,7 +305,7 @@ export class ProfilePage {
     console.log(this.base64Image);
     var param = {
       userid: AppState.UserCred.userid,
-      companyid: AppState.UserCred.currentCompany.companyid,
+      companyid: AppState.UserCred.companyid,
       auth: "false",
       fileflag: "3",
       filestatus: "1",
@@ -364,7 +364,7 @@ export class ProfilePage {
       headers: { headers: httpHeaders },
       params: {
         userid: AppState.UserCred.userid,
-        companyid: AppState.UserCred.currentCompany.companyid,
+        companyid: AppState.UserCred.companyid,
         auth: "false",
         fileflag: "3",
         filestatus: "1",
@@ -401,7 +401,7 @@ export class ProfilePage {
     if (!AppState.IsWemaLife)
       filters.push({
         fieldname: "companyid",
-        fieldvalue: AppState.UserCred.currentCompanyId,
+        fieldvalue: AppState.UserCred.companyid,
         operators: "Equal"
       });
     let request: any;
@@ -427,11 +427,11 @@ export class ProfilePage {
       };
     let response = AppState.IsMember
       ? await this.apiProvider
-        .Post(AppConst.GET_USER_PROFILE, request)
-        .toPromise()
+          .Post(AppConst.GET_USER_PROFILE, request)
+          .toPromise()
       : await this.apiProvider
-        .Post(AppConst.GET_PROVIDER_PROFILE, request)
-        .toPromise();
+          .Post(AppConst.GET_PROVIDER_PROFILE, request)
+          .toPromise();
     if (
       response != null &&
       response.hasOwnProperty("records") &&

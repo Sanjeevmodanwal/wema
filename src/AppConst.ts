@@ -9,10 +9,10 @@ export class AppConst {
   // public static readonly WEMA_DEV_ROOT = "http://wema-3.eu-west-2.elasticbeanstalk.com/";
   //public static readonly WEMA_DEV = "https://www.wemalife.com/data";
   //public static readonly WEMA_DEV_ROOT = "https://www.wemalife.com/";
-  // public static readonly WEMA_DEV = "http://wema4-dev.eu-west-2.elasticbeanstalk.com/data";
-  // public static readonly WEMA_DEV_ROOT = "http://wema4-dev.eu-west-2.elasticbeanstalk.com/";
-  public static readonly WEMA_DEV = "http://wema4-demo.eu-west-2.elasticbeanstalk.com/data";
-  public static readonly WEMA_DEV_ROOT = "http://wema4-demo.eu-west-2.elasticbeanstalk.com/";
+  // public static readonly WEMA_DEV = "http://wema4-dev.eu-west-2.elasticbeanstalk.com/data";  //live open
+ //  public static readonly WEMA_DEV_ROOT = "http://wema4-dev.eu-west-2.elasticbeanstalk.com/"; //live open
+  public static readonly WEMA_DEV = "http://wema4-demo.eu-west-2.elasticbeanstalk.com/data";  //demo open
+  public static readonly WEMA_DEV_ROOT = "http://wema4-demo.eu-west-2.elasticbeanstalk.com/"; //demo open
   // public static readonly WEMA_DEV = "http://localhost/data";
   // public static readonly WEMA_DEV_ROOT = "http://localhost/";
   // public static readonly WEMA_DEV = "http://134.209.33.213:32965/data";
