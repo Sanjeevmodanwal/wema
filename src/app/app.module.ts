@@ -50,11 +50,14 @@ import { SumUp } from '@ionic-native/sum-up/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 
+//import { MemberAccountPage } from '../pages/member-account/member-account';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    SelectionPage
+    SelectionPage,
+  //  MemberAccountPage
   ],
   imports: [ 
     FormsModule, 
@@ -78,7 +81,8 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
   entryComponents: [
     MyApp,
     HomePage,
-    SelectionPage
+    SelectionPage,
+  //  MemberAccountPage,
   ],
   providers: [
     ApiProvider,

@@ -124,13 +124,14 @@ export class ProviderDashboardPage {
       AppState.UserCred["avatar"] == null || AppState.UserCred["avatar"] == ""
         ? "assets/imgs/userred.png"
         : AppState.UserCred["avatar"];
-    this.Company = AppState.UserCred["currentCompany"]["companyname"];
+    this.Company = AppState.UserCred.profile[0]["companyname"];
   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad');
+    console.log('ionViewDidLoad helo',AppState.IsMember);
+   // this.rootPage = MemberAccountPage;
     //  this.TodayHeader = "Today's Appointments - " + Helper.getTodayFormattedDate();
     // console.log(this.TodayHeader, AppState.CurrentCompany.currency);
-    this.Currency = AppState.CurrentCompany.currency;
+    //this.Currency = AppState.CurrentCompany.currency;
     // console.log(this.ProfileName, this.ProfilePic, this.Company);
     // console.log("ionViewDidLoad ProviderDashboardPage");
     this.ProviderReport();
@@ -138,8 +139,10 @@ export class ProviderDashboardPage {
     this.getNotifications();
     this.getMonthAppointments();
     if (AppState.IsMember) {
-      this.navCtrl.push("MemberAccountPage");
       console.log("redirected at member dashboard page");
+    
+      //this.navCtrl.push("MemberAccountPage");
+     
     }
   }
   /*doRefresh(refresher) {

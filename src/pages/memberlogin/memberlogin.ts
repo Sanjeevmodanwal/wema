@@ -31,6 +31,8 @@ import {
 import { SocialSharing } from "@ionic-native/social-sharing";
 import { SumupPage } from "../sumup/sumup";
 import { ModalPage } from "../modal/modal";
+ import { MemberAccountPage } from '../../pages/member-account/member-account';
+
 //import { Http } from '../../node_modules/@angular/http';
 /**
  * Generated class for the MemberloginPage page.
@@ -45,6 +47,7 @@ import { ModalPage } from "../modal/modal";
 })
 export class MemberloginPage {
   @ViewChild(Slides) slides: Slides;
+  pages: Array<{ title: string; component: any; icon: string }> = [];
   public type = "password";
   public showPass = false;
   LoginHeader: string;
@@ -87,6 +90,7 @@ export class MemberloginPage {
     //  console.log(this.bookingdata.PostCode)
   }
   ionViewDidLoad() {
+   
     this.fn1575963531();
     this.storage.get("intro-done").then(done => {
       //  this.slides.lockSwipes(true);
@@ -219,7 +223,7 @@ export class MemberloginPage {
   /**
    * User login button click handler
    */
-  async login() {
+ /* async login() {
     if (this.UserName == "" || this.Password == "") {
       this.alertCtrl
         .create({
@@ -280,7 +284,8 @@ export class MemberloginPage {
         }
       }
     }
-  }
+  } 
+
   /**
    * Login the user & get user credential
    */
@@ -585,5 +590,61 @@ export class MemberloginPage {
     };
     const myModal = this.modalController.create("ModalPage", { data: data });
     myModal.present();
+  }
+
+  login(){ 
+    // AppState.IsMember=true;
+    // this.navCtrl.push('MemberloginPage');
+    if (this.UserName == "" || this.Password == "") {
+          this.alertCtrl
+            .create({
+              title: "Alert",
+              message: "You have entered an invalid username or password !",
+              buttons: ["OK"]
+            })
+            .present();
+        } else {
+          var request = {
+            emailid: this.UserName,
+            password: this.Password,
+          };
+          this.apiProvider.Post(AppConst.SIGNIN, request).subscribe((res: any) => {
+            if(res.status==true){
+              console.log("under",res.records[0]);
+              AppState.IsWemaLife =res.records[0].source == "wemaplus" ? false : true;
+              this.ActiveUserId = res.records[0].userid;
+              AppState.UserCred = res.records[0];
+              AppState.Country=res.records[0].country;
+              this.storage.set("UserCred", JSON.stringify(AppState.UserCred));
+              var publishMsg = AppState.IsMember
+                ? "memberloggedin"
+                : "providerloggedin";
+
+              this.events.publish(publishMsg);
+              // this.pages.push({
+              //   title: "My Account ",
+              //   component: "MemberAccountPage",
+              //   icon: "assets/icon/switch_acc.png"
+              // });
+               AppState.IsMember=true;
+               this.rootPage = HomePage;
+              this.fn1575963183();
+            //  this.navCtrl.setRoot(MemberAccountPage);
+            //  this.events.publish('setRoot', HomePage);
+              // this.ActiveUserId = res.records[0].userid;
+              // AppState.UserCred= res.records[0];
+              // console.log("UserCred",AppState.UserCred);
+             // this.navCtrl.push(HomePage)
+            }else if(res.status==false){
+              this.alertCtrl
+              .create({
+                title: "Alert",
+                message:res.message,
+                buttons: ["OK"]
+              })
+              .present();
+            }
+          });
+      }
   }
 }

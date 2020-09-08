@@ -72,6 +72,14 @@ export class MemberAccountPage {
     private toastCtrl: ToastController,
     private storage: Storage
   ) {
+
+  //     this.loader = this.loadingcontroller.create({
+  //    content: "please wait.."
+  //  });
+  //  this.loader.present();
+  //  setTimeout(() => {
+  //   this.loader.dismiss();
+  // }, 5000);
    // alert("me");
 
    //this.Country=AppState.UserCred.country;
@@ -82,21 +90,21 @@ export class MemberAccountPage {
     //   AppState.UserCred.formvalues["country"] == "2" ? "4" : "3";
   }
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad MemberAccountPage');
+    console.log('ionViewDidLoad MemberAccountPage');
     //console.log(this.appstate.UserCred)
-    this.loader = this.loadingcontroller.create({
-      content: "please wait.."
-    });
-    this.loader.present();
+   this.loader = this.loadingcontroller.create({
+     content: "please wait.."
+   });
+   this.loader.present();
     this.getMonthAppointments();
     this.getNotifications();
-    this.monthHeader = Helper.getFullMonth(
-      this.currentNavigatedDateMonth.getMonth()
-    );
-    if (!AppState.IsMember) {
-      this.navCtrl.push(ProviderDashboardPage);
-      //console.log("redirected at provider dashboard page");
-    }
+    // this.monthHeader = Helper.getFullMonth(
+    //   this.currentNavigatedDateMonth.getMonth()
+    // );
+    // if (!AppState.IsMember) {
+    //   this.navCtrl.push(ProviderDashboardPage);
+    //   //console.log("redirected at provider dashboard page");
+    // }
   }
   // async openPage() {
   //   var loggedOut;
@@ -427,8 +435,8 @@ export class MemberAccountPage {
   Goback() {
     var publishMsg = AppState.IsMember ? "memberloggedin" : "providerloggedin";
     this.events.publish(publishMsg);
-    this.navCtrl.pop();
-    //  this.navCtrl.setRoot(HomePage)
+   // this.navCtrl.pop();
+    this.navCtrl.setRoot(HomePage)
     // this.navCtrl.push(page.component);
     // this.navCtrl.pop();
   }

@@ -147,6 +147,7 @@ export class HomePage {
         //console.log('in recently view data ',this.recientlyviewd)
       }
     });
+     
   }
   ionViewDidEnter() {
     setTimeout(() => {
@@ -545,9 +546,11 @@ export class HomePage {
       this.navCtrl.push("QrcodePage", data);
     }
   }
+
   MyAccount() {
     this.navCtrl.push("MemberAccountPage");
   }
+
   login_tost() {
     this.toastCtrl
       .create({

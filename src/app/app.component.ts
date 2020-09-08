@@ -4,7 +4,8 @@ import {
   Platform,
   Events,
   ToastController,
-  AlertController
+  AlertController,
+  NavController 
 } from "ionic-angular";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
@@ -24,8 +25,8 @@ import { ApiProvider } from "../providers/api/api";
 import { NetworkProvider } from "../providers/network/network";
 //import { ProviderDashboardPage } from '../pages/provider-dashboard/provider-dashboard';
 // import { SelectionPage } from '../pages/selection/selection';
-// import { MemberAccountPage } from '../pages/member-account/member-account';
-// import { ProfilePage } from '../pages/profile/profile';
+ import { MemberAccountPage } from '../pages/member-account/member-account';
+ import { ProfilePage } from '../pages/profile/profile';
 // import { ChatPage } from '../pages/chat/chat';
 //import { FCM } from "@ionic-native/fcm";
 import { Firebase } from '@ionic-native/firebase/ngx';
@@ -46,7 +47,7 @@ declare var google: any;
   templateUrl: "app.html"
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+  @ViewChild(Nav) nav: NavController;
   rootPage: any = SelectionPage;
   pages: Array<{ title: string; component: any; icon: string }> = [];
   lat: any;
@@ -86,6 +87,7 @@ export class MyApp {
       this.setStorage();
       this.SetPushNotification();
       this.subscribeEvents();
+      this.logoutApp();
      // firebase.initializeApp(config);
      // this.firebase.setConfigSettings(config)
     });
@@ -480,6 +482,7 @@ export class MyApp {
    * Subscribe the app events
    */
   subscribeEvents() {
+    console.log("appfdf",AppState.UserCred);
 
     this.events.subscribe("memberloggedin", async () => {
       this.ProfileName =
@@ -491,12 +494,15 @@ export class MyApp {
       this.Company =
         AppState.UserCred["wemalife"] == "1"
           ? "WemaLife"
-          : AppState.UserCred["currentCompany"]["companyname"];
+          : AppState.UserCred.profile[0]["companyname"];
       this.pages = [];
       if (!AppState.IsWemaLife) {
         if (AppState.IsMember && AppState.UserCred["usertypeid"] == "4") {
+
+          console.log('in app component page 4');
+
           this.pages.push({
-            title: "Home ",
+            title: "Market Place ",
             component: HomePage, 
             icon: "assets/icon/master_dashboard.png"
           });
@@ -529,8 +535,11 @@ export class MyApp {
         }
       } else {
         if (AppState.IsMember && AppState.UserCred["usertypeid"] == "4") {
+
+          console.log('in app component page 4');
+
           this.pages.push({
-            title: "Home ",
+            title: "Market Place ",
             component: HomePage,
             icon: "assets/icon/master_dashboard.png"
           });
@@ -570,8 +579,9 @@ export class MyApp {
           this.rootPage = TabsPage;
       }
       else*/
-      //console.log('in app component page')
+      //console.log('in app component page 5')
       this.rootPage = HomePage;
+     // this.nav.push(MemberAccountPage);
     });
     this.events.subscribe("providerloggedin", async () => {
       this.ProfileName =
@@ -580,7 +590,7 @@ export class MyApp {
         AppState.UserCred["avatar"] == null || AppState.UserCred["avatar"] == ""
           ? "assets/imgs/userred.png"
           : AppState.UserCred["avatar"];
-      this.Company = AppState.UserCred["currentCompany"]["companyname"];
+      this.Company = AppState.UserCred.profile[0]["companyname"];
       this.pages = [];
       if (!AppState.IsWemaLife) {
         if (!AppState.IsMember && AppState.UserCred["usertypeid"] == "3") {
@@ -654,6 +664,7 @@ export class MyApp {
       }
       else*/
       this.rootPage = "ProviderDashboardPage";
+     // this.rootPage = MemberAccountPage;
     });
     this.events.subscribe("updatecart", (updatecart: boolean) => {
       if (updatecart) this.createCartTimer();
