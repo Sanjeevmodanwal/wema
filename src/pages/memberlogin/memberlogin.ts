@@ -620,21 +620,21 @@ export class MemberloginPage {
                 ? "memberloggedin"
                 : "providerloggedin";
 
-              this.events.publish(publishMsg);
+             // this.events.publish(publishMsg);
               // this.pages.push({
               //   title: "My Account ",
               //   component: "MemberAccountPage",
               //   icon: "assets/icon/switch_acc.png"
               // });
                AppState.IsMember=true;
-               this.rootPage = HomePage;
+              // this.rootPage = MemberAccountPage;
               this.fn1575963183();
             //  this.navCtrl.setRoot(MemberAccountPage);
             //  this.events.publish('setRoot', HomePage);
               // this.ActiveUserId = res.records[0].userid;
               // AppState.UserCred= res.records[0];
               // console.log("UserCred",AppState.UserCred);
-             // this.navCtrl.push(HomePage)
+                this.navCtrl.push(MemberAccountPage)
             }else if(res.status==false){
               this.alertCtrl
               .create({

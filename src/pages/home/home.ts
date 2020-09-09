@@ -11,6 +11,7 @@ import { SelectionPage } from "../selection/selection";
 import { ModalPage } from "../modal/modal";
 //import { MenuController } from '../../../node_modules/ionic-angular/components/app/menu-controller';
 import { MyAccountAddReviewPage } from '../my-account-add-review/my-account-add-review';
+import { MemberAccountPage } from '../../pages/member-account/member-account';
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
@@ -548,7 +549,9 @@ export class HomePage {
   }
 
   MyAccount() {
-    this.navCtrl.push("MemberAccountPage");
+    //alert("me");
+    //his.navCtrl.push("MemberAccountPage");
+    this.navCtrl.push(MemberAccountPage)
   }
 
   login_tost() {

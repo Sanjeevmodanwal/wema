@@ -4,10 +4,10 @@ import { MemberAccountPage } from './member-account';
 
 @NgModule({
   declarations: [
-    MemberAccountPage,
+   // MemberAccountPage,
   ],
   imports: [
-    IonicPageModule.forChild(MemberAccountPage),
+    //IonicPageModule.forChild(MemberAccountPage),
   ],
 })
 export class MemberAccountPageModule {}

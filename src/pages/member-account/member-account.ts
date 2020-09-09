@@ -433,10 +433,11 @@ export class MemberAccountPage {
     this.navCtrl.push("HomePage");
   }
   Goback() {
+   
     var publishMsg = AppState.IsMember ? "memberloggedin" : "providerloggedin";
     this.events.publish(publishMsg);
-   // this.navCtrl.pop();
-    this.navCtrl.setRoot(HomePage)
+    this.navCtrl.pop();
+    //this.navCtrl.setRoot(HomePage)
     // this.navCtrl.push(page.component);
     // this.navCtrl.pop();
   }

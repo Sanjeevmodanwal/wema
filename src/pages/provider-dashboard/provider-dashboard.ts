@@ -238,6 +238,7 @@ export class ProviderDashboardPage {
     console.log('getPastVisits');
     var request = {
       //companyid: AppState.UserCred.currentCompanyId
+      companyid: AppState.UserCred.companyid
     };
     if (AppState.IsMember) request["memberid"] = AppState.UserCred.userid;
     else request["providerid"] = AppState.UserCred.userid;
@@ -385,7 +386,7 @@ export class ProviderDashboardPage {
     var request = {
       list: "moneyearned",
       UserId: AppState.UserCred["userid"],
-      companyid: AppState.CurrentCompany.companyid
+      companyid: AppState.UserCred.companyid
       //     companyid:58,
       // providerid:362
     };
@@ -412,8 +413,9 @@ export class ProviderDashboardPage {
       //  ProviderId: AppState.UserCred['userid'],
       // StartDate: this.datePipe.transform(this.currentMonthDates['0'], 'yyyy-MM-dd'),
       // EndDate: this.datePipe.transform(this.currentMonthDates[this.currentMonthDates.length - 1], 'yyyy-MM-dd'),
-      CompayId: AppState.UserCred.currentCompanyId,
+     // CompayId: AppState.UserCred.currentCompanyId,
       //companyid:null,
+       CompayId: AppState.UserCred.companyid,
       enddate: "31-1-2019",
       //providerid: "289",
       startdate: "1-1-2019"
